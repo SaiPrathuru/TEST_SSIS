@@ -1,0 +1,823 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/9/2013 4:33:02 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DTSID="{1919A481-DC8E-4288-B423-E4DC6BBE31C2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="1041"
+  DTS:ObjectName="A020_Partition_YM_Update"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{A87CD822-0312-44EB-99F8-9982DD819A70}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{37062269-609E-4A36-9EF2-77AF11799820}"
+      DTS:ObjectName="CubeID"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">SW01</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{EE424B36-1156-4FF6-90F5-8F1919C93EEC}"
+      DTS:ObjectName="DatabaseID"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Sales</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{785B3328-1E67-4C56-B683-70677871CE6B}"
+      DTS:ObjectName="DataSourceID"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">REBI</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{1FE3DA11-06F9-45B6-A903-3ED79465D100}"
+      DTS:ObjectName="MeasureGroupID"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">VF SAL BUDGET FIXED</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{88D4425F-C90C-4C02-B153-57B765E72D79}"
+      DTS:ObjectName="PartitionID_Prefix"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">VFSALORDER_</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2EC61F38-8D80-4378-8C33-DF2F61E87492}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="MAXYM">
+      <DTS:VariableValue
+        DTS:DataType="8">201304</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BD4F3154-0065-4058-B458-3670FFAC617D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="MINYM">
+      <DTS:VariableValue
+        DTS:DataType="8">201309</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9E5683A6-294E-4AF0-ABC5-48276D0E3FBD}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::PartitionID_Prefix] +  @[User::SETYM]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PartitionID">
+      <DTS:VariableValue
+        DTS:DataType="8">VFSALORDER_201304</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D7A40818-53AE-463D-A833-2867695CFF8E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;&lt;Batch xmlns=\&quot;http://schemas.microsoft.com/analysisservices/2003/engine\&quot;&gt;&#xA;  &lt;Parallel&gt;&#xA;    &lt;Process xmlns:xsd=\&quot;http://www.w3.org/2001/XMLSchema\&quot; xmlns:xsi=\&quot;http://www.w3.org/2001/XMLSchema-instance\&quot;&#xA;             xmlns:ddl2=\&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2\&quot;&#xA;             xmlns:ddl2_2=\&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2\&quot;&#xA;             xmlns:ddl100_100=\&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100\&quot;&gt;&#xA;      &lt;Object&gt;&#xA;        &lt;DatabaseID&gt;&quot; + @[$Package::DatabaseID] + &quot;&lt;/DatabaseID&gt;&#xA;        &lt;CubeID&gt;&quot; + @[$Package::CubeID] + &quot;&lt;/CubeID&gt;&#xA;        &lt;MeasureGroupID&gt;&quot; + @[$Package::MeasureGroupID] + &quot;&lt;/MeasureGroupID&gt;&#xA;        &lt;PartitionID&gt;&quot; + @[User::PartitionID] + &quot;&lt;/PartitionID&gt;&#xA;      &lt;/Object&gt;&#xA;      &lt;Type&gt;ProcessFull&lt;/Type&gt;&#xA;      &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;    &lt;/Process&gt;&#xA;  &lt;/Parallel&gt;&#xA;&lt;/Batch&gt;&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PartitionUpdateXML">
+      <DTS:VariableValue
+        DTS:DataType="8">&lt;Batch xmlns="http://schemas.microsoft.com/analysisservices/2003/engine"&gt;
+  &lt;Parallel&gt;
+    &lt;Process xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2"
+             xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2"
+             xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100"&gt;
+      &lt;Object&gt;
+        &lt;DatabaseID&gt;Sales&lt;/DatabaseID&gt;
+        &lt;CubeID&gt;SW01&lt;/CubeID&gt;
+        &lt;MeasureGroupID&gt;VF SAL BUDGET FIXED&lt;/MeasureGroupID&gt;
+        &lt;PartitionID&gt;VFSALORDER_201304&lt;/PartitionID&gt;
+      &lt;/Object&gt;
+      &lt;Type&gt;ProcessFull&lt;/Type&gt;
+      &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;
+    &lt;/Process&gt;
+  &lt;/Parallel&gt;
+&lt;/Batch&gt;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E9C8B086-D0D3-4E88-9052-3476CD608395}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SETYM">
+      <DTS:VariableValue
+        DTS:DataType="8">201304</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\01000_開始ログ"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{E0A4DCE3-842E-457D-A834-E86F787A8137}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="01000_開始ログ"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'開始'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\02000_更新対象範囲取得"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{BE249BD3-78A3-41A1-88FE-90C5524CBD19}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="02000_更新対象範囲取得"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="SELECT&#xA;  UPDT_S_YM,&#xA;  UPDT_E_YM&#xA;FROM&#xA;  Z_CUBE_CTRL&#xA;WHERE&#xA;  DATABASE_ID = ? AND&#xA;  CUBE_ID = ? AND&#xA;  MEASURE_GROUP_ID = ?&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="UPDT_S_YM"
+            SQLTask:DtsVariableName="User::MINYM" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="UPDT_E_YM"
+            SQLTask:DtsVariableName="User::MAXYM" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::DatabaseID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::CubeID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="$Package::MeasureGroupID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03000_パーティション処理ループ"
+      DTS:AssignExpression="@[User::SETYM]=REPLACE(LEFT((DT_WSTR, 20) DATEADD( &quot;Month&quot;, 1,  (DT_DATE) (LEFT(@[User::SETYM], 4) + &quot;/&quot; + RIGHT(@[User::SETYM], 2) + &quot;/01&quot;)), 7), &quot;-&quot;, &quot;&quot;)&#xA;"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For ループ コンテナー"
+      DTS:DTSID="{C736F05B-B628-4727-BE1D-90F4BCA36D49}"
+      DTS:EvalExpression="@[User::SETYM]&lt;=@[User::MAXYM]"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@[User::SETYM]=@[User::MINYM]"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="03000_パーティション処理ループ">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\03000_パーティション処理ループ\03010_パーティション更新"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="パッケージ実行タスク"
+          DTS:DTSID="{1AA06888-BEE5-4760-BCCF-5B568DDBBC7D}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="03010_パーティション更新"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>A010_Partition_Update.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>CubeID</ParameterName>
+                <BindedVariableOrParameterName>$Package::CubeID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>DatabaseID</ParameterName>
+                <BindedVariableOrParameterName>$Package::DatabaseID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>DataSourceID</ParameterName>
+                <BindedVariableOrParameterName>$Package::DataSourceID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>MeasureGroupID</ParameterName>
+                <BindedVariableOrParameterName>$Package::MeasureGroupID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>PartitionID</ParameterName>
+                <BindedVariableOrParameterName>User::PartitionID</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\04000_パーティション処理完了日時を登録"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{F3F31EB5-8A5C-45FB-A9DD-34DF04822627}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="04000_パーティション処理完了日時を登録"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\04000_パーティション処理完了日時を登録.EventHandlers[OnProgress]"
+          DTS:CreationName="OnProgress"
+          DTS:DTSID="{AF99DD92-1D00-45EA-8EF0-B639FF179C92}"
+          DTS:EventID="0"
+          DTS:EventName="OnProgress"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="イベントの反映プロパティです"
+              DTS:DTSID="{25356471-2FFE-4199-A908-4E01859060F4}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="UPDATE Z_CUBE_CTRL&#xA;SET&#xA;  PROCESS_COMPLETION_DATETIME = SYSDATETIME()&#xA;WHERE&#xA;  DATABASE_ID = ? AND&#xA;  CUBE_ID = ? AND&#xA;  MEASURE_GROUP_ID = ?&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::DatabaseID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::CubeID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="$Package::MeasureGroupID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\05000_更新対象範囲初期化"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{C768856A-A558-4E46-9C6F-B26F3FAACDA6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="05000_更新対象範囲初期化"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\05000_更新対象範囲初期化.EventHandlers[OnProgress]"
+          DTS:CreationName="OnProgress"
+          DTS:DTSID="{85A08FE2-7C0E-4DD2-81F5-A37E69BC2100}"
+          DTS:EventID="0"
+          DTS:EventName="OnProgress"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="イベントの反映プロパティです"
+              DTS:DTSID="{EB300FD4-0AA7-4D69-B36A-77B15583A847}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="UPDATE Z_CUBE_CTRL&#xA;SET&#xA;  UPDT_S_YM = NULL,&#xA;  UPDT_E_YM = NULL,&#xA;  DATA_DATE = DEEMED_DATE&#xA;WHERE&#xA;  DATABASE_ID = ? AND&#xA;  CUBE_ID = ? AND&#xA;  MEASURE_GROUP_ID = ?&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::DatabaseID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Package::CubeID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="$Package::MeasureGroupID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\90000_正常終了"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{95BB18F7-6FBB-4DFD-9158-AF48440F4A3A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="90000_正常終了"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'正常終了'&#xA;)&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約]"
+      DTS:CreationName=""
+      DTS:DTSID="{989E4339-BE72-4AF6-873A-EC072004FDA2}"
+      DTS:From="Package\03000_パーティション処理ループ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約"
+      DTS:To="Package\04000_パーティション処理完了日時を登録" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C0BF6C55-4BAC-4EBA-BC25-29803664FA4B}"
+      DTS:From="Package\01000_開始ログ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 1"
+      DTS:To="Package\02000_更新対象範囲取得" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{63E0F779-784B-4E5A-ABDB-00F5F5818BE6}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::MINYM] == &quot;&quot; || @[User::MAXYM] == &quot;&quot;"
+      DTS:From="Package\02000_更新対象範囲取得"
+      DTS:ObjectName="制約 2"
+      DTS:To="Package\90000_正常終了" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{9177F228-7C3D-4303-A858-69C6BDB0839A}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::MINYM] != &quot;&quot; &amp;&amp; @[User::MAXYM] != &quot;&quot;"
+      DTS:From="Package\02000_更新対象範囲取得"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 3"
+      DTS:To="Package\03000_パーティション処理ループ" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{269C6847-14D9-4BB6-A9FD-B52D858D9D1F}"
+      DTS:From="Package\05000_更新対象範囲初期化"
+      DTS:ObjectName="制約 4"
+      DTS:To="Package\90000_正常終了" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{4853E7A3-297F-44BE-A531-F2645889068C}"
+      DTS:From="Package\04000_パーティション処理完了日時を登録"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 5"
+      DTS:To="Package\05000_更新対象範囲初期化" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{C5CC9688-6DEF-4347-8AAC-5A38B0591F06}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="イベントの反映プロパティです"
+          DTS:DTSID="{AA9BBC9F-25C4-4C20-9006-C91516E9EBA0}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{C4A91836-2B79-4F66-919A-E3B806757DDD}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99000_SQL 実行タスク"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[ERROR_CODE] &#xA;,[ERROR_MESSAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,?&#xA;,'OnError'&#xA;,?&#xA;)&#xA;GO&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{CF98AC77-520D-4B0E-9775-8726FC1E7324}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99010_エラー終了"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'エラー終了'&#xA;)&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          DTS:CreationName=""
+          DTS:DTSID="{2CDCB3A6-4933-44AC-BFDE-AB4A3D204B1F}"
+          DTS:From="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約"
+          DTS:To="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\01000_開始ログ"
+          TopLeft="146.5,129.666666203903" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\02000_更新対象範囲取得"
+          TopLeft="119.5,231.666666203903" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\03000_パーティション処理ループ\03010_パーティション更新"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="210,103"
+          Size="210,146"
+          Id="Package\03000_パーティション処理ループ"
+          TopLeft="286,333.666666203902" />
+        <NodeLayout
+          Size="307,42"
+          Id="Package\04000_パーティション処理完了日時を登録"
+          TopLeft="241.5,545.083332843664" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\05000_更新対象範囲初期化"
+          TopLeft="286.5,641.666666203902" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\90000_正常終了"
+          TopLeft="143.5,771.666666203902" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約]"
+          TopLeft="393,479.666666203902">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,65.4166666397618"
+              Start="0,0"
+              End="0,57.9166666397618">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.9166666397618" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 1]"
+          TopLeft="225,171.666666203903">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 2]"
+          TopLeft="191.166666666667,273.666666203902">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="8.00000000000006,498"
+              Start="0,0"
+              End="8.00000000000006,490.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,244.319768930878" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,244.319768930878"
+                    Point2="0,248.319768930878"
+                    Point3="4,248.319768930878" />
+                  <mssgle:LineSegment
+                    End="4.00000000000006,248.319768930878" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.00000000000006,248.319768930878"
+                    Point2="8.00000000000006,248.319768930878"
+                    Point3="8.00000000000006,252.319768930878" />
+                  <mssgle:LineSegment
+                    End="8.00000000000006,490.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-3.99999999999997,253.319768930878,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 3]"
+          TopLeft="258.833333333333,273.666666203902">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="132.166666666667,60"
+              Start="0,0"
+              End="132.166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2709313264346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2709313264346"
+                    Point2="0,24.2709313264346"
+                    Point3="4,24.2709313264346" />
+                  <mssgle:LineSegment
+                    End="128.166666666667,24.2709313264346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="128.166666666667,24.2709313264346"
+                    Point2="132.166666666667,24.2709313264346"
+                    Point3="132.166666666667,28.2709313264346" />
+                  <mssgle:LineSegment
+                    End="132.166666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="58.0833333333333,29.2709313264346,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 4]"
+          TopLeft="398,683.666666203902">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-147.166666666667,88"
+              Start="0,0"
+              End="-147.166666666667,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.2867557715674" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.2867557715674"
+                    Point2="0,52.2867557715674"
+                    Point3="-4,52.2867557715674" />
+                  <mssgle:LineSegment
+                    End="-143.166666666667,52.2867557715674" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-143.166666666667,52.2867557715674"
+                    Point2="-147.166666666667,52.2867557715674"
+                    Point3="-147.166666666667,56.2867557715674" />
+                  <mssgle:LineSegment
+                    End="-147.166666666667,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 5]"
+          TopLeft="396.5,587.083332843664">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,54.5833333602382"
+              Start="0,0"
+              End="0,47.0833333602382">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.0833333602382" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="&lt;改版履歴&gt;&#xA;Ver   Date             Name       Comment&#xA;1.0   2013/07/10   庄見         新規作成&#xA;1.1   2013/09/05   原田         パーティション作成削除&#xA;1.2   2014/07/03   齊藤         パーティション更新完了日時登録追加"
+          ParentId="Package"
+          Size="384,96"
+          Id="aee9bd28-f533-4edd-a717-ab100be5d780"
+          TopLeft="45.0000000000001,18.2500029864411">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="lr SVbN"
+              Size="12"
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="190,42"
+          Id="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package.EventHandlers[OnError]\99010_エラー終了"
+          TopLeft="17.5,107.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          TopLeft="100.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.501953125,21.8212890625,19.00390625,8.857421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
