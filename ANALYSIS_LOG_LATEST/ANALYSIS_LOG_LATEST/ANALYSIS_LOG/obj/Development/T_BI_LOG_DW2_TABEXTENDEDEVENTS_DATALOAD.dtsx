@@ -1,0 +1,1446 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/5/2019 11:10:19 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="REA-SQLPW01"
+  DTS:CreatorName="SC\sai.prathuru"
+  DTS:DTSID="{140256B8-AB99-41A2-BB5C-5EFAE75E3F67}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="T_BI_LOG_DW2_TABEXTENDEDEVENTS_DATALOAD"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="61"
+  DTS:VersionGUID="{26515F7F-BC68-4B20-BA1D-DE396CE69ABC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BE89B79E-3F89-4FB4-AFDC-68C0791028F6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LRDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/30/2019 4:43:19 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\TAB DATA FLOW TASK"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{14C0B6BF-CC15-4C4F-BC08-8FFAFF6359F3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TAB DATA FLOW TASK"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\TAB DATA FLOW TASK\TAB DESTINATION"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TAB DESTINATION"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[T_BI_LOG_DW2_SSASTABEXTENDEDEVENTS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Connections[OleDbConnection]"
+                  connectionManagerID="{67C9F2BA-7D25-44BB-BE0E-6593AA21417B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[connection_ANALYSIS_LOG]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[EventClass]"
+                      cachedDataType="i4"
+                      cachedName="EventClass"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[EventClass]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[EventClass]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[AttachActibityID]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="AttachActibityID"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[AttachActibityID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[AttachActibityID]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[AttachActibityIDXfer]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="AttachActibityIDXfer"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[AttachActibityIDXfer]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[AttachActibityIDXfer]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[ApplicationName]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="ApplicationName"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ApplicationName]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ApplicationName]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[ClientProcessID]"
+                      cachedDataType="i4"
+                      cachedName="ClientProcessID"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ClientProcessID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ClientProcessID]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[ConnectionID]"
+                      cachedDataType="i4"
+                      cachedName="ConnectionID"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ConnectionID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ConnectionID]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[CurrentTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CurrentTime"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[CurrentTime]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[CurrentTime]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[DatabaseName]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="DatabaseName"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[DatabaseName]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[DatabaseName]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[EventSubclass]"
+                      cachedDataType="i4"
+                      cachedName="EventSubclass"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[EventSubclass]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[EventSubclass]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[NTCanonicalUserName]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="NTCanonicalUserName"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[NTCanonicalUserName]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[NTCanonicalUserName]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[NTDomainName]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="NTDomainName"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[NTDomainName]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[NTDomainName]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[NTUserName]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="NTUserName"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[NTUserName]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[NTUserName]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[RequestID]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="RequestID"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[RequestID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[RequestID]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[RequestParameters]"
+                      cachedDataType="nText"
+                      cachedName="RequestParameters"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[RequestParameters]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[RequestParameters]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[RequestProperties]"
+                      cachedDataType="nText"
+                      cachedName="RequestProperties"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[RequestProperties]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[RequestProperties]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[SPID]"
+                      cachedDataType="i4"
+                      cachedName="SPID"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[SPID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SPID]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[ServerName]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="ServerName"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ServerName]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ServerName]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[SessionID]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="SessionID"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[SessionID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SessionID]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[StartTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="StartTime"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[StartTime]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[StartTime]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[TextData]"
+                      cachedDataType="nText"
+                      cachedName="TextData"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[TextData]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[TextData]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[CPUTime]"
+                      cachedDataType="i8"
+                      cachedName="CPUTime"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[CPUTime]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[CPUTime]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[Duration]"
+                      cachedDataType="i8"
+                      cachedName="Duration"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[Duration]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Duration]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[EndTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EndTime"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[EndTime]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[EndTime]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[Error]"
+                      cachedDataType="i4"
+                      cachedName="Error"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[Error]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Error]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[ErrorType]"
+                      cachedDataType="i4"
+                      cachedName="ErrorType"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ErrorType]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ErrorType]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[IntegerData]"
+                      cachedDataType="i8"
+                      cachedName="IntegerData"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[IntegerData]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[IntegerData]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[Severity]"
+                      cachedDataType="i4"
+                      cachedName="Severity"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[Severity]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Severity]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[Success]"
+                      cachedDataType="i4"
+                      cachedName="Success"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[Success]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Success]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[CalculationExpression]"
+                      cachedDataType="nText"
+                      cachedName="CalculationExpression"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[CalculationExpression]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[CalculationExpression]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[ClientHostName]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="ClientHostName"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ClientHostName]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ClientHostName]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[SessionType]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="SessionType"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[SessionType]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SessionType]" />
+                    <inputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].Columns[SYSTEMID]"
+                      cachedCodepage="932"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="SYSTEMID"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[SYSTEMID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SYSTEMID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[EventClass]"
+                      dataType="i4"
+                      name="EventClass" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[AttachActibityID]"
+                      dataType="wstr"
+                      length="128"
+                      name="AttachActibityID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[AttachActibityIDXfer]"
+                      dataType="wstr"
+                      length="128"
+                      name="AttachActibityIDXfer" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ApplicationName]"
+                      dataType="wstr"
+                      length="128"
+                      name="ApplicationName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ClientProcessID]"
+                      dataType="i4"
+                      name="ClientProcessID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ConnectionID]"
+                      dataType="i4"
+                      name="ConnectionID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[CurrentTime]"
+                      dataType="dbTimeStamp"
+                      name="CurrentTime" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[DatabaseName]"
+                      dataType="wstr"
+                      length="128"
+                      name="DatabaseName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[EventSubclass]"
+                      dataType="i4"
+                      name="EventSubclass" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[NTCanonicalUserName]"
+                      dataType="wstr"
+                      length="128"
+                      name="NTCanonicalUserName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[NTDomainName]"
+                      dataType="wstr"
+                      length="128"
+                      name="NTDomainName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[NTUserName]"
+                      dataType="wstr"
+                      length="128"
+                      name="NTUserName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[RequestID]"
+                      dataType="wstr"
+                      length="128"
+                      name="RequestID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[RequestParameters]"
+                      dataType="nText"
+                      name="RequestParameters" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[RequestProperties]"
+                      dataType="nText"
+                      name="RequestProperties" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[SPID]"
+                      dataType="i4"
+                      name="SPID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ServerName]"
+                      dataType="wstr"
+                      length="128"
+                      name="ServerName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[SessionID]"
+                      dataType="wstr"
+                      length="128"
+                      name="SessionID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[StartTime]"
+                      dataType="dbTimeStamp"
+                      name="StartTime" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[TextData]"
+                      dataType="nText"
+                      name="TextData" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[CPUTime]"
+                      dataType="i8"
+                      name="CPUTime" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[Duration]"
+                      dataType="i8"
+                      name="Duration" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[EndTime]"
+                      dataType="dbTimeStamp"
+                      name="EndTime" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[Error]"
+                      dataType="i4"
+                      name="Error" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ErrorType]"
+                      dataType="i4"
+                      name="ErrorType" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[IntegerData]"
+                      dataType="i8"
+                      name="IntegerData" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[Severity]"
+                      dataType="i4"
+                      name="Severity" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[Success]"
+                      dataType="i4"
+                      name="Success" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[CalculationExpression]"
+                      dataType="nText"
+                      name="CalculationExpression" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[ClientHostName]"
+                      dataType="wstr"
+                      length="128"
+                      name="ClientHostName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[SessionType]"
+                      dataType="wstr"
+                      length="128"
+                      name="SessionType" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input].ExternalColumns[SYSTEMID]"
+                      dataType="i4"
+                      name="SYSTEMID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\TAB DATA FLOW TASK\TAB SOURCE"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="TAB SOURCE"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [EventClass]
+      ,[AttachActibityID]
+      ,[AttachActibityIDXfer]
+      ,[ApplicationName]
+      ,[ClientProcessID]
+      ,[ConnectionID]
+      ,[CurrentTime]
+      ,[DatabaseName]
+      ,[EventSubclass]
+      ,[NTCanonicalUserName]
+      ,[NTDomainName]
+      ,[NTUserName]
+      ,[RequestID]
+      ,[RequestParameters]
+      ,[RequestProperties]
+      ,[SPID]
+      ,[ServerName]
+      ,[SessionID]
+      ,[StartTime]
+      ,[TextData]
+      ,[CPUTime]
+      ,[Duration]
+      ,[EndTime]
+      ,[Error]
+      ,[ErrorType]
+      ,[IntegerData]
+      ,[Severity]
+      ,[Success]
+      ,[CalculationExpression]
+      ,[ClientHostName]
+      ,[SessionType]
+     ,'7' SYSTEMID
+  FROM [OlapQueryLog].[dbo].[SsasTabExtendedEvents]
+where [CurrentTime] &gt; ?
+order by [CurrentTime]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{BE89B79E-3F89-4FB4-AFDC-68C0791028F6};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Connections[OleDbConnection]"
+                  connectionManagerID="{4F385F4F-F2DA-4A10-9BA6-F4C8332AD526}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[connection_OlapQueryLog]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[EventClass]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[EventClass]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[EventClass]"
+                      name="EventClass"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[AttachActibityID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[AttachActibityID]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[AttachActibityID]"
+                      name="AttachActibityID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[AttachActibityIDXfer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[AttachActibityIDXfer]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[AttachActibityIDXfer]"
+                      name="AttachActibityIDXfer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ApplicationName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ApplicationName]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ApplicationName]"
+                      name="ApplicationName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ClientProcessID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ClientProcessID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ClientProcessID]"
+                      name="ClientProcessID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ConnectionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ConnectionID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ConnectionID]"
+                      name="ConnectionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[CurrentTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[CurrentTime]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[CurrentTime]"
+                      name="CurrentTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[DatabaseName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[DatabaseName]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[DatabaseName]"
+                      name="DatabaseName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[EventSubclass]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[EventSubclass]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[EventSubclass]"
+                      name="EventSubclass"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[NTCanonicalUserName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[NTCanonicalUserName]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[NTCanonicalUserName]"
+                      name="NTCanonicalUserName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[NTDomainName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[NTDomainName]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[NTDomainName]"
+                      name="NTDomainName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[NTUserName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[NTUserName]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[NTUserName]"
+                      name="NTUserName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[RequestID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[RequestID]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[RequestID]"
+                      name="RequestID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[RequestParameters]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[RequestParameters]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[RequestParameters]"
+                      name="RequestParameters"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[RequestProperties]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[RequestProperties]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[RequestProperties]"
+                      name="RequestProperties"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SPID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[SPID]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SPID]"
+                      name="SPID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ServerName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ServerName]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ServerName]"
+                      name="ServerName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SessionID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[SessionID]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SessionID]"
+                      name="SessionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[StartTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[StartTime]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[StartTime]"
+                      name="StartTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[TextData]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[TextData]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[TextData]"
+                      name="TextData"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[CPUTime]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[CPUTime]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[CPUTime]"
+                      name="CPUTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Duration]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[Duration]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Duration]"
+                      name="Duration"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[EndTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[EndTime]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[EndTime]"
+                      name="EndTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Error]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[Error]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Error]"
+                      name="Error"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ErrorType]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ErrorType]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ErrorType]"
+                      name="ErrorType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[IntegerData]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[IntegerData]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[IntegerData]"
+                      name="IntegerData"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Severity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[Severity]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Severity]"
+                      name="Severity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Success]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[Success]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[Success]"
+                      name="Success"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[CalculationExpression]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[CalculationExpression]"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[CalculationExpression]"
+                      name="CalculationExpression"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ClientHostName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ClientHostName]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[ClientHostName]"
+                      name="ClientHostName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SessionType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[SessionType]"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SessionType]"
+                      name="SessionType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SYSTEMID]"
+                      codePage="932"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[SYSTEMID]"
+                      length="1"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].Columns[SYSTEMID]"
+                      name="SYSTEMID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[EventClass]"
+                      dataType="i4"
+                      name="EventClass" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[AttachActibityID]"
+                      dataType="wstr"
+                      length="128"
+                      name="AttachActibityID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[AttachActibityIDXfer]"
+                      dataType="wstr"
+                      length="128"
+                      name="AttachActibityIDXfer" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ApplicationName]"
+                      dataType="wstr"
+                      length="128"
+                      name="ApplicationName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ClientProcessID]"
+                      dataType="i4"
+                      name="ClientProcessID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ConnectionID]"
+                      dataType="i4"
+                      name="ConnectionID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[CurrentTime]"
+                      dataType="dbTimeStamp"
+                      name="CurrentTime" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[DatabaseName]"
+                      dataType="wstr"
+                      length="128"
+                      name="DatabaseName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[EventSubclass]"
+                      dataType="i4"
+                      name="EventSubclass" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[NTCanonicalUserName]"
+                      dataType="wstr"
+                      length="128"
+                      name="NTCanonicalUserName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[NTDomainName]"
+                      dataType="wstr"
+                      length="128"
+                      name="NTDomainName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[NTUserName]"
+                      dataType="wstr"
+                      length="128"
+                      name="NTUserName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[RequestID]"
+                      dataType="wstr"
+                      length="128"
+                      name="RequestID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[RequestParameters]"
+                      dataType="nText"
+                      name="RequestParameters" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[RequestProperties]"
+                      dataType="nText"
+                      name="RequestProperties" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[SPID]"
+                      dataType="i4"
+                      name="SPID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ServerName]"
+                      dataType="wstr"
+                      length="128"
+                      name="ServerName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[SessionID]"
+                      dataType="wstr"
+                      length="128"
+                      name="SessionID" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[StartTime]"
+                      dataType="dbTimeStamp"
+                      name="StartTime" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[TextData]"
+                      dataType="nText"
+                      name="TextData" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[CPUTime]"
+                      dataType="i8"
+                      name="CPUTime" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[Duration]"
+                      dataType="i8"
+                      name="Duration" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[EndTime]"
+                      dataType="dbTimeStamp"
+                      name="EndTime" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[Error]"
+                      dataType="i4"
+                      name="Error" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ErrorType]"
+                      dataType="i4"
+                      name="ErrorType" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[IntegerData]"
+                      dataType="i8"
+                      name="IntegerData" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[Severity]"
+                      dataType="i4"
+                      name="Severity" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[Success]"
+                      dataType="i4"
+                      name="Success" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[CalculationExpression]"
+                      dataType="nText"
+                      name="CalculationExpression" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[ClientHostName]"
+                      dataType="wstr"
+                      length="128"
+                      name="ClientHostName" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[SessionType]"
+                      dataType="wstr"
+                      length="128"
+                      name="SessionType" />
+                    <externalMetadataColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output].ExternalColumns[SYSTEMID]"
+                      codePage="932"
+                      dataType="str"
+                      length="1"
+                      name="SYSTEMID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[EventClass]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[EventClass]"
+                      name="EventClass" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[AttachActibityID]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[AttachActibityID]"
+                      name="AttachActibityID" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[AttachActibityIDXfer]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[AttachActibityIDXfer]"
+                      name="AttachActibityIDXfer" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ApplicationName]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ApplicationName]"
+                      name="ApplicationName" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ClientProcessID]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ClientProcessID]"
+                      name="ClientProcessID" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ConnectionID]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ConnectionID]"
+                      name="ConnectionID" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[CurrentTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[CurrentTime]"
+                      name="CurrentTime" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[DatabaseName]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[DatabaseName]"
+                      name="DatabaseName" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[EventSubclass]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[EventSubclass]"
+                      name="EventSubclass" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[NTCanonicalUserName]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[NTCanonicalUserName]"
+                      name="NTCanonicalUserName" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[NTDomainName]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[NTDomainName]"
+                      name="NTDomainName" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[NTUserName]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[NTUserName]"
+                      name="NTUserName" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[RequestID]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[RequestID]"
+                      name="RequestID" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[RequestParameters]"
+                      dataType="nText"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[RequestParameters]"
+                      name="RequestParameters" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[RequestProperties]"
+                      dataType="nText"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[RequestProperties]"
+                      name="RequestProperties" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[SPID]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[SPID]"
+                      name="SPID" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ServerName]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ServerName]"
+                      name="ServerName" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[SessionID]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[SessionID]"
+                      name="SessionID" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[StartTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[StartTime]"
+                      name="StartTime" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[TextData]"
+                      dataType="nText"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[TextData]"
+                      name="TextData" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[CPUTime]"
+                      dataType="i8"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[CPUTime]"
+                      name="CPUTime" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[Duration]"
+                      dataType="i8"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[Duration]"
+                      name="Duration" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[EndTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[EndTime]"
+                      name="EndTime" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[Error]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[Error]"
+                      name="Error" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ErrorType]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ErrorType]"
+                      name="ErrorType" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[IntegerData]"
+                      dataType="i8"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[IntegerData]"
+                      name="IntegerData" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[Severity]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[Severity]"
+                      name="Severity" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[Success]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[Success]"
+                      name="Success" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[CalculationExpression]"
+                      dataType="nText"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[CalculationExpression]"
+                      name="CalculationExpression" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ClientHostName]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ClientHostName]"
+                      name="ClientHostName" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[SessionType]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[SessionType]"
+                      name="SessionType" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[SYSTEMID]"
+                      codePage="932"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[SYSTEMID]"
+                      name="SYSTEMID" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\TAB DATA FLOW TASK.Paths[OLE DB Source Output]"
+              endId="Package\TAB DATA FLOW TASK\TAB DESTINATION.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\TAB DATA FLOW TASK\TAB SOURCE.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TAB GET RUN DATE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="GetLastRunDate"
+      DTS:DTSID="{B454E01C-F424-4108-B766-587134F77FB8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TAB GET RUN DATE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{67C9F2BA-7D25-44BB-BE0E-6593AA21417B}"
+          SQLTask:SqlStatementSource="select  LastRunDateTime as dtLastRunDate from  M_BI_LOG_DW2_EXECUTION&#xA; where  PackageName='SsasTabExtendedEvents'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="dtLastRunDate"
+            SQLTask:DtsVariableName="User::LRDate" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TAB UPDATE DATE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{BC3D769F-A391-43A5-A9AA-804D583F0B8A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TAB UPDATE DATE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{67C9F2BA-7D25-44BB-BE0E-6593AA21417B}"
+          SQLTask:SqlStatementSource="EXEC SP_UpdateLastRunDate 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{26512B4D-AB15-4225-9F6C-81092AC8D63C}"
+      DTS:From="Package\TAB DATA FLOW TASK"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\TAB UPDATE DATE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9FE9299C-9C1A-43C8-868D-F22F55E3AE67}"
+      DTS:From="Package\TAB GET RUN DATE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\TAB DATA FLOW TASK" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="187,42"
+          Id="Package\TAB DATA FLOW TASK"
+          TopLeft="172,174" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\TAB GET RUN DATE"
+          TopLeft="165,84" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\TAB UPDATE DATE"
+          TopLeft="183,270" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="266.5,216">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="252,126">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.5,48"
+              Start="0,0"
+              End="13.5,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="4,24" />
+                  <mssgle:LineSegment
+                    End="9.5,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.5,24"
+                    Point2="13.5,24"
+                    Point3="13.5,28" />
+                  <mssgle:LineSegment
+                    End="13.5,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\TAB DATA FLOW TASK">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="141,42"
+          Id="Package\TAB DATA FLOW TASK\TAB SOURCE"
+          TopLeft="167,142" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\TAB DATA FLOW TASK\TAB DESTINATION"
+          TopLeft="152,298" />
+        <EdgeLayout
+          Id="Package\TAB DATA FLOW TASK.Paths[OLE DB Source Output]"
+          TopLeft="237,184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,114"
+              Start="0,0"
+              End="0,106.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,106.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\TAB DATA FLOW TASK\TAB DESTINATION">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\TAB DATA FLOW TASK\TAB SOURCE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
