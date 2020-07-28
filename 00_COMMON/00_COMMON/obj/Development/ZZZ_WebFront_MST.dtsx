@@ -1,0 +1,1630 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/19/2016 2:46:42 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="PX00438"
+  DTS:CreatorName="ACN-DOMAIN\a5096301"
+  DTS:DTSID="{FF46D43E-8C0C-462B-9D47-837451E43F69}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="1041"
+  DTS:ObjectName="ZZZ_WebFront_MST"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="278"
+  DTS:VersionGUID="{EA67A213-FEDB-4E24-8992-F65CBF3AAE7C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{27778B5E-5D87-480D-AB79-C9DF571C212F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="BUSINESS_SITE_CD">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A2177D72-BBF7-45C1-92AF-BBC2706133A6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DEPT_CD">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9C6B8B9F-BFB5-45A2-A582-F9737FBCD125}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DIVISION_CD">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{87A48961-9AC4-47C0-8064-5B57F32B01C7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DS_PERSONAL_NO">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B6725F51-F6F2-4DA9-BEA4-0CD0C4B89CDC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="E_MAIL">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{86270900-A6F5-483F-B23A-414365B4FE19}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FAMILY_NAME_ROMA">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EE3B2E52-C0C5-4950-9AAF-51E6441C2134}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FIRST_NAME_ROMA">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E2D4F11A-6635-47A3-9888-67016BE1D6E8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FLG">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{46DF29FB-3485-4E6F-B8D4-538B22B21F92}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RS_ROLES">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C8A7600B-D93E-4C96-B84D-0AE6C47FD9D5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RS_USER">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{68D00727-C125-4760-BB30-41A14A83F264}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RS_USRPARAMENTRY">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2534042A-DDCC-4F48-9463-AFE4E0194260}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SECTION_CD">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8603397A-B6A8-4C0F-BA9F-49AF27E39F48}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_FATAL_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8CF34A87-3E06-4D8A-80B1-22FA5385BD93}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_LOAD_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8253B5ED-7504-4776-B56D-72E0405C1A0E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_WARNING_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DF06C94A-3C02-44D3-8432-99EAC422B434}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="UNIT_CD">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3F38931C-DB25-48FE-A68C-FC7F8F39B036}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WF_HIGHVALUE">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6F0AF2C9-15AC-43EF-AE76-F11E8C163CBE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="WF_LINENUMBER">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8A41EA9C-264F-46D6-804D-BA6A7CBCDF19}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WF_LOWVALUE">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{51B0FF3E-1F1D-490C-81C0-D64700E1C4AA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WF_OPERATOR">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{87DF62A3-5C13-4991-A753-50113B0F64D7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WF_ROLE_ID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{27B32E98-862A-4516-B844-5602B5BA5AAF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WF_USRPARAM_CODE">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\01000_開始ログ"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{2B22F91C-063C-4E0A-9BB6-9A7E0B43F570}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="01000_開始ログ"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'開始'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\02000_マスタデータ削除退避"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{CE99B916-7CAE-47C4-8733-8C3B2FCBA544}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="02000_マスタデータ削除退避"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{DCFD5E81-CC90-448D-A6FB-B81B2114E627}"
+          SQLTask:SqlStatementSource="--WebFront退避系&#xA;delete from DM_MST.dbo.TPRC_WF_M_USER_BK&#xA;delete from DM_MST.dbo.TPRC_WF_M_ROLES_D_BK&#xA;delete from DM_MST.dbo.TPRC_BI_M_USRPARAMENTRY_BK&#xA;&#xA;--WebFrontマスタ更新前のデータ一時格納マスタ系&#xA;delete from DM_MST.dbo.TPRC_WF_M_USER_PROV&#xA;delete from DM_MST.dbo.TPRC_WF_M_ROLES_D_PROV&#xA;delete from DM_MST.dbo.TPRC_BI_M_USRPARAMENTRY_PROV&#xA;&#xA;--上流関連するBI側マスタ系&#xA;delete from DM_MST.dbo.TPRC_ZZM_PERSONNEL&#xA;&#xA;--WebFrontマスタ退避&#xA;insert into DM_MST.dbo.TPRC_WF_M_USER_BK select * from WF_M_USER&#xA;insert into DM_MST.dbo.TPRC_WF_M_ROLES_D_BK select * from WF_M_ROLES_D&#xA;insert into DM_MST.dbo.TPRC_BI_M_USRPARAMENTRY_BK select * from BI_M_USRPARAMENTRY&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03000_データ登録"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{d74a2298-e02f-498d-ae28-67ab0211796f}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="03000_データ登録"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{64717687-AC2A-426B-8C9D-DAD82C1EBD34}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[TPRC_ZZM_PERSONNEL]&#xA;(&#xA; [DS_PERSONAL_NO]&#xA;,[FAMILY_NAME_KANJI]&#xA;,[FIRST_NAME_KANJI]&#xA;,[FAMILY_NAME_ROMA]&#xA;,[FIRST_NAME_ROMA]&#xA;,[FAMILY_NAME_KANA]&#xA;,[FIRST_NAME_KANA]&#xA;,[POSITION_EN]&#xA;,[POSITION_JA]&#xA;,[BUSINESS_SITE_CD]&#xA;,[UNIT_CD]&#xA;,[DIVISION_CD]&#xA;,[DEPT_CD]&#xA;,[SECTION_CD]&#xA;,[SUBSECTION_CD]&#xA;,[TEAM_CD]&#xA;,[E_MAIL]&#xA;,[PHONE_NO_1]&#xA;,[PHONE_NO_2]&#xA;,[PHONE_NO_3]&#xA;,[PHONE_NO_4]&#xA;,[FAX_NO_1]&#xA;,[FAX_NO_2]&#xA;,[EMPLOYEE_DIV]&#xA;,[EMPLOYMENT_STATUS]&#xA;,[ACCOUNT_LOCK_STATUS]&#xA;,[TRANS_STATUS_DIV]&#xA;,[INS_DATE]&#xA;,[INS_TIME]&#xA;,[INS_USER_ID]&#xA;,[INS_LANG_CD]&#xA;,[UPD_DATE]&#xA;,[UPD_TIME]&#xA;,[UPD_USER_ID]&#xA;,[UPD_COUNT]&#xA;,[CANCEL_FLG]&#xA;,[START_DATE]&#xA;,[END_DATE]&#xA;)&#xA;SELECT&#xA; [DS_PERSONAL_NO]&#xA;,[FAMILY_NAME_KANJI]&#xA;,[FIRST_NAME_KANJI]&#xA;,[FAMILY_NAME_ROMA]&#xA;,[FIRST_NAME_ROMA]&#xA;,[FAMILY_NAME_KANA]&#xA;,[FIRST_NAME_KANA]&#xA;,[POSITION_EN]&#xA;,[POSITION_JA]&#xA;,[BUSINESS_SITE_CD]&#xA;,[UNIT_CD]&#xA;,[DIVISION_CD]&#xA;,[DEPT_CD]&#xA;,[SECTION_CD]&#xA;,[SUBSECTION_CD]&#xA;,[TEAM_CD]&#xA;,[E_MAIL]&#xA;,[PHONE_NO_1]&#xA;,[PHONE_NO_2]&#xA;,[PHONE_NO_3]&#xA;,[PHONE_NO_4]&#xA;,[FAX_NO_1]&#xA;,[FAX_NO_2]&#xA;,[EMPLOYEE_DIV]&#xA;,[EMPLOYMENT_STATUS]&#xA;,[ACCOUNT_LOCK_STATUS]&#xA;,[TRANS_STATUS_DIV]&#xA;,[INS_DATE]&#xA;,[INS_TIME]&#xA;,[INS_USER_ID]&#xA;,[INS_LANG_CD]&#xA;,[UPD_DATE]&#xA;,[UPD_TIME]&#xA;,[UPD_USER_ID]&#xA;,[UPD_COUNT]&#xA;,[CANCEL_FLG]&#xA;,[START_DATE]&#xA;,[END_DATE]&#xA;FROM [DM_MST].[dbo].[TPRC_SDM_PERSONNEL]&#xA;WHERE&#xA;CANCEL_FLG = '0'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03100_状態判定"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="スクリプト タスク"
+      DTS:DTSID="{89DD901C-4C5E-4767-B9C0-6AF056AD8D19}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="03100_状態判定"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_29111beb50c54621b38c0b5de3342088"
+          VSTAMajorVersion="15"
+          VSTAMinorVersion="0"
+          Language="CSharp"
+          ReadOnlyVariables="User::SPV_FATAL_ERROR_COUNT,User::SPV_LOAD_ERROR_COUNT,User::SPV_WARNING_COUNT">
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="ST_29111beb50c54621b38c0b5de3342088.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B86AF1E4-9B91-40BC-A47E-FA274CFAB029}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_7d9e2f9006ec416abcb64c043d4cbf6e</RootNamespace>
+    <AssemblyName>ST_29111beb50c54621b38c0b5de3342088</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=14.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST140</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_7d9e2f9006ec416abcb64c043d4cbf6e.Properties.Settings.get_Default():ST_7d9e2f9006ec416abcb64c043d4cbf6e.Properties.Sett" +
+    "ings")]
+
+namespace ST_7d9e2f9006ec416abcb64c043d4cbf6e.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+#endregion
+
+namespace ST_7d9e2f9006ec416abcb64c043d4cbf6e
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+
+		/// <summary>
+        /// This method is called when this script task executes in the control flow.
+        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+        /// To open Help, press F1.
+        /// </summary>
+		public void Main()
+		{
+			// TODO: Add your code here
+
+			Dts.TaskResult = (int)ScriptResults.Success;
+
+            try
+            {
+                if ((int.Parse(Dts.Variables["SPV_LOAD_ERROR_COUNT"].Value.ToString()) + int.Parse(Dts.Variables["SPV_FATAL_ERROR_COUNT"].Value.ToString())) > 0)
+                {
+                    Dts.TaskResult = (int)ScriptResults.Failure;
+                }
+            }
+            catch (Exception ex)
+            {
+                Dts.TaskResult = (int)ScriptResults.Failure;
+                throw ex;
+            }
+		}
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_29111beb50c54621b38c0b5de3342088</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_29111beb50c54621b38c0b5de3342088</msb:DisplayName>
+    <msb:ProjectId>{FD3519FB-A715-4899-A68B-846276372900}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_29111beb50c54621b38c0b5de3342088.csproj" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_7d9e2f9006ec416abcb64c043d4cbf6e")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("HP")]
+[assembly: AssemblyProduct("ST_7d9e2f9006ec416abcb64c043d4cbf6e")]
+[assembly: AssemblyCopyright("Copyright @ HP 2012")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_7d9e2f9006ec416abcb64c043d4cbf6e.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_7d9e2f9006ec416abcb64c043d4cbf6e.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_7d9e2f9006ec416abcb64c043d4cbf6e.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_7d9e2f9006ec416abcb64c043d4cbf6e.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_7d9e2f9006ec416abcb64c043d4cbf6e.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <BinaryItem
+            Name="ST_29111beb50c54621b38c0b5de3342088.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAE0xWlwAAAAAAAAAAOAAIiALATAAABAAAAAIAAAAAAAAai4A
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAABguAABPAAAAAEAAAIAEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAcA4AAAAgAAAAEAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAIAEAAAAQAAAAAYAAAASAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABM
+LgAAAAAAAEgAAAACAAUASCEAABgMAAABAAAAAAAAAGAtAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswAwB0AAAAAAAAAAIoEAAAChZvEQAACgIoEAAACm8SAAAK
+cgEAAHBvEwAACm8UAAAKbxUAAAooFgAACgIoEAAACm8SAAAKcisAAHBvEwAACm8UAAAKbxUAAAoo
+FgAAClgWMQwCKBAAAAoXbxEAAAreDQIoEAAAChdvEQAACnoqARAAAAAADABaZgANDwAAAR4CKBcA
+AAoqHgIoGAAACiqufgEAAAQtHnJXAABw0AMAAAIoGQAACm8aAAAKcxsAAAqAAQAABH4BAAAEKhp+
+AgAABCoeAoACAAAEKhp+AwAABCoeAigcAAAKKi5zCAAABoADAAAEKgAAQlNKQgEAAQAAAAAADAAA
+AHY0LjAuMzAzMTkAAAAABQBsAAAAyAMAACN+AAA0BAAAmAUAACNTdHJpbmdzAAAAAMwJAADMAAAA
+I1VTAJgKAAAQAAAAI0dVSUQAAACoCgAAcAEAACNCbG9iAAAAAAAAAAIAAAFXHaABCQMAAAD6ATMA
+FgAAAQAAAB8AAAAFAAAABgAAAAkAAAABAAAAHAAAAAIAAAAQAAAAAgAAAAMAAAAEAAAAAQAAAAQA
+AAABAAAAAQAAAAAApQMBAAAAAAAGAFUCfwQGAOQCfwQGAKEBbAQPAPMEAAAGAM4BIwQGADgCIwQG
+ABkCIwQGAMsCIwQGAHUCIwQGAI4CIwQGAOUBIwQGAAACEgMKAKkCVAMKABoBVAMGADUE1gMGAN0D
+1gMGAIQBbAQGAGYF1gMGAE8EnwQGAD8EDgQOAFQBjwMOALUBjwMOADYB+QMGAGkBfwQKAH0DVAMS
+ADUFxQASAJgAxQAGAAEA1gMGAOUA1gMGAKEA1gMGAIwFIwQAAAAAKwAAAAAAAQABAAEAEADuA2QA
+OQABAAEAAAAQAKYEAgVJAAEAAwAAARAAPwUCBV0AAwAHAAMBAABYBQAAQQAEAAoAEQDiA2cAEQAK
+AWsAEQCIAG8ABgZTAHMAVoBIBXYAVoDqAHYAUCAAAAAAhgD0AwYAAQDgIAAAAACGGF8EBgABAOgg
+AAAAAIMYXwQGAAEA8CAAAAAAkwhLBHoAAQAcIQAAAACTCPIAfwABACMhAAAAAJMI/gCEAAEAKyEA
+AAAAlghtBYoAAgAyIQAAAACGGF8EBgACADohAAAAAJEYZQSPAAIAAAABAAwDCQBfBAEAEQBfBAYA
+GQBfBAoAKQBfBBAAMQBfBBAAOQBfBBAAQQBfBBAASQBfBBAAUQBfBBAAWQBfBBAAYQBfBBAAaQBf
+BAYAiQBfBAYAsQBfBBUAwQBfBAYAcQBQBRsAyQB5BQEAyQAxBSAA0QDNAyUA2QACAysAkQAsAy8A
+4QBOATMAcQBfBAYAkQBfBAYA6QCzADgA6QCIBT8AmQBfBEQAuQBfBAYACAAUAF0ACAAYAGIAKQBz
+AMoALgALAKIALgATAKsALgAbAMoALgAjANMALgArAPwALgAzAPwALgA7AAIBLgBDANMALgBLAAoB
+LgBTAPwALgBbACMBQwBjAGIASQBzAMoAYQB7AGIAYwBrAGIAAwABAAQAAwAAAE8EkwAAABIBmAAA
+AHEFnQACAAQAAwACAAUABQABAAYABQACAAcABwAEgAAAAQAAAD8bZncAAAAAAAAHAAAABAAAAAAA
+AAAAAAAASwBbAAAAAAAOAAAAAAAAAAAAAABUADUDAAAAAAQAAAAAAAAAAAAAAEsA1gMAAAAADgAA
+AAAAAAAAAAAAVAA0AAAAAAAAAAAAAQAAALAEAAAFAAIAAAAASW50MzIAU1RfMjkxMTFiZWI1MGM1
+NDYyMWIzOGMwYjVkZTMzNDIwODgAPE1vZHVsZT4ATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2Vk
+RFRTAHZhbHVlX18AbXNjb3JsaWIAU1RfN2Q5ZTJmOTAwNmVjNDE2YWJjYjY0YzA0M2Q0Y2JmNmUA
+ZGVmYXVsdEluc3RhbmNlAFZhcmlhYmxlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFu
+ZGxlAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUAVHlwZQBGYWlsdXJlAGdldF9DdWx0
+dXJlAHNldF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBWU1RBUlRTY3JpcHRPYmplY3RNb2RlbEJh
+c2UAQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UAUGFyc2UARWRpdG9yQnJvd3NhYmxlU3RhdGUAQ29t
+cGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBEZWJ1
+Z2dhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRpdGxlQXR0
+cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0
+ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJp
+YnV0ZQBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJp
+YnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lTU2NyaXB0VGFza0VudHJ5UG9pbnRB
+dHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0
+cmlidXRlAGdldF9WYWx1ZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRvU3RyaW5n
+AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5U
+YXNrcy5TY3JpcHRUYXNrAFNjcmlwdE9iamVjdE1vZGVsAFN5c3RlbS5Db21wb25lbnRNb2RlbABT
+VF8yOTExMWJlYjUwYzU0NjIxYjM4YzBiNWRlMzM0MjA4OC5kbGwAZ2V0X0l0ZW0AU3lzdGVtAEVu
+dW0AcmVzb3VyY2VNYW4AU2NyaXB0TWFpbgBTeXN0ZW0uQ29uZmlndXJhdGlvbgBTeXN0ZW0uR2xv
+YmFsaXphdGlvbgBTeXN0ZW0uUmVmbGVjdGlvbgBFeGNlcHRpb24AQ3VsdHVyZUluZm8AZ2V0X1Jl
+c291cmNlTWFuYWdlcgAuY3RvcgAuY2N0b3IAU3lzdGVtLkRpYWdub3N0aWNzAFN5c3RlbS5SdW50
+aW1lLkNvbXBpbGVyU2VydmljZXMAU3lzdGVtLlJlc291cmNlcwBTVF83ZDllMmY5MDA2ZWM0MTZh
+YmNiNjRjMDQzZDRjYmY2ZS5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdnaW5n
+TW9kZXMAU1RfN2Q5ZTJmOTAwNmVjNDE2YWJjYjY0YzA0M2Q0Y2JmNmUuUHJvcGVydGllcwBnZXRf
+VmFyaWFibGVzAFNldHRpbmdzAFN1Y2Nlc3MAZ2V0X0R0cwBTY3JpcHRSZXN1bHRzAE9iamVjdABn
+ZXRfRGVmYXVsdABzZXRfVGFza1Jlc3VsdABnZXRfQXNzZW1ibHkAAAAAAClTAFAAVgBfAEwATwBB
+AEQAXwBFAFIAUgBPAFIAXwBDAE8AVQBOAFQAACtTAFAAVgBfAEYAQQBUAEEATABfAEUAUgBSAE8A
+UgBfAEMATwBVAE4AVAAAcVMAVABfADcAZAA5AGUAMgBmADkAMAAwADYAZQBjADQAMQA2AGEAYgBj
+AGIANgA0AGMAMAA0ADMAZAA0AGMAYgBmADYAZQAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUA
+cwBvAHUAcgBjAGUAcwAAAAAAGW5M/Pw0+Ue04BhcV5hkIwAEIAEBCAMgAAEFIAEBEREEIAEBDgUg
+AQERVQQgABJlBCAAEmkFIAESbRwDIAAcAyAADgQAAQgOBgABEnUReQQgABJ9BiACAQ4SfQi3elxW
+GTTgiQiJhF3NgIDMkQQAAAAABAEAAAADBhJNAwYSUQMGEhACBggDBhEUBAAAEk0EAAASUQUAAQES
+UQQAABIQAwAAAQQIABJNBAgAElEECAASEAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlv
+blRocm93cwEIAQACAAAAAAAoAQAjU1RfN2Q5ZTJmOTAwNmVjNDE2YWJjYjY0YzA0M2Q0Y2JmNmUA
+AAUBAAAAAAcBAAJIUAAAGAEAE0NvcHlyaWdodCBAIEhQIDIwMTIAAEkBABouTkVURnJhbWV3b3Jr
+LFZlcnNpb249djQuNQEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC41
+AAAAtAAAAM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2Nv
+cmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3
+N2E1YzU2MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAA
+AAAAAABQQURQQURQtAAAAEAuAAAAAAAAAAAAAFouAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAABM
+LgAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAABABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAA
+AABIAAAAWEAAACIEAAAAAAAAAAAAACIENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBP
+AAAAAAC9BO/+AAABAAAAAQBmdz8bAAABAGZ3Pxs/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAA
+RAAAAAEAVgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBv
+AG4AAAAAAAAAsASCAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABeAwAAAQAwADAA
+MAAwADAANABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAJgADAAEAQwBvAG0AcABh
+AG4AeQBOAGEAbQBlAAAAAABIAFAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkA
+bwBuAAAAAABTAFQAXwA3AGQAOQBlADIAZgA5ADAAMAA2AGUAYwA0ADEANgBhAGIAYwBiADYANABj
+ADAANAAzAGQANABjAGIAZgA2AGUAAAA+AA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEA
+LgAwAC4ANgA5ADcANQAuADMAMAA1ADYANgAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBt
+AGUAAABTAFQAXwAyADkAMQAxADEAYgBlAGIANQAwAGMANQA0ADYAMgAxAGIAMwA4AGMAMABiADUA
+ZABlADMAMwA0ADIAMAA4ADgALgBkAGwAbAAAAEwAFAABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBn
+AGgAdAAAAEMAbwBwAHkAcgBpAGcAaAB0ACAAQAAgAEgAUAAgADIAMAAxADIAAAAqAAEAAQBMAGUA
+ZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABG
+AGkAbABlAG4AYQBtAGUAAABTAFQAXwAyADkAMQAxADEAYgBlAGIANQAwAGMANQA0ADYAMgAxAGIA
+MwA4AGMAMABiADUAZABlADMAMwA0ADIAMAA4ADgALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBj
+AHQATgBhAG0AZQAAAAAAUwBUAF8ANwBkADkAZQAyAGYAOQAwADAANgBlAGMANAAxADYAYQBiAGMA
+YgA2ADQAYwAwADQAMwBkADQAYwBiAGYANgBlAAAAQgAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBz
+AGkAbwBuAAAAMQAuADAALgA2ADkANwA1AC4AMwAwADUANgA2AAAAAABGAA8AAQBBAHMAcwBlAG0A
+YgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADkANwA1AC4AMwAwADUANgA2AAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAwAAABsPgAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\09000_中間マスタ退避処理"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{165804D2-F745-4675-AA9E-D62C550247F8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="09000_中間マスタ退避処理"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{64717687-AC2A-426B-8C9D-DAD82C1EBD34}"
+          SQLTask:SqlStatementSource="DELETE FROM TPRC_ZZM_PERSONNEL_BK&#xA;INSERT INTO TPRC_ZZM_PERSONNEL_BK SELECT * FROM TPRC_ZZM_PERSONNEL&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\90000_正常終了"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{4BFD878C-262A-46A0-BDF8-22493FCDB6EA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="90000_正常終了"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'正常終了'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\シーケンス コンテナー"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="シーケンス コンテナー"
+      DTS:DTSID="{0EA25298-D8C7-4EEB-9173-0B5328FEA07F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="シーケンス コンテナー"
+      DTS:TransactionOption="2">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\シーケンス コンテナー\04000_WebFront管理マスタクリーニング"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{113c0cf8-0935-4a1e-952c-86430244e8b8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="04000_WebFront管理マスタクリーニング"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{DCFD5E81-CC90-448D-A6FB-B81B2114E627}"
+              SQLTask:SqlStatementSource="--WebFrontユーザマスタのユーザ(XR_SYS_SUPERUSER権限のユーザ以外)がユーザマスタに存在しないユーザをクリーニング&#xA;DELETE FROM [WF_M_USER]&#xA;WHERE [USER_ID] collate Japanese_BIN2 NOT IN (SELECT [DS_PERSONAL_NO] FROM [DM_MST].[dbo].[TPRC_ZZM_PERSONNEL])&#xA;AND   [USER_ID] collate Japanese_BIN2 NOT IN (SELECT DISTINCT [USER_ID] FROM [WF_M_ROLES_D] WHERE [ROLE_ID]='XR_SYS_SUPERUSER')&#xA;AND   [NO_DEL_FLAG] = 0&#xA;&#xA;DELETE FROM [WF_M_USER_F]&#xA;WHERE [USER_ID] collate Japanese_BIN2 NOT IN (SELECT [DS_PERSONAL_NO] FROM [DM_MST].[dbo].[TPRC_ZZM_PERSONNEL])&#xA;AND   [USER_ID] collate Japanese_BIN2 NOT IN (SELECT DISTINCT [USER_ID] FROM [WF_M_ROLES_D] WHERE [ROLE_ID]='XR_SYS_SUPERUSER')&#xA;AND   [USER_ID] collate Japanese_BIN2 NOT IN (SELECT [USER_ID] FROM [WF_M_USER] WHERE [NO_DEL_FLAG] = 1)&#xA;&#xA;&#xA;--WebFrontユーザパラメータマスタのユーザ(XR_SYS_SUPERUSER権限のユーザ以外)がユーザマスタに存在しないユーザをクリーニング&#xA;DELETE FROM [BI_M_USRPARAMENTRY]&#xA;WHERE [USR_ID] collate Japanese_BIN2 NOT IN (SELECT [DS_PERSONAL_NO] FROM [DM_MST].[dbo].[TPRC_ZZM_PERSONNEL])&#xA;AND   [USR_ID] collate Japanese_BIN2 NOT IN (SELECT DISTINCT [USER_ID] FROM [WF_M_ROLES_D] WHERE [ROLE_ID]='XR_SYS_SUPERUSER')&#xA;AND   [USR_ID] collate Japanese_BIN2 NOT IN (SELECT [USER_ID] FROM [WF_M_USER] WHERE [NO_DEL_FLAG] = 1)&#xA;&#xA;--WebFrontユーザロールマスタのユーザ(XR_SYS_SUPERUSER権限のユーザ以外)がユーザマスタに存在しないユーザをクリーニング&#xA;DELETE FROM [WF_M_ROLES_D]&#xA;WHERE [USER_ID] collate Japanese_BIN2 NOT IN (SELECT [DS_PERSONAL_NO] FROM [DM_MST].[dbo].[TPRC_ZZM_PERSONNEL])&#xA;AND   [ROLE_ID] &lt;&gt; 'XR_SYS_SUPERUSER'&#xA;AND   [USER_ID] collate Japanese_BIN2 NOT IN (SELECT [USER_ID] FROM [WF_M_USER] WHERE [NO_DEL_FLAG] = 1)&#xA;&#xA;--ユーザマスタからWebFrontユーザマスタのXR_SYS_SUPERUSERを持っているユーザを削除する&#xA;DELETE FROM [DM_MST].[dbo].[TPRC_ZZM_PERSONNEL]&#xA;WHERE [DS_PERSONAL_NO] collate Japanese_BIN2 IN (SELECT DISTINCT [USER_ID] FROM [WF_M_ROLES_D] WHERE [ROLE_ID]='XR_SYS_SUPERUSER')&#xA;OR  [DS_PERSONAL_NO] collate Japanese_BIN2 IN (SELECT [USER_ID] FROM [WF_M_USER] WHERE [NO_DEL_FLAG] = 1)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\シーケンス コンテナー\05000_ユーザマスタ(一時)追加"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{9078a77a-aeac-4e3b-a5ae-8787f92e88a4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="05000_ユーザマスタ(一時)追加"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{64717687-AC2A-426B-8C9D-DAD82C1EBD34}"
+              SQLTask:SqlStatementSource="DECLARE @DS_PERSONAL_NO AS NVARCHAR(10),@E_MAIL AS NVARCHAR(80),@FAMILY_NAME_ROMA AS NVARCHAR(40),@FIRST_NAME_ROMA AS NVARCHAR(40);&#xA;DECLARE @PackageName  AS NVARCHAR(200)&#xA;SELECT @PackageName = ?&#xA;&#xA;/********************************外部認証対象********************************/&#xA;DECLARE CUR_PERSONNEL CURSOR FOR &#xA;SELECT &#xA;DS_PERSONAL_NO&#xA;,isnull(SUBSTRING(RTRIM(LTRIM(TPRC_ZZM_PERSONNEL.E_MAIL)),1,50),'') AS E_MAIL&#xA;,isnull(TPRC_ZZM_PERSONNEL.FAMILY_NAME_ROMA,'') AS FAMILY_NAME_ROMA&#xA;,isnull(TPRC_ZZM_PERSONNEL.FIRST_NAME_ROMA,'') AS FIRST_NAME_ROMA&#xA;FROM TPRC_ZZM_PERSONNEL&#xA;WHERE BUSINESS_SITE_CD NOT IN&#xA;(SELECT BUSINESS_SITE_CD FROM TPRC_ZZM_EX_EXTERNAL_COMP) &#xA;&#xA;OPEN CUR_PERSONNEL&#xA;FETCH NEXT FROM CUR_PERSONNEL INTO @DS_PERSONAL_NO,@E_MAIL,@FAMILY_NAME_ROMA,@FIRST_NAME_ROMA&#xA;&#xA;WHILE @@FETCH_STATUS=0&#xA;&#xA;BEGIN&#xA; --**************************************ユーザマスタ(一時)にデータを追加***********************************************************************&#xA; INSERT INTO TPRC_WF_M_USER_PROV&#xA; VALUES &#xA; (&#xA; 0&#xA; ,@DS_PERSONAL_NO&#xA; ,'5f7b733195721db19f021512fe26e64bd36f80165138f8b9259cdd010bbf18b4'&#xA; ,@FAMILY_NAME_ROMA + ' ' + @FIRST_NAME_ROMA&#xA; ,'1000'&#xA; ,'JA'&#xA; ,@E_MAIL&#xA; ,NULL&#xA; ,0&#xA; ,1&#xA; ,0&#xA; ,getdate()&#xA; ,@PackageName&#xA; ,getdate()&#xA; ,@PackageName&#xA; ,1)&#xA;&#xA; FETCH NEXT FROM CUR_PERSONNEL INTO @DS_PERSONAL_NO,@E_MAIL,@FAMILY_NAME_ROMA,@FIRST_NAME_ROMA&#xA;END&#xA;&#xA;CLOSE CUR_PERSONNEL&#xA;DEALLOCATE CUR_PERSONNEL&#xA;&#xA;/*******************************外部認証対象以外*******************************/&#xA;DECLARE CUR_PERSONNEL2 CURSOR FOR &#xA;SELECT &#xA;DS_PERSONAL_NO&#xA;,isnull(SUBSTRING(RTRIM(LTRIM(TPRC_ZZM_PERSONNEL.E_MAIL)),1,50),'') AS E_MAIL&#xA;,isnull(TPRC_ZZM_PERSONNEL.FAMILY_NAME_ROMA,'') AS FAMILY_NAME_ROMA&#xA;,isnull(TPRC_ZZM_PERSONNEL.FIRST_NAME_ROMA,'') AS FIRST_NAME_ROMA&#xA;FROM TPRC_ZZM_PERSONNEL&#xA;WHERE BUSINESS_SITE_CD IN&#xA;(SELECT BUSINESS_SITE_CD FROM TPRC_ZZM_EX_EXTERNAL_COMP) &#xA;&#xA;OPEN CUR_PERSONNEL2&#xA;FETCH NEXT FROM CUR_PERSONNEL2 INTO @DS_PERSONAL_NO,@E_MAIL,@FAMILY_NAME_ROMA,@FIRST_NAME_ROMA&#xA;&#xA;WHILE @@FETCH_STATUS=0&#xA;&#xA;BEGIN&#xA; --**************************************ユーザマスタ(一時)にデータを追加***********************************************************************&#xA; INSERT INTO TPRC_WF_M_USER_PROV&#xA; VALUES &#xA; (&#xA; 0&#xA; ,@DS_PERSONAL_NO&#xA; ,'26d6a8ad97c75ffc548f6873e5e93ce475479e3e1a1097381e54221fb53ec1d2'&#xA; ,@FAMILY_NAME_ROMA + ' ' + @FIRST_NAME_ROMA&#xA; ,'1000'&#xA; ,'JA'&#xA; ,@E_MAIL&#xA; ,NULL&#xA; ,1&#xA; ,1&#xA; ,0&#xA; ,getdate()&#xA; ,@PackageName&#xA; ,getdate()&#xA; ,@PackageName&#xA; ,0)&#xA;&#xA; FETCH NEXT FROM CUR_PERSONNEL2 INTO @DS_PERSONAL_NO,@E_MAIL,@FAMILY_NAME_ROMA,@FIRST_NAME_ROMA&#xA;END&#xA;&#xA;CLOSE CUR_PERSONNEL2&#xA;DEALLOCATE CUR_PERSONNEL2&#xA;&#xA;&#xA;/*******************************英語ユーザ対応*******************************/&#xA;UPDATE TPRC_WF_M_USER_PROV&#xA;SET LANGUAGE_CODE = 'EN'&#xA;WHERE USER_ID IN&#xA;(&#xA;SELECT &#xA;DS_PERSONAL_NO&#xA;FROM TPRC_ZZM_PERSONNEL&#xA;WHERE BUSINESS_SITE_CD IN&#xA;(SELECT BUSINESS_SITE_CD FROM TPRC_ZZM_EX_USER_LANG WHERE BUSINESS_SITE_USER_LANG = 'EN') &#xA;)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\シーケンス コンテナー\06000_ユーザロールマスタ(一時)追加"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{31d88b6f-27d1-4732-b199-50740575fe47}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="06000_ユーザロールマスタ(一時)追加"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{64717687-AC2A-426B-8C9D-DAD82C1EBD34}"
+              SQLTask:SqlStatementSource="DECLARE @PackageName  AS NVARCHAR(200);&#xA;SELECT @PackageName = ?&#xA;&#xA;/***************************************海外特約店の権限追加***********************************************/&#xA;/****条件：ユーザの会社コードが特定会社マスタに存在　且つ　日系特約店,海外DISTI************************************/&#xA;INSERT INTO TPRC_WF_M_ROLES_D_PROV&#xA;SELECT &#xA;0&#xA;,'1000'&#xA;,'BI_SD_USER_OSC_AGENT'&#xA;,DS_PERSONAL_NO&#xA;,0&#xA;,getdate()&#xA;,@PackageName&#xA;,getdate()&#xA;,@PackageName&#xA;FROM TPRC_ZZM_PERSONNEL &#xA;WHERE BUSINESS_SITE_CD IN (SELECT BUSINESS_SITE_CD FROM TPRC_ZZM_EX_EXTERNAL_COMP WHERE BUSINESS_SITE_DIV IN ('日系特約店','海外DISTI')) &#xA;&#xA;/***************************************国内特約店と取扱店の権限追加***************************************/&#xA;/****条件：ユーザコードが個別申請ユーザマスタに存在、個別申請ユーザマスタ区分  AGENT：国内特約店  AGENCY：取扱店*****/&#xA;INSERT INTO TPRC_WF_M_ROLES_D_PROV&#xA;SELECT &#xA;0&#xA;,'1000'&#xA;,CASE WHEN INDIV.USER_DIV='AGENT'  THEN 'BI_SD_USER_AGENT'&#xA;      WHEN INDIV.USER_DIV='AGENCY' THEN 'BI_SD_USER_AGENCY'&#xA;   ELSE ''&#xA; END&#xA;,PERSONNEL.DS_PERSONAL_NO&#xA;,0&#xA;,getdate()&#xA;,@PackageName&#xA;,getdate()&#xA;,@PackageName&#xA;FROM TPRC_ZZM_PERSONNEL PERSONNEL,TPRC_ZZM_EX_INDIV_USER INDIV&#xA;WHERE PERSONNEL.DS_PERSONAL_NO=INDIV.MANNO&#xA;&#xA;/***************************************国内特約店と取扱店ユーザの海外特約店の権限を削除**********************/&#xA;DELETE FROM TPRC_WF_M_ROLES_D_PROV&#xA;WHERE ROLE_ID='BI_SD_USER_OSC_AGENT' &#xA;AND   USER_ID IN (SELECT MANNO FROM TPRC_ZZM_EX_INDIV_USER)&#xA;&#xA;/***************************************会社コードT7,T9全員に取扱店と国内特約店の権限を追加*******************/&#xA;DELETE FROM TPRC_WF_M_ROLES_D_PROV&#xA;WHERE USER_ID IN  &#xA;(SELECT DS_PERSONAL_NO FROM TPRC_ZZM_PERSONNEL &#xA;WHERE BUSINESS_SITE_CD IN ('T7','T9')&#xA;) AND ROLE_ID IN ('BI_SD_USER_AGENT','BI_SD_USER_AGENCY','BI_SD_USER_OSC_AGENT')&#xA;&#xA;INSERT INTO TPRC_WF_M_ROLES_D_PROV&#xA;SELECT &#xA;0&#xA;,'1000'&#xA;,'BI_SD_USER_AGENT'&#xA;,PERSONNEL.DS_PERSONAL_NO&#xA;,0&#xA;,getdate()&#xA;,@PackageName&#xA;,getdate()&#xA;,@PackageName&#xA;FROM &#xA;(SELECT * FROM TPRC_ZZM_PERSONNEL &#xA;WHERE BUSINESS_SITE_CD IN ('T7','T9')&#xA;) PERSONNEL&#xA;&#xA;INSERT INTO TPRC_WF_M_ROLES_D_PROV&#xA;SELECT &#xA;0&#xA;,'1000'&#xA;,'BI_SD_USER_AGENCY'&#xA;,PERSONNEL.DS_PERSONAL_NO&#xA;,0&#xA;,getdate()&#xA;,@PackageName&#xA;,getdate()&#xA;,@PackageName&#xA;FROM &#xA;(SELECT * FROM TPRC_ZZM_PERSONNEL &#xA;WHERE BUSINESS_SITE_CD IN ('T7','T9')&#xA;) PERSONNEL&#xA;&#xA;/***********************************Rainbow国内特約店の権限追加(T7,T9含む)************************************/&#xA;/****条件：国内特約店の権限を持っているユーザ********************************************************************/&#xA;INSERT INTO TPRC_WF_M_ROLES_D_PROV&#xA;SELECT &#xA;0&#xA;,'1000'&#xA;,'BI_SD_RB_AGENT'&#xA;,PERSONNEL.DS_PERSONAL_NO&#xA;,0&#xA;,getdate()&#xA;,@PackageName&#xA;,getdate()&#xA;,@PackageName&#xA;FROM &#xA;(SELECT * FROM TPRC_ZZM_PERSONNEL &#xA;WHERE DS_PERSONAL_NO IN &#xA;(SELECT USER_ID FROM TPRC_WF_M_ROLES_D_PROV WHERE ROLE_ID ='BI_SD_USER_AGENT')&#xA;) PERSONNEL&#xA;&#xA;/***********************************Rainbow海外特約店、Rainbow海外DISTIの権限追加****************************/&#xA;/****条件：海外特約店の権限を持っているユーザの会社コードは特定会社マスタに存在、*************************************/&#xA;/*********特定会社マスタの会社区分 日系特約店：Rainbow海外特約店 海外DISTI：Rainbow海外DISTI*********************/&#xA;INSERT INTO TPRC_WF_M_ROLES_D_PROV&#xA;SELECT &#xA;0&#xA;,'1000'&#xA;,CASE WHEN COMP.BUSINESS_SITE_DIV='日系特約店'  THEN 'BI_SD_RB_OJ-AGENT'&#xA;      WHEN COMP.BUSINESS_SITE_DIV='海外DISTI' THEN 'BI_SD_RB_DISTI'&#xA;      ELSE ''&#xA; END&#xA;,PERSONNEL.DS_PERSONAL_NO&#xA;,0&#xA;,getdate()&#xA;,@PackageName&#xA;,getdate()&#xA;,@PackageName&#xA;FROM &#xA;(SELECT * FROM TPRC_ZZM_PERSONNEL &#xA;WHERE DS_PERSONAL_NO IN &#xA;(SELECT USER_ID FROM TPRC_WF_M_ROLES_D_PROV WHERE ROLE_ID ='BI_SD_USER_OSC_AGENT')&#xA;) PERSONNEL,&#xA;TPRC_ZZM_EX_EXTERNAL_COMP COMP&#xA;WHERE PERSONNEL.BUSINESS_SITE_CD=COMP.BUSINESS_SITE_CD&#xA;&#xA;/*******************************海外特約店 + 海外DISTI = 海外特約店権限のユーザを英語ユーザに設定する*******************************/&#xA;UPDATE TPRC_WF_M_USER_PROV&#xA;SET LANGUAGE_CODE = 'EN'&#xA;WHERE USER_ID IN&#xA;(&#xA;SELECT &#xA;USER_ID &#xA;FROM TPRC_WF_M_ROLES_D_PROV&#xA;WHERE ROLE_ID = 'BI_SD_USER_OSC_AGENT'&#xA;)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\シーケンス コンテナー\07000_ユーザパラメータマスタ(一時)追加"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{8724cd90-e99f-45e5-8ac8-88cb38bc0e25}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="07000_ユーザパラメータマスタ(一時)追加"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{64717687-AC2A-426B-8C9D-DAD82C1EBD34}"
+              SQLTask:SqlStatementSource="DECLARE @DS_PERSONAL_NO as NVARCHAR(10);&#xA;DECLARE @BUSINESS_SITE_CD AS NVARCHAR(2),@UNIT_CD AS NVARCHAR(2),@DIVISION_CD AS NVARCHAR(2),@DEPT_CD AS NVARCHAR(2),@SECTION_CD AS NVARCHAR(2),@FLG AS INT;&#xA;DECLARE @PackageName  AS NVARCHAR(200);&#xA;DECLARE @WF_USRPARAM_CODE AS NVARCHAR(50),@WF_LINENUMBER AS INT,@WF_OPERATOR AS NVARCHAR(50),@WF_LOWVALUE AS NVARCHAR(255),@WF_HIGHVALUE AS NVARCHAR(255);&#xA;&#xA;DECLARE @SQL AS NVARCHAR(1000),@SQL_WHERE AS NVARCHAR(1000);&#xA;&#xA;DECLARE @COUNT_SP AS INT;&#xA;DECLARE @ROLE_ID AS NVARCHAR(20);&#xA;&#xA;SELECT @PackageName = ?&#xA;&#xA;DECLARE CUR_PERSONNEL CURSOR FOR &#xA;select &#xA;TPRC_ZZM_PERSONNEL.DS_PERSONAL_NO as DS_PERSONAL_NO&#xA;,isnull(TPRC_ZZM_PERSONNEL.BUSINESS_SITE_CD,'') as BUSINESS_SITE_CD&#xA;,isnull(TPRC_ZZM_PERSONNEL.UNIT_CD,'') as UNIT_CD&#xA;,isnull(TPRC_ZZM_PERSONNEL.DIVISION_CD,'') as DIVISION_CD&#xA;,isnull(TPRC_ZZM_PERSONNEL.DEPT_CD,'') as DEPT_CD&#xA;,isnull(TPRC_ZZM_PERSONNEL.SECTION_CD,'') as SECTION_CD&#xA;,convert(int,isnull(TPRC_ZZM_EX_SEARCH_FLG.SEARCH_FLG,0)) as FLG&#xA;&#xA;from TPRC_ZZM_PERSONNEL&#xA;left outer join TPRC_ZZM_EX_SEARCH_FLG&#xA;on TPRC_ZZM_PERSONNEL.BUSINESS_SITE_CD=TPRC_ZZM_EX_SEARCH_FLG.BUSINESS_SITE_CD&#xA;&#xA;OPEN CUR_PERSONNEL&#xA;FETCH NEXT FROM CUR_PERSONNEL INTO @DS_PERSONAL_NO,@BUSINESS_SITE_CD,@UNIT_CD,@DIVISION_CD,@DEPT_CD,@SECTION_CD,@FLG&#xA;&#xA;WHILE @@FETCH_STATUS=0&#xA;&#xA;BEGIN&#xA; &#xA; --*****************************************ユーザパラメータマスタ(一時)にデータを追加*****************************************************************&#xA; --ユーザパラメータ管理マスタを検索条件&#xA; SET @SQL_WHERE=''&#xA; &#xA; --FLG=2:会社＋本部&#xA; IF @FLG=2&#xA; BEGIN&#xA;  SET @SQL_WHERE=@SQL_WHERE+'BUSINESS_SITE_CD = '''+@BUSINESS_SITE_CD+''' AND UNIT_CD='''+@UNIT_CD+''''&#xA; END&#x9;&#xA; --FLG=3:会社＋本部＋事業部&#xA; ELSE IF @FLG=3&#xA; BEGIN&#xA;  SET @SQL_WHERE=@SQL_WHERE+'BUSINESS_SITE_CD = '''+@BUSINESS_SITE_CD+''' AND UNIT_CD='''+@UNIT_CD+''' AND DIVISION_CD='''+@DIVISION_CD+''''&#xA; END&#x9;&#xA; --FLG=4:会社＋本部＋事業部＋部門&#xA; ELSE IF @FLG=4&#xA; BEGIN&#xA;  SET @SQL_WHERE=@SQL_WHERE+'BUSINESS_SITE_CD = '''+@BUSINESS_SITE_CD+''' AND UNIT_CD='''+@UNIT_CD+''' AND DIVISION_CD='''+@DIVISION_CD+''' AND DEPT_CD='''+@DEPT_CD+''''&#xA; END&#x9;&#xA; --FLG=5:会社＋本部＋事業部＋部門＋課&#xA; ELSE IF @FLG=5&#xA; BEGIN&#xA;  SET @SQL_WHERE=@SQL_WHERE+'BUSINESS_SITE_CD = '''+@BUSINESS_SITE_CD+''' AND UNIT_CD='''+@UNIT_CD+''' AND DIVISION_CD='''+@DIVISION_CD+''' AND DEPT_CD='''+@DEPT_CD+''' AND SECTION_CD='''+@SECTION_CD+''''&#xA; END&#x9;&#xA; --FLG=ELSE:会社&#xA; ELSE&#xA; BEGIN&#xA;  SET @SQL_WHERE=@SQL_WHERE+'BUSINESS_SITE_CD = '''+@BUSINESS_SITE_CD+''''&#xA; END&#x9;&#xA;&#xA;--****************同一会社コード、特約店、海外特約店を区別する対応******************&#xA; SELECT @COUNT_SP = COUNT(*) FROM TPRC_ZZM_EX_USRPARAM_MST WHERE BUSINESS_SITE_CD = @BUSINESS_SITE_CD AND AGENT_DIV &lt;&gt; ''&#xA;&#xA; IF @COUNT_SP &gt; 0 &#xA; BEGIN&#xA;    SELECT @ROLE_ID = TPRC_WF_M_ROLES_D_PROV.ROLE_ID FROM TPRC_WF_M_ROLES_D_PROV WHERE USER_ID = @DS_PERSONAL_NO AND ROLE_ID IN ('BI_SD_USER_OSC_AGENT','BI_SD_USER_AGENT')&#xA;    IF  @ROLE_ID = 'BI_SD_USER_OSC_AGENT'&#xA;    BEGIN&#xA;         SET @SQL_WHERE=@SQL_WHERE+' AND AGENT_DIV IN (''OS-AGENT'','''')'&#xA;    END&#xA;    ELSE IF @ROLE_ID = 'BI_SD_USER_AGENT'&#xA;    BEGIN&#xA;         SET @SQL_WHERE=@SQL_WHERE+' AND AGENT_DIV IN (''AGENT'','''')'&#xA;    END&#xA; END&#xA;&#xA; SET @SQL=''&#xA; SET @SQL=@SQL+'DECLARE CUR_USRPARAMENTRY CURSOR FOR '&#xA; SET @SQL=@SQL+'SELECT ISNULL(WF_USRPARAM_CODE,''''),CONVERT(INT,WF_LINENUMBER) AS WF_LINENUMBER,ISNULL(WF_OPERATOR,''''),ISNULL(WF_LOWVALUE,''''),ISNULL(WF_HIGHVALUE,'''') '&#xA; SET @SQL=@SQL+'FROM TPRC_ZZM_EX_USRPARAM_MST WHERE '&#xA; SET @SQL=@SQL+ @SQL_WHERE&#xA;&#xA; EXEC sp_executesql @SQL&#xA;&#xA; OPEN CUR_USRPARAMENTRY&#xA; FETCH NEXT FROM CUR_USRPARAMENTRY INTO @WF_USRPARAM_CODE,@WF_LINENUMBER,@WF_OPERATOR,@WF_LOWVALUE,@WF_HIGHVALUE&#xA;&#xA; WHILE @@FETCH_STATUS=0&#xA;&#xA; BEGIN&#xA;  insert into TPRC_BI_M_USRPARAMENTRY_PROV&#xA;  values &#xA;  (&#xA;  @WF_USRPARAM_CODE&#xA;  ,0&#xA;  ,@DS_PERSONAL_NO&#xA;  ,@WF_LINENUMBER&#xA;  ,@WF_OPERATOR&#xA;  ,@WF_LOWVALUE&#xA;  ,@WF_HIGHVALUE&#xA;  ,getdate()&#xA;  ,@PackageName&#xA;  ,getdate()&#xA;  ,@PackageName&#xA;  )&#xA;&#xA;  FETCH NEXT FROM CUR_USRPARAMENTRY INTO @WF_USRPARAM_CODE,@WF_LINENUMBER,@WF_OPERATOR,@WF_LOWVALUE,@WF_HIGHVALUE&#xA; END&#xA; CLOSE CUR_USRPARAMENTRY&#xA; DEALLOCATE CUR_USRPARAMENTRY&#xA;&#xA; FETCH NEXT FROM CUR_PERSONNEL INTO @DS_PERSONAL_NO,@BUSINESS_SITE_CD,@UNIT_CD,@DIVISION_CD,@DEPT_CD,@SECTION_CD,@FLG&#xA;&#xA;END&#xA;&#xA;CLOSE CUR_PERSONNEL&#xA;DEALLOCATE CUR_PERSONNEL&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\シーケンス コンテナー\08000_WebFrontマスタ登録処理"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{5c39b3bf-8a89-488b-8203-4ec6662b277d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="08000_WebFrontマスタ登録処理"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{DCFD5E81-CC90-448D-A6FB-B81B2114E627}"
+              SQLTask:SqlStatementSource="DECLARE @PackageName  AS NVARCHAR(200);&#xA;&#xA;SELECT @PackageName = ?&#xA;&#xA;--**************************************WebFrontユーザマスタにデータを追加***********************************************************************&#xA;--**************************************外部認証のデータを追加(DELETE/INSERT)********************************************************************&#xA;DELETE FROM WF_M_USER&#xA;WHERE USER_ID collate Japanese_XJIS_100_BIN2 IN&#xA;(SELECT USER_ID collate Japanese_XJIS_100_BIN2 FROM DM_MST.dbo.TPRC_WF_M_USER_PROV WHERE AUTH_EXTERNAL=1)&#xA;&#xA;INSERT INTO WF_M_USER SELECT * FROM DM_MST.dbo.TPRC_WF_M_USER_PROV WHERE AUTH_EXTERNAL=1&#xA;&#xA;--**************************************外部認証以外のデータを追加(UPDATE/INSERT)*****************************************************************&#xA;DELETE FROM WF_M_USER&#xA;WHERE AUTH_EXTERNAL=1&#xA;AND USER_ID collate Japanese_XJIS_100_BIN2 IN&#xA;(SELECT USER_ID collate Japanese_XJIS_100_BIN2 FROM DM_MST.dbo.TPRC_WF_M_USER_PROV WHERE AUTH_EXTERNAL=0);&#xA;&#xA;&#xA;MERGE WF_M_USER TGT USING (&#xA;SELECT *&#xA;FROM DM_MST.dbo.TPRC_WF_M_USER_PROV &#xA;WHERE AUTH_EXTERNAL=0&#xA;) SRC &#xA;ON  TGT.VERSION=SRC.VERSION &#xA;AND TGT.USER_ID collate Japanese_XJIS_100_BIN2 =SRC.USER_ID &#xA;&#xA;WHEN MATCHED THEN &#xA;UPDATE SET &#xA; TGT.[USER_NAME]=SRC.[USER_NAME]&#xA;,TGT.[COMPANY_CODE]=SRC.[COMPANY_CODE]&#xA;,TGT.[LANGUAGE_CODE]=SRC.[LANGUAGE_CODE]&#xA;,TGT.[MAIL_ADDRESS]=SRC.[MAIL_ADDRESS]&#xA;,TGT.[REGISTER_DATE]=SRC.[REGISTER_DATE]&#xA;,TGT.[REGISTER_ID]=SRC.[REGISTER_ID]&#xA;,TGT.[UPDATE_DATE]=SRC.[UPDATE_DATE]&#xA;,TGT.[UPDATE_ID]=SRC.[UPDATE_ID]&#xA;&#xA;WHEN NOT MATCHED THEN&#xA;INSERT&#xA;([VERSION]&#xA;,[USER_ID]&#xA;,[USER_PASSWORD]&#xA;,[USER_NAME]&#xA;,[COMPANY_CODE]&#xA;,[LANGUAGE_CODE]&#xA;,[MAIL_ADDRESS]&#xA;,[PASSWORD_EXPIRE]&#xA;,[PASSWORD_INIT]&#xA;,[LOGIN_PERMIT]&#xA;,[NO_DEL_FLAG]&#xA;,[REGISTER_DATE]&#xA;,[REGISTER_ID]&#xA;,[UPDATE_DATE]&#xA;,[UPDATE_ID]&#xA;,[AUTH_EXTERNAL])&#xA;VALUES&#xA;(SRC.[VERSION]&#xA;,SRC.[USER_ID]&#xA;,SRC.[USER_PASSWORD]&#xA;,SRC.[USER_NAME]&#xA;,SRC.[COMPANY_CODE]&#xA;,SRC.[LANGUAGE_CODE]&#xA;,SRC.[MAIL_ADDRESS]&#xA;,SRC.[PASSWORD_EXPIRE]&#xA;,SRC.[PASSWORD_INIT]&#xA;,SRC.[LOGIN_PERMIT]&#xA;,SRC.[NO_DEL_FLAG]&#xA;,SRC.[REGISTER_DATE]&#xA;,SRC.[REGISTER_ID]&#xA;,SRC.[UPDATE_DATE]&#xA;,SRC.[UPDATE_ID]&#xA;,SRC.[AUTH_EXTERNAL]);&#xA;&#xA;--*************************WebFrontユーザロールマスタにデータを追加************************************************************************************&#xA;--*************************既存の自動付けた権限の既存データを削除***************************&#xA;DELETE FROM WF_M_ROLES_D&#xA;WHERE ROLE_ID IN('BI_SD_USER_AGENT','BI_SD_USER_AGENCY','BI_SD_USER_OSC_AGENT','XR_BIR_USER','BI_SD_RB_OJ-AGENT','BI_SD_RB_DISTI','BI_SD_RB_AGENT')&#xA;AND USER_ID collate Japanese_BIN2 NOT IN (SELECT USER_ID FROM WF_M_USER WHERE NO_DEL_FLAG = 1)&#xA;&#xA;--*************************今回権限のデータを追加*********************************************&#xA;INSERT INTO WF_M_ROLES_D SELECT * FROM DM_MST.dbo.TPRC_WF_M_ROLES_D_PROV&#xA;&#xA;--*************************'XR_BIR_USER'権限のデータを追加***************************************************************************************&#xA;INSERT INTO WF_M_ROLES_D&#xA;SELECT &#xA;0&#xA;,'1000'&#xA;,'XR_BIR_USER'&#xA;,DS_PERSONAL_NO&#xA;,0&#xA;,getdate()&#xA;,@PackageName&#xA;,getdate()&#xA;,@PackageName&#xA;FROM DM_MST.dbo.TPRC_ZZM_PERSONNEL &#xA;&#xA;--**************************************WebFrontユーザパラメータマスタにデータを追加***********************************************************************&#xA;DELETE FROM BI_M_USRPARAMENTRY&#xA;WHERE USR_ID collate Japanese_XJIS_100_BIN2 IN&#xA;(SELECT DS_PERSONAL_NO FROM DM_MST.dbo.TPRC_ZZM_PERSONNEL)&#xA;AND USR_ID collate Japanese_BIN2 NOT IN (SELECT USER_ID FROM WF_M_USER WHERE NO_DEL_FLAG = 1)&#xA;&#xA;INSERT INTO BI_M_USRPARAMENTRY SELECT * FROM DM_MST.dbo.TPRC_BI_M_USRPARAMENTRY_PROV;&#xA;--**************************************WF_M_USER_Fにデータを追加***********************************************************************&#xA;--**************************************FRAME_CODE=500**********************************************************************************&#xA;MERGE WF_M_USER_F TGT USING (&#xA;SELECT &#xA; 0     AS VERSION&#xA;,DS_PERSONAL_NO  AS USER_ID&#xA;,500    AS FRAME_CODE&#xA;,''     AS FRAME_VALUE&#xA;,getdate()   AS REGISTER_DATE&#xA;,@PackageName  AS REGISTER_ID&#xA;,getdate()   AS UPDATE_DATE&#xA;,@PackageName  AS UPDATE_ID&#xA;FROM DM_MST.dbo.TPRC_ZZM_PERSONNEL &#xA;) SRC &#xA;ON  TGT.VERSION=SRC.VERSION &#xA;AND TGT.USER_ID collate Japanese_XJIS_100_BIN2 =SRC.USER_ID &#xA;AND TGT.FRAME_CODE=SRC.FRAME_CODE &#xA;&#xA;WHEN NOT MATCHED THEN&#xA;INSERT&#xA;([VERSION]&#xA;,[USER_ID]&#xA;,[FRAME_CODE]&#xA;,[FRAME_VALUE]&#xA;,[REGISTER_DATE]&#xA;,[REGISTER_ID]&#xA;,[UPDATE_DATE]&#xA;,[UPDATE_ID])&#xA;VALUES&#xA;(SRC.[VERSION]&#xA;,SRC.[USER_ID]&#xA;,SRC.[FRAME_CODE]&#xA;,SRC.[FRAME_VALUE]&#xA;,SRC.[REGISTER_DATE]&#xA;,SRC.[REGISTER_ID]&#xA;,SRC.[UPDATE_DATE]&#xA;,SRC.[UPDATE_ID]);&#xA;&#xA;--**************************************FRAME_CODE=600**********************************************************************************&#xA;MERGE WF_M_USER_F TGT USING (&#xA;SELECT &#xA; 0     AS VERSION&#xA;,DS_PERSONAL_NO  AS USER_ID&#xA;,600    AS FRAME_CODE&#xA;,'1'    AS FRAME_VALUE&#xA;,getdate()   AS REGISTER_DATE&#xA;,@PackageName  AS REGISTER_ID&#xA;,getdate()   AS UPDATE_DATE&#xA;,@PackageName  AS UPDATE_ID&#xA;FROM DM_MST.dbo.TPRC_ZZM_PERSONNEL &#xA;) SRC &#xA;ON  TGT.VERSION=SRC.VERSION &#xA;AND TGT.USER_ID collate Japanese_XJIS_100_BIN2 =SRC.USER_ID &#xA;AND TGT.FRAME_CODE=SRC.FRAME_CODE &#xA;&#xA;WHEN NOT MATCHED THEN&#xA;INSERT&#xA;([VERSION]&#xA;,[USER_ID]&#xA;,[FRAME_CODE]&#xA;,[FRAME_VALUE]&#xA;,[REGISTER_DATE]&#xA;,[REGISTER_ID]&#xA;,[UPDATE_DATE]&#xA;,[UPDATE_ID])&#xA;VALUES&#xA;(SRC.[VERSION]&#xA;,SRC.[USER_ID]&#xA;,SRC.[FRAME_CODE]&#xA;,SRC.[FRAME_VALUE]&#xA;,SRC.[REGISTER_DATE]&#xA;,SRC.[REGISTER_ID]&#xA;,SRC.[UPDATE_DATE]&#xA;,SRC.[UPDATE_ID]);&#xA;&#xA;--**************************************FRAME_CODE=700**********************************************************************************&#xA;MERGE WF_M_USER_F TGT USING (&#xA;SELECT &#xA; 0     AS VERSION&#xA;,DS_PERSONAL_NO  AS USER_ID&#xA;,700    AS FRAME_CODE&#xA;,CASE WHEN ISNULL(LTRIM(RTRIM(E_MAIL)),'')='' THEN DS_PERSONAL_NO&#xA;      ELSE E_MAIL     &#xA; END    AS FRAME_VALUE&#xA;,getdate()   AS REGISTER_DATE&#xA;,@PackageName  AS REGISTER_ID&#xA;,getdate()   AS UPDATE_DATE&#xA;,@PackageName  AS UPDATE_ID&#xA;FROM DM_MST.dbo.TPRC_ZZM_PERSONNEL &#xA;) SRC &#xA;ON  TGT.VERSION=SRC.VERSION &#xA;AND TGT.USER_ID collate Japanese_XJIS_100_BIN2 =SRC.USER_ID &#xA;AND TGT.FRAME_CODE=SRC.FRAME_CODE &#xA;&#xA;WHEN MATCHED THEN&#xA;UPDATE SET &#xA; TGT.[FRAME_VALUE]=SRC.[FRAME_VALUE]&#xA;,TGT.[REGISTER_DATE]=SRC.[REGISTER_DATE]&#xA;,TGT.[REGISTER_ID]=SRC.[REGISTER_ID]&#xA;,TGT.[UPDATE_DATE]=SRC.[UPDATE_DATE]&#xA;,TGT.[UPDATE_ID]=SRC.[UPDATE_ID]&#xA;&#xA;WHEN NOT MATCHED THEN&#xA;INSERT&#xA;([VERSION]&#xA;,[USER_ID]&#xA;,[FRAME_CODE]&#xA;,[FRAME_VALUE]&#xA;,[REGISTER_DATE]&#xA;,[REGISTER_ID]&#xA;,[UPDATE_DATE]&#xA;,[UPDATE_ID])&#xA;VALUES&#xA;(SRC.[VERSION]&#xA;,SRC.[USER_ID]&#xA;,SRC.[FRAME_CODE]&#xA;,SRC.[FRAME_VALUE]&#xA;,SRC.[REGISTER_DATE]&#xA;,SRC.[REGISTER_ID]&#xA;,SRC.[UPDATE_DATE]&#xA;,SRC.[UPDATE_ID]);&#xA;&#xA;--**************************************暫定対策社内ユーザはDS番号で登録**********************************************************************************&#xA;UPDATE WF_M_USER_F&#xA;SET FRAME_VALUE = USER_ID collate Japanese_XJIS_100_BIN2&#xA;WHERE USER_ID collate Japanese_XJIS_100_BIN2 IN (SELECT USER_ID FROM WF_M_USER WHERE AUTH_EXTERNAL= 1) AND FRAME_CODE = '700'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\シーケンス コンテナー.PrecedenceConstraints[制約]"
+          DTS:CreationName=""
+          DTS:DTSID="{32D873D3-C8AC-42B3-9077-A057DBF489D2}"
+          DTS:From="Package\シーケンス コンテナー\04000_WebFront管理マスタクリーニング"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約"
+          DTS:To="Package\シーケンス コンテナー\05000_ユーザマスタ(一時)追加" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\シーケンス コンテナー.PrecedenceConstraints[制約 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{17B1B4DF-CEE3-416E-BA17-73529FDB62AD}"
+          DTS:From="Package\シーケンス コンテナー\05000_ユーザマスタ(一時)追加"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約 1"
+          DTS:To="Package\シーケンス コンテナー\06000_ユーザロールマスタ(一時)追加" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\シーケンス コンテナー.PrecedenceConstraints[制約 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{BEFF0A99-651F-4443-A4EF-F14C3A2771E8}"
+          DTS:From="Package\シーケンス コンテナー\06000_ユーザロールマスタ(一時)追加"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約 2"
+          DTS:To="Package\シーケンス コンテナー\07000_ユーザパラメータマスタ(一時)追加" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\シーケンス コンテナー.PrecedenceConstraints[制約 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{0DCADC68-4D0E-4AF4-A795-F7CF0D3F7DA6}"
+          DTS:From="Package\シーケンス コンテナー\07000_ユーザパラメータマスタ(一時)追加"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約 3"
+          DTS:To="Package\シーケンス コンテナー\08000_WebFrontマスタ登録処理" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約]"
+      DTS:CreationName=""
+      DTS:DTSID="{1CD3799E-BE52-494C-AA8C-EAEED2EB14A9}"
+      DTS:From="Package\01000_開始ログ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約"
+      DTS:To="Package\02000_マスタデータ削除退避" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{85B3CB79-48A5-440B-8714-0D4AFE83D567}"
+      DTS:From="Package\02000_マスタデータ削除退避"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 1"
+      DTS:To="Package\03000_データ登録" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{997A5E7A-A5B6-499F-8C97-2DA936ACFB20}"
+      DTS:From="Package\03000_データ登録"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 2"
+      DTS:To="Package\03100_状態判定" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{77F8050C-4E4B-4E1E-835E-792CF3054D54}"
+      DTS:From="Package\03100_状態判定"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 3"
+      DTS:To="Package\シーケンス コンテナー" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D214DCF3-432C-4B6D-A87F-596EE28EB816}"
+      DTS:From="Package\シーケンス コンテナー"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 4"
+      DTS:To="Package\09000_中間マスタ退避処理" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{2C6A9014-D6AC-4E96-9ADF-F4624644223B}"
+      DTS:From="Package\09000_中間マスタ退避処理"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 8"
+      DTS:To="Package\90000_正常終了" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{A1F99A4E-A29B-4A20-9673-1CA3D6B4D866}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="イベントの反映プロパティです"
+          DTS:DTSID="{2BC7B6B0-40CB-45BA-BB0A-94306347D9F5}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{59A29AE2-5479-4378-8163-F6799364CA02}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99000_SQL 実行タスク"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[ERROR_CODE]&#xA;,[ERROR_MESSAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,?&#xA;,'OnError'&#xA;,?&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{0172C4A7-4B94-4A65-97DB-3B72B5E7F209}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99010_エラー終了"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'エラー終了'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          DTS:CreationName=""
+          DTS:DTSID="{85CC59EC-865B-46F6-90D8-620ED8D44175}"
+          DTS:From="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約"
+          DTS:To="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--この CDATA セクションにはパッケージのレイアウト情報が含まれています。(x,y) 座標、幅、高さなどの情報が含まれます。-->
+<!--このセクションを手動で編集して間違った場合は、セクションを削除できます。-->
+<!--パッケージは正常に読み込むことができますが、以前のレイアウト情報は失われ、デザイン画面上の要素が自動的に再配置されます。-->
+<Objects
+  Version="8">
+  <!--次の各ノードには、実行時の動作に影響しないプロパティが含まれます。-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="225,42"
+          Id="Package\01000_開始ログ"
+          TopLeft="398,26.9815163083453" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\02000_マスタデータ削除退避"
+          TopLeft="398,101.82537371348" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\03000_データ登録"
+          TopLeft="433,189.658716033036" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\03100_状態判定"
+          TopLeft="396,272.547641347538" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\09000_中間マスタ退避処理"
+          TopLeft="394,834.242046164693" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\90000_正常終了"
+          TopLeft="397,914.242045260686" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\シーケンス コンテナー\04000_WebFront管理マスタクリーニング"
+          TopLeft="41,22.0833335216674" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\シーケンス コンテナー\05000_ユーザマスタ(一時)追加"
+          TopLeft="41,90.3333242717724" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\シーケンス コンテナー\06000_ユーザロールマスタ(一時)追加"
+          TopLeft="38,163.555592390121" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\シーケンス コンテナー\07000_ユーザパラメータマスタ(一時)追加"
+          TopLeft="37,234.666656937865" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\シーケンス コンテナー\08000_WebFrontマスタ登録処理"
+          TopLeft="41,312.4166654129" />
+        <EdgeLayout
+          Id="Package\シーケンス コンテナー.PrecedenceConstraints[制約]"
+          TopLeft="153.5,64.0833335216674">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.249990750105"
+              Start="0,0"
+              End="0,18.749990750105">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.749990750105" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\シーケンス コンテナー.PrecedenceConstraints[制約 1]"
+          TopLeft="152,132.333324271772">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.222268118349"
+              Start="0,0"
+              End="0,23.722268118349">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.722268118349" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\シーケンス コンテナー.PrecedenceConstraints[制約 2]"
+          TopLeft="150,205.555592390121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.1110645477435"
+              Start="0,0"
+              End="0,21.6110645477435">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6110645477435" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\シーケンス コンテナー.PrecedenceConstraints[制約 3]"
+          TopLeft="151.5,276.666656937865">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.7500084750346"
+              Start="0,0"
+              End="0,28.2500084750346">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.2500084750346" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="316,383"
+          Size="316,426"
+          Id="Package\シーケンス コンテナー"
+          TopLeft="355,359.325372777187" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約]"
+          TopLeft="510.5,68.9815163083453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.8438574051345"
+              Start="0,0"
+              End="0,25.3438574051345">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.3438574051345" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 1]"
+          TopLeft="513,143.82537371348">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45.8333423195558"
+              Start="0,0"
+              End="0,38.3333423195558">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.3333423195558" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 2]"
+          TopLeft="512,231.658716033036">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.8889253145017"
+              Start="0,0"
+              End="0,33.3889253145017">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.3889253145017" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 3]"
+          TopLeft="510.75,314.547641347538">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.777731429649"
+              Start="0,0"
+              End="0,37.277731429649">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.277731429649" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 4]"
+          TopLeft="509.75,785.325372777187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.9166733875056"
+              Start="0,0"
+              End="0,41.4166733875056">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.4166733875056" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 8]"
+          TopLeft="508,876.242046164693">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.9999990959938"
+              Start="0,0"
+              End="0,30.4999990959938">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.4999990959938" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="&lt;改版履歴&gt;&#xA;Ver   Date             Name       Comment&#xA;1.0   2016/05/23   寇鴻飛      新規作成&#xA;1.1   2018/12/18   青木          取得元変更"
+          ParentId="Package"
+          Size="242,82"
+          Id="6708e41d-4467-4655-a415-005c60fd7a2b"
+          TopLeft="21,61.7420405792383">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="lr SVbN"
+              Size="12"
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnError]\99010_エラー終了"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="{x:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <x:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

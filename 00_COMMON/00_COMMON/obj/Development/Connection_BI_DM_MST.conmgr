@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Connection_BI_DM_MST"
+  DTS:DTSID="{64717687-AC2A-426B-8C9D-DAD82C1EBD34}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::ConnectionString_BI_DM_MST]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=dbi1dw011;Initial Catalog=DM_MST;Provider=SQLNCLI11.1;Persist Security Info=False;Integrated Security=SSPI;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

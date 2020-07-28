@@ -1,0 +1,828 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/20/2017 1:56:01 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="RI200281"
+  DTS:CreatorName="RENESAS-DOMAIN\a5091197"
+  DTS:DTSID="{F7DD3360-FFB4-4EAF-9E4D-AB21EF4CB4A0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="1041"
+  DTS:ObjectName="TBL00_Partition_Process"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{C19F75F8-CE57-4057-8A87-FDBB95FE5177}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{E062C8F6-9A69-44A7-B52F-A7AC222180CE}"
+      DTS:ObjectName="Database"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">01_Sales_001</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EDEEAF5C-52A5-46B4-AE62-3A30D9B78733}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="columns">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F240A5C1-945C-4DE3-AAB2-CC375BDD55A6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="condition">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D665A614-1965-4D04-AB74-FC30E13E54D5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="dataSource">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B84AE652-334E-4352-9947-880ACC5DC5D2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DS_TABULAR_CTRL">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C3275F58-11B1-4E1D-B088-03FEC2257061}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="end">
+      <DTS:VariableValue
+        DTS:DataType="7">2/20/2017 5:02:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19141068-2C4E-4220-82E4-E4D96695B46E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="Right( &#xA;@[$Project::TabularInstance],&#xA;Len(@[$Project::TabularInstance])&#xA; - FINDSTRING( @[$Project::TabularInstance] , &quot;\\&quot; ,1)&#xA;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="instance">
+      <DTS:VariableValue
+        DTS:DataType="8">bi</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BEFE341B-6C4D-41E2-8BCC-B2AAE7D0263D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="intervalDatePart">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8F3194B5-8560-45A6-9C32-6107F553B396}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="intervalValue">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{89D51556-DAE1-4E24-AF7D-ACAD1979CE8B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="partition">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C9DBAFF6-3D16-4823-BD2B-F442CF73F007}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="Left( &#xA;@[$Project::TabularInstance],&#xA;FINDSTRING( @[$Project::TabularInstance] , &quot;\\&quot; ,1) -1&#xA;)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="server">
+      <DTS:VariableValue
+        DTS:DataType="8">dbi1aw011</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9F7FDA44-1B23-4889-810E-544D1979D5E4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sourceTable">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{68DF307E-091B-41CE-A628-9D8C1688CDF6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="start">
+      <DTS:VariableValue
+        DTS:DataType="7">2/20/2017 5:02:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DAD32D2E-E19D-4768-ACE9-AAB093B66D79}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="targetTable">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\01000_開始ログ"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{019D7321-CF90-4683-9587-8AA1C2B91D64}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="01000_開始ログ"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'開始'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\02000_表形式テーブル処理対象取得"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{EA94FE4D-FE5E-47DA-A208-E083901AA137}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="02000_表形式テーブル処理対象取得"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="SELECT [DATABASE_NAME]&#xA;      ,[TABLE_NAME]&#xA;      ,[SOURCE_TABLE]&#xA;      ,[SOURCE_COLUMNS]&#xA;      ,[DATASOURCE]&#xA;      ,[MIN_PARTITION_NAME]&#xA;      ,[START_DATE]&#xA;      ,[END_DATE]&#xA;      ,[INTERVAL_DATE_PART]&#xA;      ,[INTERVAL_VALUE]&#xA;      ,[CONDITION]&#xA;      ,[PROCESS_COMPLETION_DATETIME]&#xA;  FROM [BI_DW].[dbo].[Z_TABULAR_CTRL]&#xA;  WHERE [DATABASE_NAME] = ?&#xA;  AND TABLE_DIV = 'FACT'"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::DS_TABULAR_CTRL" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::Database"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03000_処理対象テーブルのパーティション作成・削除"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach ループ コンテナー"
+      DTS:DTSID="{F96A08F7-47DE-4D54-9BBA-B7B7974B339B}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="03000_処理対象テーブルのパーティション作成・削除">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{76075B78-1EFC-4E06-B6D2-B1E445D13B76}"
+        DTS:ObjectName="{76075B78-1EFC-4E06-B6D2-B1E445D13B76}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::DS_TABULAR_CTRL" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\03000_処理対象テーブルのパーティション作成・削除\03100_テーブルパーティション作成"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="パッケージ実行タスク"
+          DTS:DTSID="{E628B1A6-C30C-46EC-BD85-90FC6048818D}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="03100_テーブルパーティション作成"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>TBL01_Partition_Create.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>condition</ParameterName>
+                <BindedVariableOrParameterName>User::condition</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>database</ParameterName>
+                <BindedVariableOrParameterName>$Package::Database</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>dataSource</ParameterName>
+                <BindedVariableOrParameterName>User::dataSource</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>end</ParameterName>
+                <BindedVariableOrParameterName>User::end</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>intervalDatePart</ParameterName>
+                <BindedVariableOrParameterName>User::intervalDatePart</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>intervalValue</ParameterName>
+                <BindedVariableOrParameterName>User::intervalValue</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>partition</ParameterName>
+                <BindedVariableOrParameterName>User::partition</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>start</ParameterName>
+                <BindedVariableOrParameterName>User::start</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>sourceTable</ParameterName>
+                <BindedVariableOrParameterName>User::sourceTable</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>targetTable</ParameterName>
+                <BindedVariableOrParameterName>User::targetTable</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>columns</ParameterName>
+                <BindedVariableOrParameterName>User::columns</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\03000_処理対象テーブルのパーティション作成・削除\03200_テーブルパーティション削除"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="パッケージ実行タスク"
+          DTS:DTSID="{99AACA67-4345-4500-90D8-BF52B79CE14B}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="03200_テーブルパーティション削除"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>TBL02_Partition_Delete.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>MinPartisionName</ParameterName>
+                <BindedVariableOrParameterName>User::partition</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>TableName</ParameterName>
+                <BindedVariableOrParameterName>User::targetTable</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>DBName</ParameterName>
+                <BindedVariableOrParameterName>$Package::Database</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>InstanceName</ParameterName>
+                <BindedVariableOrParameterName>User::instance</BindedVariableOrParameterName>
+              </ParameterAssignment>
+              <ParameterAssignment>
+                <ParameterName>ServerName</ParameterName>
+                <BindedVariableOrParameterName>User::server</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\03000_処理対象テーブルのパーティション作成・削除.PrecedenceConstraints[制約]"
+          DTS:CreationName=""
+          DTS:DTSID="{A8122A3D-5F16-4357-9ACE-AEB70A489880}"
+          DTS:From="Package\03000_処理対象テーブルのパーティション作成・削除\03100_テーブルパーティション作成"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約"
+          DTS:To="Package\03000_処理対象テーブルのパーティション作成・削除\03200_テーブルパーティション削除" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{A2DA8A4C-EB18-4B2F-925E-D50CCA52E58E}"
+          DTS:ObjectName="{A2DA8A4C-EB18-4B2F-925E-D50CCA52E58E}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::dataSource" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{97D04231-AF28-4957-BE2A-3C3575675876}"
+          DTS:ObjectName="{97D04231-AF28-4957-BE2A-3C3575675876}"
+          DTS:ValueIndex="5"
+          DTS:VariableName="User::partition" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{0E8A205D-C155-43F2-8D25-192FA7195B20}"
+          DTS:ObjectName="{0E8A205D-C155-43F2-8D25-192FA7195B20}"
+          DTS:ValueIndex="6"
+          DTS:VariableName="User::start" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{331FCE67-7053-4069-A2AA-9CEE5082694F}"
+          DTS:ObjectName="{331FCE67-7053-4069-A2AA-9CEE5082694F}"
+          DTS:ValueIndex="7"
+          DTS:VariableName="User::end" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{37C913B6-4070-44E6-800F-18A84BC18773}"
+          DTS:ObjectName="{37C913B6-4070-44E6-800F-18A84BC18773}"
+          DTS:ValueIndex="8"
+          DTS:VariableName="User::intervalDatePart" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{6CC16B9D-04AC-4103-A37E-4F9CE2AF8597}"
+          DTS:ObjectName="{6CC16B9D-04AC-4103-A37E-4F9CE2AF8597}"
+          DTS:ValueIndex="9"
+          DTS:VariableName="User::intervalValue" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{B1B0A631-F3BA-46C4-8FE7-9F6F51BADDDD}"
+          DTS:ObjectName="{B1B0A631-F3BA-46C4-8FE7-9F6F51BADDDD}"
+          DTS:ValueIndex="10"
+          DTS:VariableName="User::condition" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{0C59380E-485B-49C2-8C0F-22F55A086703}"
+          DTS:ObjectName="{0C59380E-485B-49C2-8C0F-22F55A086703}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::targetTable" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{6B795038-C3E0-484B-AF81-B57D5F32EEEB}"
+          DTS:ObjectName="{6B795038-C3E0-484B-AF81-B57D5F32EEEB}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::sourceTable" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{679F9469-C3D9-43D7-8258-6B5385D01E73}"
+          DTS:ObjectName="{679F9469-C3D9-43D7-8258-6B5385D01E73}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::columns" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03300_テーブルパーティション更新"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="パッケージ実行タスク"
+      DTS:DTSID="{8B6F659F-5868-48A7-8698-500998F2D593}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="03300_テーブルパーティション更新"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>TBL03_Partition_Update.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>DBName</ParameterName>
+            <BindedVariableOrParameterName>$Package::Database</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>InstanceName</ParameterName>
+            <BindedVariableOrParameterName>User::instance</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>ServerName</ParameterName>
+            <BindedVariableOrParameterName>User::server</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>EndDate</ParameterName>
+            <BindedVariableOrParameterName>User::end</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>inervalDatePart</ParameterName>
+            <BindedVariableOrParameterName>User::intervalDatePart</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>inervalValue</ParameterName>
+            <BindedVariableOrParameterName>User::intervalValue</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>sourceTable</ParameterName>
+            <BindedVariableOrParameterName>User::sourceTable</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>StartDate</ParameterName>
+            <BindedVariableOrParameterName>User::start</BindedVariableOrParameterName>
+          </ParameterAssignment>
+          <ParameterAssignment>
+            <ParameterName>TableName</ParameterName>
+            <BindedVariableOrParameterName>User::targetTable</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\90000_正常終了"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{0C73C811-3E16-4597-8003-51D98A9C47E9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="90000_正常終了"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'正常終了'&#xA;)&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FB40D92A-98C4-45D3-A62F-0E11A98FDA4D}"
+      DTS:From="Package\03000_処理対象テーブルのパーティション作成・削除"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\03300_テーブルパーティション更新" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{AC55CDF2-3B55-43B3-A25F-B017CE9E76F1}"
+      DTS:From="Package\03300_テーブルパーティション更新"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\90000_正常終了" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約]"
+      DTS:CreationName=""
+      DTS:DTSID="{5A805DFE-7962-48A3-A4FE-9DA811029260}"
+      DTS:From="Package\01000_開始ログ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約"
+      DTS:To="Package\02000_表形式テーブル処理対象取得" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{1FE0FD52-0288-4BC9-9516-781CB4892FC7}"
+      DTS:From="Package\02000_表形式テーブル処理対象取得"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 1"
+      DTS:To="Package\03000_処理対象テーブルのパーティション作成・削除" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{254A25BA-49CC-4BF3-B00C-37C63762D4F5}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="イベントの反映プロパティです"
+          DTS:DTSID="{4B9E72BA-ECF1-47A8-BC3A-045B3A4489CC}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{A8B935FF-033B-4C84-A4D7-370318A04E22}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99000_SQL 実行タスク"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[ERROR_CODE] &#xA;,[ERROR_MESSAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,?&#xA;,'OnError'&#xA;,?&#xA;)&#xA;GO&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{EF5DA6FC-41D5-47F3-82BE-2FDBF4BB4444}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99010_エラー終了"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'エラー終了'&#xA;)&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          DTS:CreationName=""
+          DTS:DTSID="{8BCFE849-3752-4253-9538-DD576715F8B9}"
+          DTS:From="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約"
+          DTS:To="Package.EventHandlers[OnError]\99010_エラー終了" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="210,42"
+          Id="Package\01000_開始ログ"
+          TopLeft="143,105.750000403573" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\02000_表形式テーブル処理対象取得"
+          TopLeft="147,199.333332343234" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\03000_処理対象テーブルのパーティション作成・削除\03100_テーブルパーティション作成"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\03000_処理対象テーブルのパーティション作成・削除\03200_テーブルパーティション削除"
+          TopLeft="7.50000000000003,73.5" />
+        <EdgeLayout
+          Id="Package\03000_処理対象テーブルのパーティション作成・削除.PrecedenceConstraints[制約]"
+          TopLeft="124,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="273,138"
+          Size="273,181"
+          Id="Package\03000_処理対象テーブルのパーティション作成・削除"
+          TopLeft="119,297.916665186899" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\03300_テーブルパーティション更新"
+          TopLeft="140,507.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\90000_正常終了"
+          TopLeft="147,595.333330987228" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="252.25,478.916665186899">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,28.583334813101"
+              Start="0,0"
+              End="0,21.083334813101">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.083334813101" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="250.5,549.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,45.833330987228"
+              Start="0,0"
+              End="0,38.333330987228">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.333330987228" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約]"
+          TopLeft="250.25,147.750000403573">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,51.5833319396609"
+              Start="0,0"
+              End="0,44.0833319396609">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.0833319396609" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 1]"
+          TopLeft="254,241.333332343234">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,56.583332843665"
+              Start="0,0"
+              End="0,49.083332843665">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.083332843665" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="&lt;改版履歴&gt;&#xA;Ver   Date             Name       Comment&#xA;1.0   2017/02/20   旭             新規作成&#xA;1.1   2017/04/21   旭             テーブルパーティション更新をループ内に移動"
+          ParentId="Package"
+          Size="378,96"
+          Id="a2edc8d0-c5b3-4c1b-9ef1-41cdf1535c69"
+          TopLeft="85,19.9166668657627">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="lr SVbN"
+              Size="12"
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          TopLeft="NaN,NaN" />
+        <NodeLayout
+          Size="NaN,NaN"
+          Id="Package.EventHandlers[OnError]\99010_エラー終了"
+          TopLeft="NaN,NaN" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          TopLeft="NaN,NaN">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="{x:Null}"
+              Start="0,0"
+              End="0,0">
+              <mssgle:Curve.Segments>
+                <x:Null />
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
