@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "03_NSAP", "03_NSAP\03_NSAP.dtproj", "{FE48B215-3491-485B-A105-0E9BF5B40996}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Deployment|Default = Deployment|Default
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE48B215-3491-485B-A105-0E9BF5B40996}.Deployment|Default.ActiveCfg = Deployment
+		{FE48B215-3491-485B-A105-0E9BF5B40996}.Deployment|Default.Build.0 = Deployment
+		{FE48B215-3491-485B-A105-0E9BF5B40996}.Development|Default.ActiveCfg = Development
+		{FE48B215-3491-485B-A105-0E9BF5B40996}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF290F44-0E29-44EC-A0D4-09324C9DA0DF}
+	EndGlobalSection
+EndGlobal

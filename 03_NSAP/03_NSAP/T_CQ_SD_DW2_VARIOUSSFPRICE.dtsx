@@ -1,0 +1,417 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/11/2019"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DTSID="{15C0EB5F-FA61-446B-BFC2-49A4752215D3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="1041"
+  DTS:ObjectName="T_CQ_SD_DW2_VARIOUSSFPRICE"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="136"
+  DTS:VersionGUID="{25F1186A-18F1-474C-9FF4-D2AEF93E42BF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="D:\Data\SSIS\ZU1TEMPLATE\ssis_pkg\config\AC_900_SSIS_CONFIG_local.dtsconfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{F762C379-FF49-4EE2-9771-59E0DA9FBE81}"
+      DTS:ObjectName="構成 1" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8D0F618C-690D-4479-BBC6-DD0C1BA2E233}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_FATAL_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DA19D39B-9EE3-40AB-BCA7-212EDF47AF96}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_LOAD_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{549E60C9-535A-4403-B84D-4F416FAB4FFA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_WARNING_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\01000_開始ログ"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{DE77F389-279F-448A-88CB-89A28164E5FF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="01000_開始ログ"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;                  [LOGTIME]&#xA;                 ,[SSIS_PACKAGE]&#xA;                 ,[LOG_MESSAGE]) &#xA;VALUES (GETDATE(),?,'開始')&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\02000_テーブル初期化"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{C4DF8301-2FD4-47E2-8866-21E3AA2E1B1E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="02000_テーブル初期化"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3A3BF089-86A4-4787-9EA0-3C2890FDDC9E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[T_CQ_SD_DW2_VARIOUSSFPRICE]&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03000_データ登録"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{E3103ECC-70F2-46CD-AB22-EC318F1E9479}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="03000_データ登録"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3A3BF089-86A4-4787-9EA0-3C2890FDDC9E}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[T_CQ_SD_DW2_VARIOUSSFPRICE]&#xA;(&#xA;    [CUSTOMERCD]&#xA;,   [PARTNO]&#xA;,   [FORECASTCOCURRENCY11]&#xA;,   [FORECASTCOCURRENCY12]&#xA;,   [FORECASTCOCURRENCY13]&#xA;,   [FORECASTCOCURRENCY14]&#xA;,   [FORECASTCOCURRENCY15]&#xA;,   [FORECASTCOCURRENCY16]&#xA;,   [FORECASTCOCURRENCY17]&#xA;,   [FORECASTCOCURRENCY18]&#xA;,   [FORECASTCOPRICE11]&#xA;,   [FORECASTCOPRICE12]&#xA;,   [FORECASTCOPRICE13]&#xA;,   [FORECASTCOPRICE14]&#xA;,   [FORECASTCOPRICE15]&#xA;,   [FORECASTCOPRICE16]&#xA;,   [FORECASTCOPRICE17]&#xA;,   [FORECASTCOPRICE18]&#xA;,   [FORECASTTOCURRENCY11]&#xA;,   [FORECASTTOCURRENCY12]&#xA;,   [FORECASTTOCURRENCY13]&#xA;,   [FORECASTTOCURRENCY14]&#xA;,   [FORECASTTOCURRENCY15]&#xA;,   [FORECASTTOCURRENCY16]&#xA;,   [FORECASTTOCURRENCY17]&#xA;,   [FORECASTTOCURRENCY18]&#xA;,   [FORECASTTOPRICE11]&#xA;,   [FORECASTTOPRICE12]&#xA;,   [FORECASTTOPRICE13]&#xA;,   [FORECASTTOPRICE14]&#xA;,   [FORECASTTOPRICE15]&#xA;,   [FORECASTTOPRICE16]&#xA;,   [FORECASTTOPRICE17]&#xA;,   [FORECASTTOPRICE18]&#xA;,   [FORECASTGOCURRENCY11]&#xA;,   [FORECASTGOCURRENCY12]&#xA;,   [FORECASTGOCURRENCY13]&#xA;,   [FORECASTGOCURRENCY14]&#xA;,   [FORECASTGOCURRENCY15]&#xA;,   [FORECASTGOCURRENCY16]&#xA;,   [FORECASTGOCURRENCY17]&#xA;,   [FORECASTGOCURRENCY18]&#xA;,   [FORECASTGOPRICE11]&#xA;,   [FORECASTGOPRICE12]&#xA;,   [FORECASTGOPRICE13]&#xA;,   [FORECASTGOPRICE14]&#xA;,   [FORECASTGOPRICE15]&#xA;,   [FORECASTGOPRICE16]&#xA;,   [FORECASTGOPRICE17]&#xA;,   [FORECASTGOPRICE18]&#xA;,   [FORECASTSOCURRENCY11]&#xA;,   [FORECASTSOCURRENCY12]&#xA;,   [FORECASTSOCURRENCY13]&#xA;,   [FORECASTSOCURRENCY14]&#xA;,   [FORECASTSOCURRENCY15]&#xA;,   [FORECASTSOCURRENCY16]&#xA;,   [FORECASTSOCURRENCY17]&#xA;,   [FORECASTSOCURRENCY18]&#xA;,   [FORECASTSOPRICE11]&#xA;,   [FORECASTSOPRICE12]&#xA;,   [FORECASTSOPRICE13]&#xA;,   [FORECASTSOPRICE14]&#xA;,   [FORECASTSOPRICE15]&#xA;,   [FORECASTSOPRICE16]&#xA;,   [FORECASTSOPRICE17]&#xA;,   [FORECASTSOPRICE18]&#xA;,   [FORECASTEPCURRENCY11]&#xA;,   [FORECASTEPCURRENCY12]&#xA;,   [FORECASTEPCURRENCY13]&#xA;,   [FORECASTEPCURRENCY14]&#xA;,   [FORECASTEPCURRENCY15]&#xA;,   [FORECASTEPCURRENCY16]&#xA;,   [FORECASTEPCURRENCY17]&#xA;,   [FORECASTEPCURRENCY18]&#xA;,   [FORECASTEPPRICE11]&#xA;,   [FORECASTEPPRICE12]&#xA;,   [FORECASTEPPRICE13]&#xA;,   [FORECASTEPPRICE14]&#xA;,   [FORECASTEPPRICE15]&#xA;,   [FORECASTEPPRICE16]&#xA;,   [FORECASTEPPRICE17]&#xA;,   [FORECASTEPPRICE18]&#xA;,   [FORECASTPRICEDIVISION11]&#xA;,   [FORECASTPRICEDIVISION12]&#xA;,   [FORECASTPRICEDIVISION13]&#xA;,   [FORECASTPRICEDIVISION14]&#xA;,   [FORECASTPRICEDIVISION15]&#xA;,   [FORECASTPRICEDIVISION16]&#xA;,   [FORECASTPRICEDIVISION17]&#xA;,   [FORECASTPRICEDIVISION18]&#xA;,   [FORECASTRGCOOP11]&#xA;,   [FORECASTRGCOOP12]&#xA;,   [FORECASTRGCOOP13]&#xA;,   [FORECASTRGCOOP14]&#xA;,   [FORECASTRGCOOP15]&#xA;,   [FORECASTRGCOOP16]&#xA;,   [FORECASTRGCOOP17]&#xA;,   [FORECASTRGCOOP18]&#xA;,   [FORECASTSCMFLAG11]&#xA;,   [FORECASTSCMFLAG12]&#xA;,   [FORECASTSCMFLAG13]&#xA;,   [FORECASTSCMFLAG14]&#xA;,   [FORECASTSCMFLAG15]&#xA;,   [FORECASTSCMFLAG16]&#xA;,   [FORECASTSCMFLAG17]&#xA;,   [FORECASTSCMFLAG18]&#xA;,   [FORECASTCOCRATE11]&#xA;,   [FORECASTCOCRATE12]&#xA;,   [FORECASTCOCRATE13]&#xA;,   [FORECASTCOCRATE14]&#xA;,   [FORECASTCOCRATE15]&#xA;,   [FORECASTCOCRATE16]&#xA;,   [FORECASTCOCRATE17]&#xA;,   [FORECASTCOCRATE18]&#xA;,   [FORECASTTOCRATE11]&#xA;,   [FORECASTTOCRATE12]&#xA;,   [FORECASTTOCRATE13]&#xA;,   [FORECASTTOCRATE14]&#xA;,   [FORECASTTOCRATE15]&#xA;,   [FORECASTTOCRATE16]&#xA;,   [FORECASTTOCRATE17]&#xA;,   [FORECASTTOCRATE18]&#xA;,   [FORECASTGOCRATE11]&#xA;,   [FORECASTGOCRATE12]&#xA;,   [FORECASTGOCRATE13]&#xA;,   [FORECASTGOCRATE14]&#xA;,   [FORECASTGOCRATE15]&#xA;,   [FORECASTGOCRATE16]&#xA;,   [FORECASTGOCRATE17]&#xA;,   [FORECASTGOCRATE18]&#xA;,   [FORECASTSOCRATE11]&#xA;,   [FORECASTSOCRATE12]&#xA;,   [FORECASTSOCRATE13]&#xA;,   [FORECASTSOCRATE14]&#xA;,   [FORECASTSOCRATE15]&#xA;,   [FORECASTSOCRATE16]&#xA;,   [FORECASTSOCRATE17]&#xA;,   [FORECASTSOCRATE18]&#xA;,   [FORECASTEPCRATE11]&#xA;,   [FORECASTEPCRATE12]&#xA;,   [FORECASTEPCRATE13]&#xA;,   [FORECASTEPCRATE14]&#xA;,   [FORECASTEPCRATE15]&#xA;,   [FORECASTEPCRATE16]&#xA;,   [FORECASTEPCRATE17]&#xA;,   [FORECASTEPCRATE18]&#xA;,   [PARTCURRENCY11]&#xA;,   [PARTCURRENCY12]&#xA;,   [PARTCURRENCY13]&#xA;,   [PARTCURRENCY14]&#xA;,   [PARTCURRENCY15]&#xA;,   [PARTCURRENCY16]&#xA;,   [PARTCURRENCY17]&#xA;,   [PARTCURRENCY18]&#xA;,   [PARTPRICE11]&#xA;,   [PARTPRICE12]&#xA;,   [PARTPRICE13]&#xA;,   [PARTPRICE14]&#xA;,   [PARTPRICE15]&#xA;,   [PARTPRICE16]&#xA;,   [PARTPRICE17]&#xA;,   [PARTPRICE18]&#xA;,   [FORECASTCOCURRENCY19]&#xA;,   [FORECASTCOPRICE19]&#xA;,   [FORECASTTOCURRENCY19]&#xA;,   [FORECASTTOPRICE19]&#xA;,   [FORECASTGOCURRENCY19]&#xA;,   [FORECASTGOPRICE19]&#xA;,   [FORECASTSOCURRENCY19]&#xA;,   [FORECASTSOPRICE19]&#xA;,   [FORECASTEPCURRENCY19]&#xA;,   [FORECASTEPPRICE19]&#xA;,   [FORECASTPRICEDIVISION19]&#xA;,   [FORECASTRGCOOP19]&#xA;,   [FORECASTSCMFLAG19]&#xA;,   [FORECASTCOCRATE19]&#xA;,   [FORECASTTOCRATE19]&#xA;,   [FORECASTGOCRATE19]&#xA;,   [FORECASTSOCRATE19]&#xA;,   [FORECASTEPCRATE19]&#xA;,   [PARTCURRENCY19]&#xA;,   [PARTPRICE19]&#xA;,   [FORECASTCOCURRENCY20]&#xA;,   [FORECASTCOPRICE20]&#xA;,   [FORECASTTOCURRENCY20]&#xA;,   [FORECASTTOPRICE20]&#xA;,   [FORECASTGOCURRENCY20]&#xA;,   [FORECASTGOPRICE20]&#xA;,   [FORECASTSOCURRENCY20]&#xA;,   [FORECASTSOPRICE20]&#xA;,   [FORECASTEPCURRENCY20]&#xA;,   [FORECASTEPPRICE20]&#xA;,   [FORECASTPRICEDIVISION20]&#xA;,   [FORECASTRGCOOP20]&#xA;,   [FORECASTSCMFLAG20]&#xA;,   [FORECASTCOCRATE20]&#xA;,   [FORECASTTOCRATE20]&#xA;,   [FORECASTGOCRATE20]&#xA;,   [FORECASTSOCRATE20]&#xA;,   [FORECASTEPCRATE20]&#xA;,   [PARTCURRENCY20]&#xA;,   [PARTPRICE20]&#xA;,   [FORECASTCOCURRENCY21]&#xA;,   [FORECASTCOPRICE21]&#xA;,   [FORECASTTOCURRENCY21]&#xA;,   [FORECASTTOPRICE21]&#xA;,   [FORECASTGOCURRENCY21]&#xA;,   [FORECASTGOPRICE21]&#xA;,   [FORECASTSOCURRENCY21]&#xA;,   [FORECASTSOPRICE21]&#xA;,   [FORECASTEPCURRENCY21]&#xA;,   [FORECASTEPPRICE21]&#xA;,   [FORECASTPRICEDIVISION21]&#xA;,   [FORECASTRGCOOP21]&#xA;,   [FORECASTSCMFLAG21]&#xA;,   [FORECASTCOCRATE21]&#xA;,   [FORECASTTOCRATE21]&#xA;,   [FORECASTGOCRATE21]&#xA;,   [FORECASTSOCRATE21]&#xA;,   [FORECASTEPCRATE21]&#xA;,   [PARTCURRENCY21]&#xA;,   [PARTPRICE21]&#xA;,   [FORECASTCOCURRENCY22]&#xA;,   [FORECASTCOPRICE22]&#xA;,   [FORECASTTOCURRENCY22]&#xA;,   [FORECASTTOPRICE22]&#xA;,   [FORECASTGOCURRENCY22]&#xA;,   [FORECASTGOPRICE22]&#xA;,   [FORECASTSOCURRENCY22]&#xA;,   [FORECASTSOPRICE22]&#xA;,   [FORECASTEPCURRENCY22]&#xA;,   [FORECASTEPPRICE22]&#xA;,   [FORECASTPRICEDIVISION22]&#xA;,   [FORECASTRGCOOP22]&#xA;,   [FORECASTSCMFLAG22]&#xA;,   [FORECASTCOCRATE22]&#xA;,   [FORECASTTOCRATE22]&#xA;,   [FORECASTGOCRATE22]&#xA;,   [FORECASTSOCRATE22]&#xA;,   [FORECASTEPCRATE22]&#xA;,   [PARTCURRENCY22]&#xA;,   [PARTPRICE22]&#xA;,   [FORECASTCOCURRENCY23]&#xA;,   [FORECASTCOPRICE23]&#xA;,   [FORECASTTOCURRENCY23]&#xA;,   [FORECASTTOPRICE23]&#xA;,   [FORECASTGOCURRENCY23]&#xA;,   [FORECASTGOPRICE23]&#xA;,   [FORECASTSOCURRENCY23]&#xA;,   [FORECASTSOPRICE23]&#xA;,   [FORECASTEPCURRENCY23]&#xA;,   [FORECASTEPPRICE23]&#xA;,   [FORECASTPRICEDIVISION23]&#xA;,   [FORECASTRGCOOP23]&#xA;,   [FORECASTSCMFLAG23]&#xA;,   [FORECASTCOCRATE23]&#xA;,   [FORECASTTOCRATE23]&#xA;,   [FORECASTGOCRATE23]&#xA;,   [FORECASTSOCRATE23]&#xA;,   [FORECASTEPCRATE23]&#xA;,   [PARTCURRENCY23]&#xA;,   [PARTPRICE23]&#xA;,   [FORECASTCOCURRENCY24]&#xA;,   [FORECASTCOPRICE24]&#xA;,   [FORECASTTOCURRENCY24]&#xA;,   [FORECASTTOPRICE24]&#xA;,   [FORECASTGOCURRENCY24]&#xA;,   [FORECASTGOPRICE24]&#xA;,   [FORECASTSOCURRENCY24]&#xA;,   [FORECASTSOPRICE24]&#xA;,   [FORECASTEPCURRENCY24]&#xA;,   [FORECASTEPPRICE24]&#xA;,   [FORECASTPRICEDIVISION24]&#xA;,   [FORECASTRGCOOP24]&#xA;,   [FORECASTSCMFLAG24]&#xA;,   [FORECASTCOCRATE24]&#xA;,   [FORECASTTOCRATE24]&#xA;,   [FORECASTGOCRATE24]&#xA;,   [FORECASTSOCRATE24]&#xA;,   [FORECASTEPCRATE24]&#xA;,   [PARTCURRENCY24]&#xA;,   [PARTPRICE24]&#xA;,   [FORECASTCOCURRENCY25]&#xA;,   [FORECASTCOPRICE25]&#xA;,   [FORECASTTOCURRENCY25]&#xA;,   [FORECASTTOPRICE25]&#xA;,   [FORECASTGOCURRENCY25]&#xA;,   [FORECASTGOPRICE25]&#xA;,   [FORECASTSOCURRENCY25]&#xA;,   [FORECASTSOPRICE25]&#xA;,   [FORECASTEPCURRENCY25]&#xA;,   [FORECASTEPPRICE25]&#xA;,   [FORECASTPRICEDIVISION25]&#xA;,   [FORECASTRGCOOP25]&#xA;,   [FORECASTSCMFLAG25]&#xA;,   [FORECASTCOCRATE25]&#xA;,   [FORECASTTOCRATE25]&#xA;,   [FORECASTGOCRATE25]&#xA;,   [FORECASTSOCRATE25]&#xA;,   [FORECASTEPCRATE25]&#xA;,   [PARTCURRENCY25]&#xA;,   [PARTPRICE25]&#xA;,   [FORECASTCOCURRENCY26]&#xA;,   [FORECASTCOPRICE26]&#xA;,   [FORECASTTOCURRENCY26]&#xA;,   [FORECASTTOPRICE26]&#xA;,   [FORECASTGOCURRENCY26]&#xA;,   [FORECASTGOPRICE26]&#xA;,   [FORECASTSOCURRENCY26]&#xA;,   [FORECASTSOPRICE26]&#xA;,   [FORECASTEPCURRENCY26]&#xA;,   [FORECASTEPPRICE26]&#xA;,   [FORECASTPRICEDIVISION26]&#xA;,   [FORECASTRGCOOP26]&#xA;,   [FORECASTSCMFLAG26]&#xA;,   [FORECASTCOCRATE26]&#xA;,   [FORECASTTOCRATE26]&#xA;,   [FORECASTGOCRATE26]&#xA;,   [FORECASTSOCRATE26]&#xA;,   [FORECASTEPCRATE26]&#xA;,   [PARTCURRENCY26]&#xA;,   [PARTPRICE26]&#xA;,   [FORECASTCOCURRENCY27]&#xA;,   [FORECASTCOPRICE27]&#xA;,   [FORECASTTOCURRENCY27]&#xA;,   [FORECASTTOPRICE27]&#xA;,   [FORECASTGOCURRENCY27]&#xA;,   [FORECASTGOPRICE27]&#xA;,   [FORECASTSOCURRENCY27]&#xA;,   [FORECASTSOPRICE27]&#xA;,   [FORECASTEPCURRENCY27]&#xA;,   [FORECASTEPPRICE27]&#xA;,   [FORECASTPRICEDIVISION27]&#xA;,   [FORECASTRGCOOP27]&#xA;,   [FORECASTSCMFLAG27]&#xA;,   [FORECASTCOCRATE27]&#xA;,   [FORECASTTOCRATE27]&#xA;,   [FORECASTGOCRATE27]&#xA;,   [FORECASTSOCRATE27]&#xA;,   [FORECASTEPCRATE27]&#xA;,   [PARTCURRENCY27]&#xA;,   [PARTPRICE27]&#xA;,   [FORECASTCOCURRENCY28]&#xA;,   [FORECASTCOPRICE28]&#xA;,   [FORECASTTOCURRENCY28]&#xA;,   [FORECASTTOPRICE28]&#xA;,   [FORECASTGOCURRENCY28]&#xA;,   [FORECASTGOPRICE28]&#xA;,   [FORECASTSOCURRENCY28]&#xA;,   [FORECASTSOPRICE28]&#xA;,   [FORECASTEPCURRENCY28]&#xA;,   [FORECASTEPPRICE28]&#xA;,   [FORECASTPRICEDIVISION28]&#xA;,   [FORECASTRGCOOP28]&#xA;,   [FORECASTSCMFLAG28]&#xA;,   [FORECASTCOCRATE28]&#xA;,   [FORECASTTOCRATE28]&#xA;,   [FORECASTGOCRATE28]&#xA;,   [FORECASTSOCRATE28]&#xA;,   [FORECASTEPCRATE28]&#xA;,   [PARTCURRENCY28]&#xA;,   [PARTPRICE28]&#xA;)&#xA;SELECT&#xA;    [CUSTOMERCD]&#xA;,   [PARTNO]&#xA;,   [FORECASTCOCURRENCY11]&#xA;,   [FORECASTCOCURRENCY12]&#xA;,   [FORECASTCOCURRENCY13]&#xA;,   [FORECASTCOCURRENCY14]&#xA;,   [FORECASTCOCURRENCY15]&#xA;,   [FORECASTCOCURRENCY16]&#xA;,   [FORECASTCOCURRENCY17]&#xA;,   [FORECASTCOCURRENCY18]&#xA;,   [FORECASTCOPRICE11]&#xA;,   [FORECASTCOPRICE12]&#xA;,   [FORECASTCOPRICE13]&#xA;,   [FORECASTCOPRICE14]&#xA;,   [FORECASTCOPRICE15]&#xA;,   [FORECASTCOPRICE16]&#xA;,   [FORECASTCOPRICE17]&#xA;,   [FORECASTCOPRICE18]&#xA;,   [FORECASTTOCURRENCY11]&#xA;,   [FORECASTTOCURRENCY12]&#xA;,   [FORECASTTOCURRENCY13]&#xA;,   [FORECASTTOCURRENCY14]&#xA;,   [FORECASTTOCURRENCY15]&#xA;,   [FORECASTTOCURRENCY16]&#xA;,   [FORECASTTOCURRENCY17]&#xA;,   [FORECASTTOCURRENCY18]&#xA;,   [FORECASTTOPRICE11]&#xA;,   [FORECASTTOPRICE12]&#xA;,   [FORECASTTOPRICE13]&#xA;,   [FORECASTTOPRICE14]&#xA;,   [FORECASTTOPRICE15]&#xA;,   [FORECASTTOPRICE16]&#xA;,   [FORECASTTOPRICE17]&#xA;,   [FORECASTTOPRICE18]&#xA;,   [FORECASTGOCURRENCY11]&#xA;,   [FORECASTGOCURRENCY12]&#xA;,   [FORECASTGOCURRENCY13]&#xA;,   [FORECASTGOCURRENCY14]&#xA;,   [FORECASTGOCURRENCY15]&#xA;,   [FORECASTGOCURRENCY16]&#xA;,   [FORECASTGOCURRENCY17]&#xA;,   [FORECASTGOCURRENCY18]&#xA;,   [FORECASTGOPRICE11]&#xA;,   [FORECASTGOPRICE12]&#xA;,   [FORECASTGOPRICE13]&#xA;,   [FORECASTGOPRICE14]&#xA;,   [FORECASTGOPRICE15]&#xA;,   [FORECASTGOPRICE16]&#xA;,   [FORECASTGOPRICE17]&#xA;,   [FORECASTGOPRICE18]&#xA;,   [FORECASTSOCURRENCY11]&#xA;,   [FORECASTSOCURRENCY12]&#xA;,   [FORECASTSOCURRENCY13]&#xA;,   [FORECASTSOCURRENCY14]&#xA;,   [FORECASTSOCURRENCY15]&#xA;,   [FORECASTSOCURRENCY16]&#xA;,   [FORECASTSOCURRENCY17]&#xA;,   [FORECASTSOCURRENCY18]&#xA;,   [FORECASTSOPRICE11]&#xA;,   [FORECASTSOPRICE12]&#xA;,   [FORECASTSOPRICE13]&#xA;,   [FORECASTSOPRICE14]&#xA;,   [FORECASTSOPRICE15]&#xA;,   [FORECASTSOPRICE16]&#xA;,   [FORECASTSOPRICE17]&#xA;,   [FORECASTSOPRICE18]&#xA;,   [FORECASTEPCURRENCY11]&#xA;,   [FORECASTEPCURRENCY12]&#xA;,   [FORECASTEPCURRENCY13]&#xA;,   [FORECASTEPCURRENCY14]&#xA;,   [FORECASTEPCURRENCY15]&#xA;,   [FORECASTEPCURRENCY16]&#xA;,   [FORECASTEPCURRENCY17]&#xA;,   [FORECASTEPCURRENCY18]&#xA;,   [FORECASTEPPRICE11]&#xA;,   [FORECASTEPPRICE12]&#xA;,   [FORECASTEPPRICE13]&#xA;,   [FORECASTEPPRICE14]&#xA;,   [FORECASTEPPRICE15]&#xA;,   [FORECASTEPPRICE16]&#xA;,   [FORECASTEPPRICE17]&#xA;,   [FORECASTEPPRICE18]&#xA;,   [FORECASTPRICEDIVISION11]&#xA;,   [FORECASTPRICEDIVISION12]&#xA;,   [FORECASTPRICEDIVISION13]&#xA;,   [FORECASTPRICEDIVISION14]&#xA;,   [FORECASTPRICEDIVISION15]&#xA;,   [FORECASTPRICEDIVISION16]&#xA;,   [FORECASTPRICEDIVISION17]&#xA;,   [FORECASTPRICEDIVISION18]&#xA;,   [FORECASTRGCOOP11]&#xA;,   [FORECASTRGCOOP12]&#xA;,   [FORECASTRGCOOP13]&#xA;,   [FORECASTRGCOOP14]&#xA;,   [FORECASTRGCOOP15]&#xA;,   [FORECASTRGCOOP16]&#xA;,   [FORECASTRGCOOP17]&#xA;,   [FORECASTRGCOOP18]&#xA;,   [FORECASTSCMFLAG11]&#xA;,   [FORECASTSCMFLAG12]&#xA;,   [FORECASTSCMFLAG13]&#xA;,   [FORECASTSCMFLAG14]&#xA;,   [FORECASTSCMFLAG15]&#xA;,   [FORECASTSCMFLAG16]&#xA;,   [FORECASTSCMFLAG17]&#xA;,   [FORECASTSCMFLAG18]&#xA;,   [FORECASTCOCRATE11]&#xA;,   [FORECASTCOCRATE12]&#xA;,   [FORECASTCOCRATE13]&#xA;,   [FORECASTCOCRATE14]&#xA;,   [FORECASTCOCRATE15]&#xA;,   [FORECASTCOCRATE16]&#xA;,   [FORECASTCOCRATE17]&#xA;,   [FORECASTCOCRATE18]&#xA;,   [FORECASTTOCRATE11]&#xA;,   [FORECASTTOCRATE12]&#xA;,   [FORECASTTOCRATE13]&#xA;,   [FORECASTTOCRATE14]&#xA;,   [FORECASTTOCRATE15]&#xA;,   [FORECASTTOCRATE16]&#xA;,   [FORECASTTOCRATE17]&#xA;,   [FORECASTTOCRATE18]&#xA;,   [FORECASTGOCRATE11]&#xA;,   [FORECASTGOCRATE12]&#xA;,   [FORECASTGOCRATE13]&#xA;,   [FORECASTGOCRATE14]&#xA;,   [FORECASTGOCRATE15]&#xA;,   [FORECASTGOCRATE16]&#xA;,   [FORECASTGOCRATE17]&#xA;,   [FORECASTGOCRATE18]&#xA;,   [FORECASTSOCRATE11]&#xA;,   [FORECASTSOCRATE12]&#xA;,   [FORECASTSOCRATE13]&#xA;,   [FORECASTSOCRATE14]&#xA;,   [FORECASTSOCRATE15]&#xA;,   [FORECASTSOCRATE16]&#xA;,   [FORECASTSOCRATE17]&#xA;,   [FORECASTSOCRATE18]&#xA;,   [FORECASTEPCRATE11]&#xA;,   [FORECASTEPCRATE12]&#xA;,   [FORECASTEPCRATE13]&#xA;,   [FORECASTEPCRATE14]&#xA;,   [FORECASTEPCRATE15]&#xA;,   [FORECASTEPCRATE16]&#xA;,   [FORECASTEPCRATE17]&#xA;,   [FORECASTEPCRATE18]&#xA;,   [PARTCURRENCY11]&#xA;,   [PARTCURRENCY12]&#xA;,   [PARTCURRENCY13]&#xA;,   [PARTCURRENCY14]&#xA;,   [PARTCURRENCY15]&#xA;,   [PARTCURRENCY16]&#xA;,   [PARTCURRENCY17]&#xA;,   [PARTCURRENCY18]&#xA;,   [PARTPRICE11]&#xA;,   [PARTPRICE12]&#xA;,   [PARTPRICE13]&#xA;,   [PARTPRICE14]&#xA;,   [PARTPRICE15]&#xA;,   [PARTPRICE16]&#xA;,   [PARTPRICE17]&#xA;,   [PARTPRICE18]&#xA;,   [FORECASTCOCURRENCY19]&#xA;,   [FORECASTCOPRICE19]&#xA;,   [FORECASTTOCURRENCY19]&#xA;,   [FORECASTTOPRICE19]&#xA;,   [FORECASTGOCURRENCY19]&#xA;,   [FORECASTGOPRICE19]&#xA;,   [FORECASTSOCURRENCY19]&#xA;,   [FORECASTSOPRICE19]&#xA;,   [FORECASTEPCURRENCY19]&#xA;,   [FORECASTEPPRICE19]&#xA;,   [FORECASTPRICEDIVISION19]&#xA;,   [FORECASTRGCOOP19]&#xA;,   [FORECASTSCMFLAG19]&#xA;,   [FORECASTCOCRATE19]&#xA;,   [FORECASTTOCRATE19]&#xA;,   [FORECASTGOCRATE19]&#xA;,   [FORECASTSOCRATE19]&#xA;,   [FORECASTEPCRATE19]&#xA;,   [PARTCURRENCY19]&#xA;,   [PARTPRICE19]&#xA;,   [FORECASTCOCURRENCY20]&#xA;,   [FORECASTCOPRICE20]&#xA;,   [FORECASTTOCURRENCY20]&#xA;,   [FORECASTTOPRICE20]&#xA;,   [FORECASTGOCURRENCY20]&#xA;,   [FORECASTGOPRICE20]&#xA;,   [FORECASTSOCURRENCY20]&#xA;,   [FORECASTSOPRICE20]&#xA;,   [FORECASTEPCURRENCY20]&#xA;,   [FORECASTEPPRICE20]&#xA;,   [FORECASTPRICEDIVISION20]&#xA;,   [FORECASTRGCOOP20]&#xA;,   [FORECASTSCMFLAG20]&#xA;,   [FORECASTCOCRATE20]&#xA;,   [FORECASTTOCRATE20]&#xA;,   [FORECASTGOCRATE20]&#xA;,   [FORECASTSOCRATE20]&#xA;,   [FORECASTEPCRATE20]&#xA;,   [PARTCURRENCY20]&#xA;,   [PARTPRICE20]&#xA;,   [FORECASTCOCURRENCY21]&#xA;,   [FORECASTCOPRICE21]&#xA;,   [FORECASTTOCURRENCY21]&#xA;,   [FORECASTTOPRICE21]&#xA;,   [FORECASTGOCURRENCY21]&#xA;,   [FORECASTGOPRICE21]&#xA;,   [FORECASTSOCURRENCY21]&#xA;,   [FORECASTSOPRICE21]&#xA;,   [FORECASTEPCURRENCY21]&#xA;,   [FORECASTEPPRICE21]&#xA;,   [FORECASTPRICEDIVISION21]&#xA;,   [FORECASTRGCOOP21]&#xA;,   [FORECASTSCMFLAG21]&#xA;,   [FORECASTCOCRATE21]&#xA;,   [FORECASTTOCRATE21]&#xA;,   [FORECASTGOCRATE21]&#xA;,   [FORECASTSOCRATE21]&#xA;,   [FORECASTEPCRATE21]&#xA;,   [PARTCURRENCY21]&#xA;,   [PARTPRICE21]&#xA;,   [FORECASTCOCURRENCY22]&#xA;,   [FORECASTCOPRICE22]&#xA;,   [FORECASTTOCURRENCY22]&#xA;,   [FORECASTTOPRICE22]&#xA;,   [FORECASTGOCURRENCY22]&#xA;,   [FORECASTGOPRICE22]&#xA;,   [FORECASTSOCURRENCY22]&#xA;,   [FORECASTSOPRICE22]&#xA;,   [FORECASTEPCURRENCY22]&#xA;,   [FORECASTEPPRICE22]&#xA;,   [FORECASTPRICEDIVISION22]&#xA;,   [FORECASTRGCOOP22]&#xA;,   [FORECASTSCMFLAG22]&#xA;,   [FORECASTCOCRATE22]&#xA;,   [FORECASTTOCRATE22]&#xA;,   [FORECASTGOCRATE22]&#xA;,   [FORECASTSOCRATE22]&#xA;,   [FORECASTEPCRATE22]&#xA;,   [PARTCURRENCY22]&#xA;,   [PARTPRICE22]&#xA;,   [FORECASTCOCURRENCY23]&#xA;,   [FORECASTCOPRICE23]&#xA;,   [FORECASTTOCURRENCY23]&#xA;,   [FORECASTTOPRICE23]&#xA;,   [FORECASTGOCURRENCY23]&#xA;,   [FORECASTGOPRICE23]&#xA;,   [FORECASTSOCURRENCY23]&#xA;,   [FORECASTSOPRICE23]&#xA;,   [FORECASTEPCURRENCY23]&#xA;,   [FORECASTEPPRICE23]&#xA;,   [FORECASTPRICEDIVISION23]&#xA;,   [FORECASTRGCOOP23]&#xA;,   [FORECASTSCMFLAG23]&#xA;,   [FORECASTCOCRATE23]&#xA;,   [FORECASTTOCRATE23]&#xA;,   [FORECASTGOCRATE23]&#xA;,   [FORECASTSOCRATE23]&#xA;,   [FORECASTEPCRATE23]&#xA;,   [PARTCURRENCY23]&#xA;,   [PARTPRICE23]&#xA;,   [FORECASTCOCURRENCY24]&#xA;,   [FORECASTCOPRICE24]&#xA;,   [FORECASTTOCURRENCY24]&#xA;,   [FORECASTTOPRICE24]&#xA;,   [FORECASTGOCURRENCY24]&#xA;,   [FORECASTGOPRICE24]&#xA;,   [FORECASTSOCURRENCY24]&#xA;,   [FORECASTSOPRICE24]&#xA;,   [FORECASTEPCURRENCY24]&#xA;,   [FORECASTEPPRICE24]&#xA;,   [FORECASTPRICEDIVISION24]&#xA;,   [FORECASTRGCOOP24]&#xA;,   [FORECASTSCMFLAG24]&#xA;,   [FORECASTCOCRATE24]&#xA;,   [FORECASTTOCRATE24]&#xA;,   [FORECASTGOCRATE24]&#xA;,   [FORECASTSOCRATE24]&#xA;,   [FORECASTEPCRATE24]&#xA;,   [PARTCURRENCY24]&#xA;,   [PARTPRICE24]&#xA;,   [FORECASTCOCURRENCY25]&#xA;,   [FORECASTCOPRICE25]&#xA;,   [FORECASTTOCURRENCY25]&#xA;,   [FORECASTTOPRICE25]&#xA;,   [FORECASTGOCURRENCY25]&#xA;,   [FORECASTGOPRICE25]&#xA;,   [FORECASTSOCURRENCY25]&#xA;,   [FORECASTSOPRICE25]&#xA;,   [FORECASTEPCURRENCY25]&#xA;,   [FORECASTEPPRICE25]&#xA;,   [FORECASTPRICEDIVISION25]&#xA;,   [FORECASTRGCOOP25]&#xA;,   [FORECASTSCMFLAG25]&#xA;,   [FORECASTCOCRATE25]&#xA;,   [FORECASTTOCRATE25]&#xA;,   [FORECASTGOCRATE25]&#xA;,   [FORECASTSOCRATE25]&#xA;,   [FORECASTEPCRATE25]&#xA;,   [PARTCURRENCY25]&#xA;,   [PARTPRICE25]&#xA;,   [FORECASTCOCURRENCY26]&#xA;,   [FORECASTCOPRICE26]&#xA;,   [FORECASTTOCURRENCY26]&#xA;,   [FORECASTTOPRICE26]&#xA;,   [FORECASTGOCURRENCY26]&#xA;,   [FORECASTGOPRICE26]&#xA;,   [FORECASTSOCURRENCY26]&#xA;,   [FORECASTSOPRICE26]&#xA;,   [FORECASTEPCURRENCY26]&#xA;,   [FORECASTEPPRICE26]&#xA;,   [FORECASTPRICEDIVISION26]&#xA;,   [FORECASTRGCOOP26]&#xA;,   [FORECASTSCMFLAG26]&#xA;,   [FORECASTCOCRATE26]&#xA;,   [FORECASTTOCRATE26]&#xA;,   [FORECASTGOCRATE26]&#xA;,   [FORECASTSOCRATE26]&#xA;,   [FORECASTEPCRATE26]&#xA;,   [PARTCURRENCY26]&#xA;,   [PARTPRICE26]&#xA;,   [FORECASTCOCURRENCY27]&#xA;,   [FORECASTCOPRICE27]&#xA;,   [FORECASTTOCURRENCY27]&#xA;,   [FORECASTTOPRICE27]&#xA;,   [FORECASTGOCURRENCY27]&#xA;,   [FORECASTGOPRICE27]&#xA;,   [FORECASTSOCURRENCY27]&#xA;,   [FORECASTSOPRICE27]&#xA;,   [FORECASTEPCURRENCY27]&#xA;,   [FORECASTEPPRICE27]&#xA;,   [FORECASTPRICEDIVISION27]&#xA;,   [FORECASTRGCOOP27]&#xA;,   [FORECASTSCMFLAG27]&#xA;,   [FORECASTCOCRATE27]&#xA;,   [FORECASTTOCRATE27]&#xA;,   [FORECASTGOCRATE27]&#xA;,   [FORECASTSOCRATE27]&#xA;,   [FORECASTEPCRATE27]&#xA;,   [PARTCURRENCY27]&#xA;,   [PARTPRICE27]&#xA;,   [FORECASTCOCURRENCY28]&#xA;,   [FORECASTCOPRICE28]&#xA;,   [FORECASTTOCURRENCY28]&#xA;,   [FORECASTTOPRICE28]&#xA;,   [FORECASTGOCURRENCY28]&#xA;,   [FORECASTGOPRICE28]&#xA;,   [FORECASTSOCURRENCY28]&#xA;,   [FORECASTSOPRICE28]&#xA;,   [FORECASTEPCURRENCY28]&#xA;,   [FORECASTEPPRICE28]&#xA;,   [FORECASTPRICEDIVISION28]&#xA;,   [FORECASTRGCOOP28]&#xA;,   [FORECASTSCMFLAG28]&#xA;,   [FORECASTCOCRATE28]&#xA;,   [FORECASTTOCRATE28]&#xA;,   [FORECASTGOCRATE28]&#xA;,   [FORECASTSOCRATE28]&#xA;,   [FORECASTEPCRATE28]&#xA;,   [PARTCURRENCY28]&#xA;,   [PARTPRICE28]&#xA;FROM [dbo].[T_CQ_SD_DW1_VARIOUSSFPRICE]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\90000_正常終了"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{2C4B29A2-86CB-4BF0-86A4-5E0D312B9E93}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="90000_正常終了"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;                   [LOGTIME]&#xA;                  ,[SSIS_PACKAGE]&#xA;                  ,[LOG_MESSAGE])&#xA;VALUES (GETDATE(),?,'正常終了')&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約]"
+      DTS:CreationName=""
+      DTS:DTSID="{DFD53E25-6138-46DD-9743-1A3592246D99}"
+      DTS:From="Package\01000_開始ログ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約"
+      DTS:To="Package\02000_テーブル初期化" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DC25A55A-B8CF-4FFF-9E37-1554843F171F}"
+      DTS:From="Package\02000_テーブル初期化"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 1"
+      DTS:To="Package\03000_データ登録" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{2D7355F9-6677-418A-902D-F365DE760F9D}"
+      DTS:From="Package\03000_データ登録"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 2"
+      DTS:To="Package\90000_正常終了" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{55490E84-BD72-418E-9BAE-0BE6696AB638}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="イベントの反映プロパティです"
+          DTS:DTSID="{DB75D534-50AF-4977-8E32-BF2E2A79A1DF}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{45E7D7B7-04DF-4034-A5A2-86514B9DE10C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99000_SQL 実行タスク"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[ERROR_CODE]&#xA;,[ERROR_MESSAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,?&#xA;,'OnError'&#xA;,?&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{45003B8F-5FE2-46F0-A0E6-59569F5DF1B3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99010_エラー終了"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'エラー終了'&#xA;)&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          DTS:CreationName=""
+          DTS:DTSID="{86DD5EFB-AF87-475B-AA7F-A5D6D6D99548}"
+          DTS:From="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約"
+          DTS:To="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\01000_開始ログ"
+          TopLeft="305.72922690517,125.096918972743" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\02000_テーブル初期化"
+          TopLeft="282.72922690517,202.631792023321" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\03000_データ登録"
+          TopLeft="288.72922690517,274.953500349982" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\90000_正常終了"
+          TopLeft="296.72922690517,346.58333264995" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約]"
+          TopLeft="379.97922690517,167.096918972743">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,35.534873050578"
+              Start="0,0"
+              End="0,28.034873050578">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.034873050578" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 1]"
+          TopLeft="373.97922690517,244.631792023321">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,30.321708326661"
+              Start="0,0"
+              End="0,22.821708326661">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.821708326661" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 2]"
+          TopLeft="374.72922690517,316.953500349982">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,29.629832299968"
+              Start="0,0"
+              End="0,22.129832299968">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.129832299968" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="&lt;改版履歴&gt;&#xA;Ver       Date             Name           Comment&#xA;1.0   2019/10/15   　松田  　　　新規作成"
+          ParentId="Package"
+          Size="257,67"
+          Id="61f0d57f-c7a7-43cb-b55b-311e1564f549"
+          TopLeft="254.22922690517,15.2499999515713">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="lr SVbN"
+              Size="12"
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="190,42"
+          Id="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package.EventHandlers[OnError]\99010_エラー終了"
+          TopLeft="70,152.250000048429" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          TopLeft="154,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,50.250000048429"
+              Start="0,0"
+              End="0,42.750000048429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.750000048429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.501953125,16.9462890867145,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

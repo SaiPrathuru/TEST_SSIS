@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Connection_UCQI0003"
+  DTS:DTSID="{C820427F-4AEE-4EB2-9612-10CAA7B74166}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::Connection_UCQI0003_ConnectionString]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=S_Q11D;User ID=UCQI0003;Provider=OraOLEDB.Oracle.1;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

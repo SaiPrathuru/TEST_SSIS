@@ -1,0 +1,2800 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/1/2013"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DTSID="{12481828-B220-4524-A22F-2219D2A4C330}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="1041"
+  DTS:ObjectName="M_FW_FI_DW2_WBS"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="122"
+  DTS:VersionGUID="{EA072F20-295B-4747-8ECF-CF31878CD3D7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="D:\Data\SSIS\ZU1TEMPLATE\ssis_pkg\config\AC_900_SSIS_CONFIG_local.dtsconfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{6DEC5FF8-E128-4453-A284-EAE29E7171D5}"
+      DTS:ObjectName="構成 1" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{19F353D8-52E9-401B-9FD1-D9B47377930C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_FATAL_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A6A2B362-6915-4A00-B1CD-34C89701321E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_LOAD_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6C3E6704-F407-47B7-ACE1-2E849B041D34}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_WARNING_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\01000_開始ログ"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{185D6FE2-BF21-4FCA-A074-FB791E77659E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="01000_開始ログ"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'開始'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\02000_削除処理"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{3C2F00AF-78ED-4997-BEF9-CDC3D46D1D4B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="02000_削除処理"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3A3BF089-86A4-4787-9EA0-3C2890FDDC9E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[M_FW_FI_DW2_PBC_WBS_ELEMENT]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03000_追加処理"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="データ フロー タスク"
+      DTS:DTSID="{9EDAD407-5098-42B5-88FB-E6A1FD6D8FE8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="03000_追加処理"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\03000_追加処理\OLE DB ソース"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB ソース;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB ソース"
+              name="OLE DB ソース"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="コマンドがタイムアウトするまでの秒数。値 0 はタイムアウトしないことを表します。"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="行セットを開くために使用するデータベース オブジェクトの名前を指定します。"
+                  name="OpenRowset">[dbo].[M_FW_FI_DW1_PBC_WBS_ELEMENT]</property>
+                <property
+                  dataType="System.String"
+                  description="行セットを開くために使用するデータベース オブジェクトの名前を含む変数を指定します。"
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="実行する SQL コマンド。"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="実行する SQL コマンドを含む変数です。"
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="データ ソースからコード ページ情報を利用できないときに使用する列コード ページを指定します。"
+                  name="DefaultCodePage">932</property>
+                <property
+                  dataType="System.Boolean"
+                  description="文字データを説明するときに、DefaultCodePage プロパティの値を強制的に使用します。"
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="データベースへのアクセスに使用するモードを指定します。"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL コマンドのパラメーターと変数間のマッピングです。"
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\03000_追加処理\OLE DB ソース.Connections[OleDbConnection]"
+                  connectionManagerID="{3A3BF089-86A4-4787-9EA0-3C2890FDDC9E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Connection_BI_DW_NSAP]"
+                  description="データベースへのアクセスに使用する OLE DB ランタイム接続。"
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力]"
+                  name="OLE DB ソースの出力">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUMON]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[BUMON]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUMON]"
+                      name="BUMON"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUBAN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUBAN]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUBAN]"
+                      name="SAKUBAN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KEITAI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KEITAI]"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KEITAI]"
+                      name="KEITAI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KOSIN_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KOSIN_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KOSIN_YMD]"
+                      name="KOSIN_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[TOROKU_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[TOROKU_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[TOROKU_YMD]"
+                      name="TOROKU_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KOSINSYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KOSINSYA]"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KOSINSYA]"
+                      name="KOSINSYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKA]"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKA]"
+                      name="NINKA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUBAN_NM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUBAN_NM]"
+                      length="40"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUBAN_NM]"
+                      name="SAKUBAN_NM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[OYASAKU]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[OYASAKU]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[OYASAKU]"
+                      name="OYASAKU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI]"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI]"
+                      name="FAMIRI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI2]"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI2]"
+                      name="FAMIRI2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI3]"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI3]"
+                      name="FAMIRI3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI4]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI4]"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI4]"
+                      name="FAMIRI4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI5]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI5]"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI5]"
+                      name="FAMIRI5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SEKININSYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SEKININSYA]"
+                      length="20"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SEKININSYA]"
+                      name="SEKININSYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SEIHIN_KU]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SEIHIN_KU]"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SEIHIN_KU]"
+                      name="SEIHIN_KU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SHINRAI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SHINRAI]"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SHINRAI]"
+                      name="SHINRAI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KINOU]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KINOU]"
+                      length="100"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KINOU]"
+                      name="KINOU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[DAI_KATAMEI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[DAI_KATAMEI]"
+                      length="40"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[DAI_KATAMEI]"
+                      name="DAI_KATAMEI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[JUCHUMOTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[JUCHUMOTO]"
+                      length="4"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[JUCHUMOTO]"
+                      name="JUCHUMOTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[CHUMONNUSI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[CHUMONNUSI]"
+                      length="6"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[CHUMONNUSI]"
+                      name="CHUMONNUSI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[JUCHUNO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[JUCHUNO]"
+                      length="4"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[JUCHUNO]"
+                      name="JUCHUNO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUSEISYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUSEISYA]"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUSEISYA]"
+                      name="SAKUSEISYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SHINSASYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SHINSASYA]"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SHINSASYA]"
+                      name="SHINSASYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOUNINSYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SYOUNINSYA]"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOUNINSYA]"
+                      name="SYOUNINSYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOKAI_NINKA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SYOKAI_NINKA]"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOKAI_NINKA]"
+                      name="SYOKAI_NINKA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[ZENKAI_NINKA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[ZENKAI_NINKA]"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[ZENKAI_NINKA]"
+                      name="ZENKAI_NINKA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKASYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKASYA]"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKASYA]"
+                      name="NINKASYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUKANSYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUKANSYA]"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUKANSYA]"
+                      name="SAKUKANSYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUSEI_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUSEI_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUSEI_YMD]"
+                      name="SAKUSEI_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SHINSA_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SHINSA_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SHINSA_YMD]"
+                      name="SHINSA_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOUNIN_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SYOUNIN_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOUNIN_YMD]"
+                      name="SYOUNIN_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOKAI_NINKA_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SYOKAI_NINKA_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOKAI_NINKA_YMD]"
+                      name="SYOKAI_NINKA_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[ZENKAI_NINKA_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[ZENKAI_NINKA_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[ZENKAI_NINKA_YMD]"
+                      name="ZENKAI_NINKA_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKA_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKA_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKA_YMD]"
+                      name="NINKA_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUKAN_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUKAN_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUKAN_YMD]"
+                      name="SAKUKAN_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[TEIAN_NO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[TEIAN_NO]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[TEIAN_NO]"
+                      name="TEIAN_NO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[DWIN_NO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[DWIN_NO]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[DWIN_NO]"
+                      name="DWIN_NO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MININKA_RIYU]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MININKA_RIYU]"
+                      length="100"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MININKA_RIYU]"
+                      name="MININKA_RIYU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[ROM_FLG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[ROM_FLG]"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[ROM_FLG]"
+                      name="ROM_FLG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKAIRAISYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKAIRAISYA]"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKAIRAISYA]"
+                      name="NINKAIRAISYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKAIRAI_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKAIRAI_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKAIRAI_YMD]"
+                      name="NINKAIRAI_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[CHUNITEI_FLG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[CHUNITEI_FLG]"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[CHUNITEI_FLG]"
+                      name="CHUNITEI_FLG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[YOSAN_BU]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[YOSAN_BU]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[YOSAN_BU]"
+                      name="YOSAN_BU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[YOSAN_FLG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[YOSAN_FLG]"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[YOSAN_FLG]"
+                      name="YOSAN_FLG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MITUMORI_STS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MITUMORI_STS]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MITUMORI_STS]"
+                      name="MITUMORI_STS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MITUMORI_YMD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MITUMORI_YMD]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MITUMORI_YMD]"
+                      name="MITUMORI_YMD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MITUMORI_TIME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MITUMORI_TIME]"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MITUMORI_TIME]"
+                      name="MITUMORI_TIME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[URIAGE_YYYYMM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[URIAGE_YYYYMM]"
+                      length="6"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[URIAGE_YYYYMM]"
+                      name="URIAGE_YYYYMM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SEDAI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SEDAI]"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SEDAI]"
+                      name="SEDAI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[G_KBN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[G_KBN]"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[G_KBN]"
+                      name="G_KBN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[G_BUNYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[G_BUNYA]"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[G_BUNYA]"
+                      name="G_BUNYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[TEKIYO_SYSTEM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[TEKIYO_SYSTEM]"
+                      length="30"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[TEKIYO_SYSTEM]"
+                      name="TEKIYO_SYSTEM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[G_SYUBETU]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[G_SYUBETU]"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[G_SYUBETU]"
+                      name="G_SYUBETU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[YOTO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[YOTO]"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[YOTO]"
+                      name="YOTO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MOKUTEKI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MOKUTEKI]"
+                      length="100"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MOKUTEKI]"
+                      name="MOKUTEKI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[RYOUSAN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[RYOUSAN]"
+                      length="19"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[RYOUSAN]"
+                      name="RYOUSAN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[REOS_FLG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[REOS_FLG]"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[REOS_FLG]"
+                      name="REOS_FLG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUNYA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[BUNYA]"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUNYA]"
+                      name="BUNYA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SETCODE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SETCODE]"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SETCODE]"
+                      name="SETCODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[JYUCYU_WBS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[JYUCYU_WBS]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[JYUCYU_WBS]"
+                      name="JYUCYU_WBS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[PURATOFOMU_CD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[PURATOFOMU_CD]"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[PURATOFOMU_CD]"
+                      name="PURATOFOMU_CD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KAIHATU_MOKUTEKI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KAIHATU_MOKUTEKI]"
+                      length="200"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KAIHATU_MOKUTEKI]"
+                      name="KAIHATU_MOKUTEKI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KANRENDOCUMENT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KANRENDOCUMENT]"
+                      length="200"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KANRENDOCUMENT]"
+                      name="KANRENDOCUMENT"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[BUMON]"
+                      dataType="wstr"
+                      length="10"
+                      name="BUMON" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUBAN]"
+                      dataType="wstr"
+                      length="10"
+                      name="SAKUBAN" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KEITAI]"
+                      dataType="wstr"
+                      length="1"
+                      name="KEITAI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KOSIN_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="KOSIN_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[TOROKU_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="TOROKU_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KOSINSYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="KOSINSYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKA]"
+                      dataType="wstr"
+                      length="1"
+                      name="NINKA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUBAN_NM]"
+                      dataType="wstr"
+                      length="40"
+                      name="SAKUBAN_NM" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[OYASAKU]"
+                      dataType="wstr"
+                      length="10"
+                      name="OYASAKU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI2]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI2" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI3]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI3" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI4]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI4" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[FAMIRI5]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI5" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SEKININSYA]"
+                      dataType="wstr"
+                      length="20"
+                      name="SEKININSYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SEIHIN_KU]"
+                      dataType="wstr"
+                      length="2"
+                      name="SEIHIN_KU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SHINRAI]"
+                      dataType="wstr"
+                      length="3"
+                      name="SHINRAI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KINOU]"
+                      dataType="wstr"
+                      length="100"
+                      name="KINOU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[DAI_KATAMEI]"
+                      dataType="wstr"
+                      length="40"
+                      name="DAI_KATAMEI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[JUCHUMOTO]"
+                      dataType="wstr"
+                      length="4"
+                      name="JUCHUMOTO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[CHUMONNUSI]"
+                      dataType="wstr"
+                      length="6"
+                      name="CHUMONNUSI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[JUCHUNO]"
+                      dataType="wstr"
+                      length="4"
+                      name="JUCHUNO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUSEISYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SAKUSEISYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SHINSASYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SHINSASYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SYOUNINSYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SYOUNINSYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SYOKAI_NINKA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SYOKAI_NINKA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[ZENKAI_NINKA]"
+                      dataType="wstr"
+                      length="9"
+                      name="ZENKAI_NINKA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKASYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="NINKASYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUKANSYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SAKUKANSYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUSEI_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SAKUSEI_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SHINSA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SHINSA_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SYOUNIN_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SYOUNIN_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SYOKAI_NINKA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SYOKAI_NINKA_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[ZENKAI_NINKA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="ZENKAI_NINKA_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="NINKA_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SAKUKAN_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SAKUKAN_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[TEIAN_NO]"
+                      dataType="wstr"
+                      length="10"
+                      name="TEIAN_NO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[DWIN_NO]"
+                      dataType="wstr"
+                      length="10"
+                      name="DWIN_NO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MININKA_RIYU]"
+                      dataType="wstr"
+                      length="100"
+                      name="MININKA_RIYU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[ROM_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      name="ROM_FLG" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKAIRAISYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="NINKAIRAISYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[NINKAIRAI_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="NINKAIRAI_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[CHUNITEI_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      name="CHUNITEI_FLG" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[YOSAN_BU]"
+                      dataType="wstr"
+                      length="10"
+                      name="YOSAN_BU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[YOSAN_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      name="YOSAN_FLG" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MITUMORI_STS]"
+                      dataType="wstr"
+                      length="10"
+                      name="MITUMORI_STS" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MITUMORI_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="MITUMORI_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MITUMORI_TIME]"
+                      dataType="wstr"
+                      length="8"
+                      name="MITUMORI_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[URIAGE_YYYYMM]"
+                      dataType="wstr"
+                      length="6"
+                      name="URIAGE_YYYYMM" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SEDAI]"
+                      dataType="wstr"
+                      length="2"
+                      name="SEDAI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[G_KBN]"
+                      dataType="wstr"
+                      length="1"
+                      name="G_KBN" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[G_BUNYA]"
+                      dataType="wstr"
+                      length="3"
+                      name="G_BUNYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[TEKIYO_SYSTEM]"
+                      dataType="wstr"
+                      length="30"
+                      name="TEKIYO_SYSTEM" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[G_SYUBETU]"
+                      dataType="wstr"
+                      length="3"
+                      name="G_SYUBETU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[YOTO]"
+                      dataType="wstr"
+                      length="3"
+                      name="YOTO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[MOKUTEKI]"
+                      dataType="wstr"
+                      length="100"
+                      name="MOKUTEKI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[RYOUSAN]"
+                      dataType="wstr"
+                      length="19"
+                      name="RYOUSAN" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[REOS_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      name="REOS_FLG" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[BUNYA]"
+                      dataType="wstr"
+                      length="1"
+                      name="BUNYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[SETCODE]"
+                      dataType="wstr"
+                      length="2"
+                      name="SETCODE" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[JYUCYU_WBS]"
+                      dataType="wstr"
+                      length="10"
+                      name="JYUCYU_WBS" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[PURATOFOMU_CD]"
+                      dataType="wstr"
+                      length="3"
+                      name="PURATOFOMU_CD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KAIHATU_MOKUTEKI]"
+                      dataType="wstr"
+                      length="200"
+                      name="KAIHATU_MOKUTEKI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[KANRENDOCUMENT]"
+                      dataType="wstr"
+                      length="200"
+                      name="KANRENDOCUMENT" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力]"
+                  isErrorOut="true"
+                  name="OLE DB ソースのエラー出力">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[BUMON]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[BUMON]"
+                      name="BUMON" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUBAN]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUBAN]"
+                      name="SAKUBAN" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KEITAI]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KEITAI]"
+                      name="KEITAI" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KOSIN_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KOSIN_YMD]"
+                      name="KOSIN_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[TOROKU_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[TOROKU_YMD]"
+                      name="TOROKU_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KOSINSYA]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KOSINSYA]"
+                      name="KOSINSYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKA]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKA]"
+                      name="NINKA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUBAN_NM]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUBAN_NM]"
+                      name="SAKUBAN_NM" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[OYASAKU]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[OYASAKU]"
+                      name="OYASAKU" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI]"
+                      name="FAMIRI" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI2]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI2]"
+                      name="FAMIRI2" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI3]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI3]"
+                      name="FAMIRI3" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI4]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI4]"
+                      name="FAMIRI4" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI5]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[FAMIRI5]"
+                      name="FAMIRI5" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SEKININSYA]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SEKININSYA]"
+                      name="SEKININSYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SEIHIN_KU]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SEIHIN_KU]"
+                      name="SEIHIN_KU" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SHINRAI]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SHINRAI]"
+                      name="SHINRAI" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KINOU]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KINOU]"
+                      name="KINOU" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[DAI_KATAMEI]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[DAI_KATAMEI]"
+                      name="DAI_KATAMEI" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[JUCHUMOTO]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[JUCHUMOTO]"
+                      name="JUCHUMOTO" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[CHUMONNUSI]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[CHUMONNUSI]"
+                      name="CHUMONNUSI" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[JUCHUNO]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[JUCHUNO]"
+                      name="JUCHUNO" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUSEISYA]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUSEISYA]"
+                      name="SAKUSEISYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SHINSASYA]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SHINSASYA]"
+                      name="SHINSASYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SYOUNINSYA]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SYOUNINSYA]"
+                      name="SYOUNINSYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SYOKAI_NINKA]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SYOKAI_NINKA]"
+                      name="SYOKAI_NINKA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ZENKAI_NINKA]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ZENKAI_NINKA]"
+                      name="ZENKAI_NINKA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKASYA]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKASYA]"
+                      name="NINKASYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUKANSYA]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUKANSYA]"
+                      name="SAKUKANSYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUSEI_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUSEI_YMD]"
+                      name="SAKUSEI_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SHINSA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SHINSA_YMD]"
+                      name="SHINSA_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SYOUNIN_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SYOUNIN_YMD]"
+                      name="SYOUNIN_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SYOKAI_NINKA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SYOKAI_NINKA_YMD]"
+                      name="SYOKAI_NINKA_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ZENKAI_NINKA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ZENKAI_NINKA_YMD]"
+                      name="ZENKAI_NINKA_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKA_YMD]"
+                      name="NINKA_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUKAN_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SAKUKAN_YMD]"
+                      name="SAKUKAN_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[TEIAN_NO]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[TEIAN_NO]"
+                      name="TEIAN_NO" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[DWIN_NO]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[DWIN_NO]"
+                      name="DWIN_NO" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MININKA_RIYU]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MININKA_RIYU]"
+                      name="MININKA_RIYU" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ROM_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ROM_FLG]"
+                      name="ROM_FLG" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKAIRAISYA]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKAIRAISYA]"
+                      name="NINKAIRAISYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKAIRAI_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[NINKAIRAI_YMD]"
+                      name="NINKAIRAI_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[CHUNITEI_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[CHUNITEI_FLG]"
+                      name="CHUNITEI_FLG" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[YOSAN_BU]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[YOSAN_BU]"
+                      name="YOSAN_BU" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[YOSAN_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[YOSAN_FLG]"
+                      name="YOSAN_FLG" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MITUMORI_STS]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MITUMORI_STS]"
+                      name="MITUMORI_STS" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MITUMORI_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MITUMORI_YMD]"
+                      name="MITUMORI_YMD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MITUMORI_TIME]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MITUMORI_TIME]"
+                      name="MITUMORI_TIME" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[URIAGE_YYYYMM]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[URIAGE_YYYYMM]"
+                      name="URIAGE_YYYYMM" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SEDAI]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SEDAI]"
+                      name="SEDAI" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[G_KBN]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[G_KBN]"
+                      name="G_KBN" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[G_BUNYA]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[G_BUNYA]"
+                      name="G_BUNYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[TEKIYO_SYSTEM]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[TEKIYO_SYSTEM]"
+                      name="TEKIYO_SYSTEM" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[G_SYUBETU]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[G_SYUBETU]"
+                      name="G_SYUBETU" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[YOTO]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[YOTO]"
+                      name="YOTO" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MOKUTEKI]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[MOKUTEKI]"
+                      name="MOKUTEKI" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[RYOUSAN]"
+                      dataType="wstr"
+                      length="19"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[RYOUSAN]"
+                      name="RYOUSAN" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[REOS_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[REOS_FLG]"
+                      name="REOS_FLG" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[BUNYA]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[BUNYA]"
+                      name="BUNYA" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SETCODE]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[SETCODE]"
+                      name="SETCODE" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[JYUCYU_WBS]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[JYUCYU_WBS]"
+                      name="JYUCYU_WBS" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[PURATOFOMU_CD]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[PURATOFOMU_CD]"
+                      name="PURATOFOMU_CD" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KAIHATU_MOKUTEKI]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KAIHATU_MOKUTEKI]"
+                      name="KAIHATU_MOKUTEKI" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KANRENDOCUMENT]"
+                      dataType="wstr"
+                      length="200"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[KANRENDOCUMENT]"
+                      name="KANRENDOCUMENT" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\03000_追加処理\OLE DB 変換先"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 変換先;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 変換先"
+              name="OLE DB 変換先"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="コマンドがタイムアウトするまでの秒数。値 0 はタイムアウトしないことを表します。"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="行セットを開くために使用するデータベース オブジェクトの名前を指定します。"
+                  name="OpenRowset">[dbo].[M_FW_FI_DW2_PBC_WBS_ELEMENT]</property>
+                <property
+                  dataType="System.String"
+                  description="行セットを開くために使用するデータベース オブジェクトの名前を含む変数を指定します。"
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="実行する SQL コマンド。"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="データ ソースからコード ページ情報を利用できないときに使用する列コード ページを指定します。"
+                  name="DefaultCodePage">932</property>
+                <property
+                  dataType="System.Boolean"
+                  description="文字データを説明するときに、DefaultCodePage プロパティの値を強制的に使用します。"
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="データベースへのアクセスに使用するモードを指定します。"
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 列に指定されている値がコピー先の列にコピーされるかどうかを示します。False の場合、ID 列の値がコピー先の列で自動生成されます。高速読み込みが有効になっている場合にのみ適用されます。"
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="NULL を含む列から挿入先の列に NULL が挿入されるかどうかを示します。False の場合、NULL を含む列から挿入先の列に、既定値が挿入されます。高速読み込みが有効になっている場合にのみ適用されます。"
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="高速読み込みで使用するオプションを指定します。高速読み込みが有効になっている場合にのみ適用されます。"
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="データの挿入中にコミットを発行する時期を指定します。値 0 を指定すると、1 つのコミットがデータ挿入の終了時に実行されます。高速読み込みが有効になっている場合にのみ適用されます。"
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\03000_追加処理\OLE DB 変換先.Connections[OleDbConnection]"
+                  connectionManagerID="{3A3BF089-86A4-4787-9EA0-3C2890FDDC9E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Connection_BI_DW_NSAP]"
+                  description="データベースへのアクセスに使用する OLE DB ランタイム接続。"
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力]"
+                  errorOrTruncationOperation="挿入"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB 変換先の入力">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[BUMON]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="BUMON"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[BUMON]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUMON]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SAKUBAN]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="SAKUBAN"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUBAN]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUBAN]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[KEITAI]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="KEITAI"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KEITAI]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KEITAI]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[KOSIN_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="KOSIN_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KOSIN_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KOSIN_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[TOROKU_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="TOROKU_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[TOROKU_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[TOROKU_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[KOSINSYA]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="KOSINSYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KOSINSYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KOSINSYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[NINKA]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="NINKA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SAKUBAN_NM]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="SAKUBAN_NM"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUBAN_NM]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUBAN_NM]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[OYASAKU]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="OYASAKU"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[OYASAKU]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[OYASAKU]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[FAMIRI]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMIRI"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[FAMIRI2]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMIRI2"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI2]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI2]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[FAMIRI3]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMIRI3"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI3]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI3]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[FAMIRI4]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMIRI4"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI4]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI4]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[FAMIRI5]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="FAMIRI5"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI5]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[FAMIRI5]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SEKININSYA]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="SEKININSYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SEKININSYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SEKININSYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SEIHIN_KU]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="SEIHIN_KU"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SEIHIN_KU]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SEIHIN_KU]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SHINRAI]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="SHINRAI"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SHINRAI]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SHINRAI]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[KINOU]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="KINOU"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KINOU]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KINOU]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[DAI_KATAMEI]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="DAI_KATAMEI"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[DAI_KATAMEI]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[DAI_KATAMEI]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[JUCHUMOTO]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="JUCHUMOTO"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[JUCHUMOTO]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[JUCHUMOTO]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[CHUMONNUSI]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="CHUMONNUSI"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[CHUMONNUSI]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[CHUMONNUSI]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[JUCHUNO]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="JUCHUNO"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[JUCHUNO]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[JUCHUNO]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SAKUSEISYA]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SAKUSEISYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUSEISYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUSEISYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SHINSASYA]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SHINSASYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SHINSASYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SHINSASYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SYOUNINSYA]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SYOUNINSYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SYOUNINSYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOUNINSYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SYOKAI_NINKA]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SYOKAI_NINKA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SYOKAI_NINKA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOKAI_NINKA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[ZENKAI_NINKA]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="ZENKAI_NINKA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[ZENKAI_NINKA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[ZENKAI_NINKA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[NINKASYA]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="NINKASYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKASYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKASYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SAKUKANSYA]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="SAKUKANSYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUKANSYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUKANSYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SAKUSEI_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="SAKUSEI_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUSEI_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUSEI_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SHINSA_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="SHINSA_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SHINSA_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SHINSA_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SYOUNIN_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="SYOUNIN_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SYOUNIN_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOUNIN_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SYOKAI_NINKA_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="SYOKAI_NINKA_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SYOKAI_NINKA_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SYOKAI_NINKA_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[ZENKAI_NINKA_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="ZENKAI_NINKA_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[ZENKAI_NINKA_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[ZENKAI_NINKA_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[NINKA_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="NINKA_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKA_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKA_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SAKUKAN_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="SAKUKAN_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUKAN_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SAKUKAN_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[TEIAN_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="TEIAN_NO"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[TEIAN_NO]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[TEIAN_NO]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[DWIN_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="DWIN_NO"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[DWIN_NO]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[DWIN_NO]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[MININKA_RIYU]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="MININKA_RIYU"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MININKA_RIYU]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MININKA_RIYU]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[ROM_FLG]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="ROM_FLG"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[ROM_FLG]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[ROM_FLG]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[NINKAIRAISYA]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="NINKAIRAISYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKAIRAISYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKAIRAISYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[NINKAIRAI_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="NINKAIRAI_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKAIRAI_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[NINKAIRAI_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[CHUNITEI_FLG]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="CHUNITEI_FLG"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[CHUNITEI_FLG]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[CHUNITEI_FLG]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[YOSAN_BU]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="YOSAN_BU"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[YOSAN_BU]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[YOSAN_BU]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[YOSAN_FLG]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="YOSAN_FLG"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[YOSAN_FLG]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[YOSAN_FLG]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[MITUMORI_STS]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="MITUMORI_STS"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MITUMORI_STS]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MITUMORI_STS]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[MITUMORI_YMD]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="MITUMORI_YMD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MITUMORI_YMD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MITUMORI_YMD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[MITUMORI_TIME]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="MITUMORI_TIME"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MITUMORI_TIME]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MITUMORI_TIME]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[URIAGE_YYYYMM]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="URIAGE_YYYYMM"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[URIAGE_YYYYMM]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[URIAGE_YYYYMM]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SEDAI]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="SEDAI"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SEDAI]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SEDAI]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[G_KBN]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="G_KBN"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[G_KBN]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[G_KBN]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[G_BUNYA]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="G_BUNYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[G_BUNYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[G_BUNYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[TEKIYO_SYSTEM]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="TEKIYO_SYSTEM"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[TEKIYO_SYSTEM]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[TEKIYO_SYSTEM]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[G_SYUBETU]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="G_SYUBETU"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[G_SYUBETU]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[G_SYUBETU]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[YOTO]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="YOTO"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[YOTO]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[YOTO]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[MOKUTEKI]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="MOKUTEKI"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MOKUTEKI]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[MOKUTEKI]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[RYOUSAN]"
+                      cachedDataType="wstr"
+                      cachedLength="19"
+                      cachedName="RYOUSAN"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[RYOUSAN]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[RYOUSAN]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[REOS_FLG]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="REOS_FLG"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[REOS_FLG]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[REOS_FLG]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[BUNYA]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="BUNYA"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[BUNYA]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUNYA]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[SETCODE]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="SETCODE"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SETCODE]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[SETCODE]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[JYUCYU_WBS]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="JYUCYU_WBS"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[JYUCYU_WBS]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[JYUCYU_WBS]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[PURATOFOMU_CD]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="PURATOFOMU_CD"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[PURATOFOMU_CD]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[PURATOFOMU_CD]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[KAIHATU_MOKUTEKI]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="KAIHATU_MOKUTEKI"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KAIHATU_MOKUTEKI]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KAIHATU_MOKUTEKI]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[KANRENDOCUMENT]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="KANRENDOCUMENT"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KANRENDOCUMENT]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[KANRENDOCUMENT]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[BUMON]"
+                      dataType="wstr"
+                      length="10"
+                      name="BUMON" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUBAN]"
+                      dataType="wstr"
+                      length="10"
+                      name="SAKUBAN" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KEITAI]"
+                      dataType="wstr"
+                      length="1"
+                      name="KEITAI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KOSIN_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="KOSIN_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[TOROKU_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="TOROKU_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KOSINSYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="KOSINSYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKA]"
+                      dataType="wstr"
+                      length="1"
+                      name="NINKA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUBAN_NM]"
+                      dataType="wstr"
+                      length="40"
+                      name="SAKUBAN_NM" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[OYASAKU]"
+                      dataType="wstr"
+                      length="10"
+                      name="OYASAKU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI2]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI2" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI3]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI3" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI4]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI4" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[FAMIRI5]"
+                      dataType="wstr"
+                      length="2"
+                      name="FAMIRI5" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SEKININSYA]"
+                      dataType="wstr"
+                      length="20"
+                      name="SEKININSYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SEIHIN_KU]"
+                      dataType="wstr"
+                      length="2"
+                      name="SEIHIN_KU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SHINRAI]"
+                      dataType="wstr"
+                      length="3"
+                      name="SHINRAI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KINOU]"
+                      dataType="wstr"
+                      length="100"
+                      name="KINOU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[DAI_KATAMEI]"
+                      dataType="wstr"
+                      length="40"
+                      name="DAI_KATAMEI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[JUCHUMOTO]"
+                      dataType="wstr"
+                      length="4"
+                      name="JUCHUMOTO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[CHUMONNUSI]"
+                      dataType="wstr"
+                      length="6"
+                      name="CHUMONNUSI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[JUCHUNO]"
+                      dataType="wstr"
+                      length="4"
+                      name="JUCHUNO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUSEISYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SAKUSEISYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SHINSASYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SHINSASYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SYOUNINSYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SYOUNINSYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SYOKAI_NINKA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SYOKAI_NINKA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[ZENKAI_NINKA]"
+                      dataType="wstr"
+                      length="9"
+                      name="ZENKAI_NINKA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKASYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="NINKASYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUKANSYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="SAKUKANSYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUSEI_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SAKUSEI_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SHINSA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SHINSA_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SYOUNIN_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SYOUNIN_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SYOKAI_NINKA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SYOKAI_NINKA_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[ZENKAI_NINKA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="ZENKAI_NINKA_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKA_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="NINKA_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SAKUKAN_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="SAKUKAN_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[TEIAN_NO]"
+                      dataType="wstr"
+                      length="10"
+                      name="TEIAN_NO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[DWIN_NO]"
+                      dataType="wstr"
+                      length="10"
+                      name="DWIN_NO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MININKA_RIYU]"
+                      dataType="wstr"
+                      length="100"
+                      name="MININKA_RIYU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[ROM_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      name="ROM_FLG" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKAIRAISYA]"
+                      dataType="wstr"
+                      length="9"
+                      name="NINKAIRAISYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[NINKAIRAI_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="NINKAIRAI_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[CHUNITEI_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      name="CHUNITEI_FLG" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[YOSAN_BU]"
+                      dataType="wstr"
+                      length="10"
+                      name="YOSAN_BU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[YOSAN_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      name="YOSAN_FLG" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MITUMORI_STS]"
+                      dataType="wstr"
+                      length="10"
+                      name="MITUMORI_STS" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MITUMORI_YMD]"
+                      dataType="wstr"
+                      length="8"
+                      name="MITUMORI_YMD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MITUMORI_TIME]"
+                      dataType="wstr"
+                      length="8"
+                      name="MITUMORI_TIME" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[URIAGE_YYYYMM]"
+                      dataType="wstr"
+                      length="6"
+                      name="URIAGE_YYYYMM" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SEDAI]"
+                      dataType="wstr"
+                      length="2"
+                      name="SEDAI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[G_KBN]"
+                      dataType="wstr"
+                      length="1"
+                      name="G_KBN" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[G_BUNYA]"
+                      dataType="wstr"
+                      length="3"
+                      name="G_BUNYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[TEKIYO_SYSTEM]"
+                      dataType="wstr"
+                      length="30"
+                      name="TEKIYO_SYSTEM" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[G_SYUBETU]"
+                      dataType="wstr"
+                      length="3"
+                      name="G_SYUBETU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[YOTO]"
+                      dataType="wstr"
+                      length="3"
+                      name="YOTO" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[MOKUTEKI]"
+                      dataType="wstr"
+                      length="100"
+                      name="MOKUTEKI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[RYOUSAN]"
+                      dataType="wstr"
+                      length="19"
+                      name="RYOUSAN" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[REOS_FLG]"
+                      dataType="wstr"
+                      length="1"
+                      name="REOS_FLG" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[BUNYA]"
+                      dataType="wstr"
+                      length="1"
+                      name="BUNYA" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[SETCODE]"
+                      dataType="wstr"
+                      length="2"
+                      name="SETCODE" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[JYUCYU_WBS]"
+                      dataType="wstr"
+                      length="10"
+                      name="JYUCYU_WBS" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[PURATOFOMU_CD]"
+                      dataType="wstr"
+                      length="3"
+                      name="PURATOFOMU_CD" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KAIHATU_MOKUTEKI]"
+                      dataType="wstr"
+                      length="200"
+                      name="KAIHATU_MOKUTEKI" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[KANRENDOCUMENT]"
+                      dataType="wstr"
+                      length="200"
+                      name="KANRENDOCUMENT" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[INS_DATETIME_DW2]"
+                      dataType="dbTimeStamp"
+                      name="INS_DATETIME_DW2" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[UPD_DATETIME_DW2]"
+                      dataType="dbTimeStamp"
+                      name="UPD_DATETIME_DW2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 変換先のエラー出力"
+                  synchronousInputId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\03000_追加処理.Paths[OLE DB ソースの出力]"
+              endId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力]"
+              name="OLE DB ソースの出力"
+              startId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\90000_正常終了"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{514DDA5B-C85F-4261-BC2C-0FF93ED2ADD4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="90000_正常終了"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'正常終了'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約]"
+      DTS:CreationName=""
+      DTS:DTSID="{66984529-BEA4-4D1F-A5D1-7327BD0F2B44}"
+      DTS:From="Package\01000_開始ログ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約"
+      DTS:To="Package\02000_削除処理" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{234AC237-8399-4710-B953-682D641EA6D9}"
+      DTS:From="Package\02000_削除処理"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 1"
+      DTS:To="Package\03000_追加処理" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{46F70F4B-8A25-49CD-9D07-B35BE6BF4BA7}"
+      DTS:From="Package\03000_追加処理"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 2"
+      DTS:To="Package\90000_正常終了" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{A996EA3A-C174-4908-B51E-3F678F697C53}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="イベントの反映プロパティです"
+          DTS:DTSID="{791D6C49-1F9E-4EE0-896D-CC95A2718DC2}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{9C21B459-7D10-45C0-B631-698EE7C042F1}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99000_SQL 実行タスク"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[ERROR_CODE]&#xA;,[ERROR_MESSAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,?&#xA;,'OnError'&#xA;,?&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{5F6FD599-11DD-46D1-AE0E-BD78AE414E3F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99010_エラー終了"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'エラー終了'&#xA;)&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          DTS:CreationName=""
+          DTS:DTSID="{3540A518-1C91-486A-B900-CAE9DEDDD5A1}"
+          DTS:From="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約"
+          DTS:To="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\01000_開始ログ"
+          TopLeft="314.700048304335,97.3635854190049" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\02000_削除処理"
+          TopLeft="311.900048304335,175.718315396132" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\03000_追加処理"
+          TopLeft="311.900048304335,254.073045373258" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\90000_正常終了"
+          TopLeft="311.900048304335,332.427775350385" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約]"
+          TopLeft="392.700048304335,138.963585419005">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,36.7547299771267"
+              Start="0,0"
+              End="0,29.2547299771267">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.2547299771267" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 1]"
+          TopLeft="392.700048304335,217.318315396132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,36.7547299771267"
+              Start="0,0"
+              End="0,29.2547299771267">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.2547299771267" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 2]"
+          TopLeft="392.700048304335,295.673045373258">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,36.7547299771267"
+              Start="0,0"
+              End="0,29.2547299771267">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.2547299771267" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="&lt;改版履歴&gt;&#xA;Ver   Date             Name           Comment&#xA;1.0   2016/02/24   王昕璐　　　　 新規作成"
+          ParentId="Package"
+          Size="246,82"
+          Id="61f0d57f-c7a7-43cb-b55b-311e1564f549"
+          TopLeft="263.183381524136,19.5833332633807">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="lr SVbN"
+              Size="12"
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="190,42"
+          Id="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package.EventHandlers[OnError]\99010_エラー終了"
+          TopLeft="70,152.250000048429" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          TopLeft="154,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,50.250000048429"
+              Start="0,0"
+              End="0,42.750000048429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.750000048429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.501953125,16.9462890867145,21.00390625,10.857421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\03000_追加処理">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\03000_追加処理\OLE DB 変換先"
+          TopLeft="234.34285712826,160.849998837925" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\03000_追加処理\OLE DB ソース"
+          TopLeft="237.94285712826,45.5833331019514" />
+        <EdgeLayout
+          Id="Package\03000_追加処理.Paths[OLE DB ソースの出力]"
+          TopLeft="314.34285712826,87.1833331019514">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,73.6666657359735"
+              Start="0,0"
+              End="0,66.1666657359735">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.1666657359735" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\03000_追加処理\OLE DB ソース">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\03000_追加処理\OLE DB 変換先">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

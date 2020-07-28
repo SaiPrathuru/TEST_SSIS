@@ -1,0 +1,853 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/1/2013"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DTSID="{6F63AE5E-E0CB-47CF-A1D2-0ECAFC91720A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="1041"
+  DTS:ObjectName="M_FW_FI_DW2_COST_CENTER"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="121"
+  DTS:VersionGUID="{C6410A42-8207-4707-8646-4351F43D456E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="D:\Data\SSIS\ZU1TEMPLATE\ssis_pkg\config\AC_900_SSIS_CONFIG_local.dtsconfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{E3032D9D-C607-4DC2-A6DF-611482A2711C}"
+      DTS:ObjectName="構成 1" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{266A6868-FB1F-40F7-B442-DCD874BF07BA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_FATAL_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E9291721-D31C-426A-AF69-D439A0189FA0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_LOAD_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{512E9D4A-77D6-4DAC-B5E7-D1CC1D0F17AB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_WARNING_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\01000_開始ログ"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{699B1EA6-201E-4B8C-8AD0-F981DA169611}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="01000_開始ログ"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'開始'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\02000_削除処理"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{918C6CFE-2B4F-4EE7-AC69-CB083AE25323}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="02000_削除処理"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3A3BF089-86A4-4787-9EA0-3C2890FDDC9E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [dbo].[M_FW_FI_DW2_PBC_COST_CENTER]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03000_追加処理"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="データ フロー タスク"
+      DTS:DTSID="{D33B17E1-571F-4986-B1EC-2F34348B8D91}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="03000_追加処理"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\03000_追加処理\OLE DB ソース"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB ソース;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB ソース"
+              name="OLE DB ソース"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="コマンドがタイムアウトするまでの秒数。値 0 はタイムアウトしないことを表します。"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="行セットを開くために使用するデータベース オブジェクトの名前を指定します。"
+                  name="OpenRowset">[dbo].[M_FW_FI_DW1_PBC_COST_CENTER]</property>
+                <property
+                  dataType="System.String"
+                  description="行セットを開くために使用するデータベース オブジェクトの名前を含む変数を指定します。"
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="実行する SQL コマンド。"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="実行する SQL コマンドを含む変数です。"
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="データ ソースからコード ページ情報を利用できないときに使用する列コード ページを指定します。"
+                  name="DefaultCodePage">932</property>
+                <property
+                  dataType="System.Boolean"
+                  description="文字データを説明するときに、DefaultCodePage プロパティの値を強制的に使用します。"
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="データベースへのアクセスに使用するモードを指定します。"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL コマンドのパラメーターと変数間のマッピングです。"
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\03000_追加処理\OLE DB ソース.Connections[OleDbConnection]"
+                  connectionManagerID="{3A3BF089-86A4-4787-9EA0-3C2890FDDC9E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Connection_BI_DW_NSAP]"
+                  description="データベースへのアクセスに使用する OLE DB ランタイム接続。"
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力]"
+                  name="OLE DB ソースの出力">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUMON]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[BUMON]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUMON]"
+                      name="BUMON"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUMON_NK]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[BUMON_NK]"
+                      length="40"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUMON_NK]"
+                      name="BUMON_NK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[HONBU]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[HONBU]"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[HONBU]"
+                      name="HONBU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[HONBU_NM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[HONBU_NM]"
+                      length="40"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[HONBU_NM]"
+                      name="HONBU_NM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[CORP]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="変換"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[CORP]"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[CORP]"
+                      name="CORP"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[BUMON]"
+                      dataType="wstr"
+                      length="10"
+                      name="BUMON" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[BUMON_NK]"
+                      dataType="wstr"
+                      length="40"
+                      name="BUMON_NK" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[HONBU]"
+                      dataType="wstr"
+                      length="2"
+                      name="HONBU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[HONBU_NM]"
+                      dataType="wstr"
+                      length="40"
+                      name="HONBU_NM" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].ExternalColumns[CORP]"
+                      dataType="wstr"
+                      length="10"
+                      name="CORP" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力]"
+                  isErrorOut="true"
+                  name="OLE DB ソースのエラー出力">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[BUMON]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[BUMON]"
+                      name="BUMON" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[BUMON_NK]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[BUMON_NK]"
+                      name="BUMON_NK" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[HONBU]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[HONBU]"
+                      name="HONBU" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[HONBU_NM]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[HONBU_NM]"
+                      name="HONBU_NM" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[CORP]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[CORP]"
+                      name="CORP" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースのエラー出力].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\03000_追加処理\OLE DB 変換先"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 変換先;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 変換先"
+              name="OLE DB 変換先"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="コマンドがタイムアウトするまでの秒数。値 0 はタイムアウトしないことを表します。"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="行セットを開くために使用するデータベース オブジェクトの名前を指定します。"
+                  name="OpenRowset">[dbo].[M_FW_FI_DW2_PBC_COST_CENTER]</property>
+                <property
+                  dataType="System.String"
+                  description="行セットを開くために使用するデータベース オブジェクトの名前を含む変数を指定します。"
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="実行する SQL コマンド。"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="データ ソースからコード ページ情報を利用できないときに使用する列コード ページを指定します。"
+                  name="DefaultCodePage">932</property>
+                <property
+                  dataType="System.Boolean"
+                  description="文字データを説明するときに、DefaultCodePage プロパティの値を強制的に使用します。"
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="データベースへのアクセスに使用するモードを指定します。"
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="ID 列に指定されている値がコピー先の列にコピーされるかどうかを示します。False の場合、ID 列の値がコピー先の列で自動生成されます。高速読み込みが有効になっている場合にのみ適用されます。"
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="NULL を含む列から挿入先の列に NULL が挿入されるかどうかを示します。False の場合、NULL を含む列から挿入先の列に、既定値が挿入されます。高速読み込みが有効になっている場合にのみ適用されます。"
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="高速読み込みで使用するオプションを指定します。高速読み込みが有効になっている場合にのみ適用されます。"
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="データの挿入中にコミットを発行する時期を指定します。値 0 を指定すると、1 つのコミットがデータ挿入の終了時に実行されます。高速読み込みが有効になっている場合にのみ適用されます。"
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\03000_追加処理\OLE DB 変換先.Connections[OleDbConnection]"
+                  connectionManagerID="{3A3BF089-86A4-4787-9EA0-3C2890FDDC9E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Connection_BI_DW_NSAP]"
+                  description="データベースへのアクセスに使用する OLE DB ランタイム接続。"
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力]"
+                  errorOrTruncationOperation="挿入"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB 変換先の入力">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[BUMON]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="BUMON"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[BUMON]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUMON]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[BUMON_NK]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="BUMON_NK"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[BUMON_NK]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[BUMON_NK]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[HONBU]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="HONBU"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[HONBU]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[HONBU]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[HONBU_NM]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="HONBU_NM"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[HONBU_NM]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[HONBU_NM]" />
+                    <inputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].Columns[CORP]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="CORP"
+                      externalMetadataColumnId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[CORP]"
+                      lineageId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力].Columns[CORP]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[BUMON]"
+                      dataType="wstr"
+                      length="10"
+                      name="BUMON" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[BUMON_NK]"
+                      dataType="wstr"
+                      length="40"
+                      name="BUMON_NK" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[HONBU]"
+                      dataType="wstr"
+                      length="2"
+                      name="HONBU" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[HONBU_NM]"
+                      dataType="wstr"
+                      length="40"
+                      name="HONBU_NM" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[CORP]"
+                      dataType="wstr"
+                      length="10"
+                      name="CORP" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[INS_DATETIME_DW2]"
+                      dataType="dbTimeStamp"
+                      name="INS_DATETIME_DW2" />
+                    <externalMetadataColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力].ExternalColumns[UPD_DATETIME_DW2]"
+                      dataType="dbTimeStamp"
+                      name="UPD_DATETIME_DW2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 変換先のエラー出力"
+                  synchronousInputId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\03000_追加処理\OLE DB 変換先.Outputs[OLE DB 変換先のエラー出力].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\03000_追加処理.Paths[OLE DB ソースの出力]"
+              endId="Package\03000_追加処理\OLE DB 変換先.Inputs[OLE DB 変換先の入力]"
+              name="OLE DB ソースの出力"
+              startId="Package\03000_追加処理\OLE DB ソース.Outputs[OLE DB ソースの出力]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\90000_正常終了"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{93B4C014-BD1E-42AA-9913-84211BDF4885}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="90000_正常終了"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'正常終了'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約]"
+      DTS:CreationName=""
+      DTS:DTSID="{B0ED1E06-CB00-4060-A94D-131BB1ED4120}"
+      DTS:From="Package\01000_開始ログ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約"
+      DTS:To="Package\02000_削除処理" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{281B9879-C39F-4006-B34F-6BA382BBC73E}"
+      DTS:From="Package\02000_削除処理"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 1"
+      DTS:To="Package\03000_追加処理" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{448251E6-D6CE-4B39-9F4F-4D4E38072A5F}"
+      DTS:From="Package\03000_追加処理"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 2"
+      DTS:To="Package\90000_正常終了" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{F549077E-35D1-4216-B289-EEA500D44D8B}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="イベントの反映プロパティです"
+          DTS:DTSID="{AFE97670-513B-49EF-B78A-DCBF6785F343}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{CD858AB3-662A-43D0-921E-C3881FE2088A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99000_SQL 実行タスク"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[ERROR_CODE]&#xA;,[ERROR_MESSAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,?&#xA;,'OnError'&#xA;,?&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{7F015CDC-1B29-48D0-8529-0BD49E47BF6F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99010_エラー終了"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'エラー終了'&#xA;)&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          DTS:CreationName=""
+          DTS:DTSID="{8C80983C-5FA2-478C-95DB-90C60F9589B8}"
+          DTS:From="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約"
+          DTS:To="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\01000_開始ログ"
+          TopLeft="309.257871340907,96.3731092206571" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\02000_削除処理"
+          TopLeft="306.457871340907,167.453341785474" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\03000_追加処理"
+          TopLeft="306.457871340907,238.533574350291" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\90000_正常終了"
+          TopLeft="306.457871340907,309.613806915108" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約]"
+          TopLeft="387.257871340907,137.973109220657">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,29.4802325648168"
+              Start="0,0"
+              End="0,21.9802325648168">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9802325648168" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 1]"
+          TopLeft="387.257871340907,209.053341785474">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,29.4802325648168"
+              Start="0,0"
+              End="0,21.9802325648168">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9802325648168" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 2]"
+          TopLeft="387.257871340907,280.133574350291">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,29.4802325648168"
+              Start="0,0"
+              End="0,21.9802325648168">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.9802325648168" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="&lt;改版履歴&gt;&#xA;Ver   Date             Name           Comment&#xA;1.0   2016/02/24   王昕璐　　　　 新規作成"
+          ParentId="Package"
+          Size="246,82"
+          Id="61f0d57f-c7a7-43cb-b55b-311e1564f549"
+          TopLeft="263.183381524136,19.5833332633807">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="lr SVbN"
+              Size="12"
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="190.4,41.6"
+          Id="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package.EventHandlers[OnError]\99010_エラー終了"
+          TopLeft="70,152.250000048429" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          TopLeft="154,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,50.250000048429"
+              Start="0,0"
+              End="0,42.750000048429">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.750000048429" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.501953125,16.9462890867145,21.00390625,10.857421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\03000_追加処理">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\03000_追加処理\OLE DB 変換先"
+          TopLeft="235.85714283768,162.929998854455" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\03000_追加処理\OLE DB ソース"
+          TopLeft="237,45.5833331019514" />
+        <EdgeLayout
+          Id="Package\03000_追加処理.Paths[OLE DB ソースの出力]"
+          TopLeft="314.62857141884,87.1833331019514">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,75.7466657525039"
+              Start="0,0"
+              End="0,68.2466657525039">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.2466657525039" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\03000_追加処理\OLE DB ソース">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\03000_追加処理\OLE DB 変換先">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

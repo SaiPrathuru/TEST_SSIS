@@ -1,0 +1,585 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/1/2013"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DTSID="{B903BFE2-7FEA-4D7A-9CFF-EF705F1FF46C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1041"
+  DTS:ObjectName="4110_DW蓄積_TOGO INV"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="75"
+  DTS:VersionComments="既存キューブ取得元変更(RW立案)"
+  DTS:VersionGUID="{087AAFC9-0481-422D-B323-E14297FB0AD0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="D:\Data\SSIS\ZU1TEMPLATE\ssis_pkg\config\AC_900_SSIS_CONFIG_local.dtsconfig"
+      DTS:ConfigurationType="1"
+      DTS:CreationName=""
+      DTS:DTSID="{75E40178-259C-488E-91F9-CA0C7B700F2A}"
+      DTS:ObjectName="構成 1" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F6C9C088-A09C-4401-9957-E409ADD0BF1D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DEL_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3DEC891E-0E14-475B-89DF-A048BA8845F0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_FATAL_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B0E23833-4F1D-4276-A4CA-D689A22B9299}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_LOAD_ERROR_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{94ADE720-519D-41B5-AE10-00928D9817FE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SPV_WARNING_COUNT">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\01000_開始ログ"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{F8EA46F7-3893-4422-9E1D-1AC8F6A173BD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="01000_開始ログ"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'開始'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\02000_データ削除"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{834A06E5-25D2-4FAA-829E-D961CC4AE0BA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="02000_データ削除"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="DELETE FROM&#xA;[BI_DW].[dbo].[T_SAL_TOGOTRADE_INV]&#xA;WHERE&#xA;  UPDATE_DATE &gt;= ( SELECT MIN(DATADATE) FROM [BI_DW].[dbo].R_RBW_TOGOTRADE_INV )  AND&#xA;  UPDATE_DATE &lt;= ( SELECT MAX(DATADATE) FROM [BI_DW].[dbo].R_RBW_TOGOTRADE_INV )&#xA;&#xA;&#xA;DELETE FROM&#xA;[BI_DW].[dbo].[T_SAL_TOGOTRADE_INV_H]&#xA;WHERE&#xA;  UPDATE_DATE &gt;= ( SELECT MIN(DATADATE) FROM [BI_DW].[dbo].R_RBW_TOGOTRADE_INV )  AND&#xA;  UPDATE_DATE &lt;= ( SELECT MAX(DATADATE) FROM [BI_DW].[dbo].R_RBW_TOGOTRADE_INV )&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\03000_データ取込"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{C52EDDD0-5532-468F-A917-23DDF8D3D495}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="03000_データ取込"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV]&#xA;      (&#xA;&#x9; SCM_CUSTOMER_CD&#xA;&#x9;,ORDER_PART_NO_CD&#xA;&#x9;,SEG_CD&#xA;&#x9;,BUSINESS_SITE&#xA;&#x9;,CALENDAR_YM&#xA;&#x9;,UPDATE_DATE&#xA;&#x9;,RESULTDIV&#xA;&#x9;,CURRENCY&#xA;&#x9;,TODemand_Amt_JPY&#xA;&#x9;,TODemand_Qty&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA;&#x9;,TODemand_Std&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA;&#x9;,TOReply_Amt_JPY&#xA;&#x9;,TOReply_Qty&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA;&#x9;,TOReply_Std&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA;&#x9;,GODemand_Amt_JPY&#xA;&#x9;,GODemand_Qty&#xA;&#x9;,GOReply_Amt_JPY&#xA;&#x9;,GOReply_Std&#xA;&#x9;,GOReply_Qty&#xA;&#x9;,TOBacklog_Amt_JPY&#xA;&#x9;,TOBacklog_Qty&#xA;&#x9;,GOBacklog_Amt_JPY&#xA;&#x9;,GOBacklog_Qty&#xA;&#x9;,SOBacklog_Amt_JPY&#xA;&#x9;,SOBacklog_Qty&#xA;&#x9;,COBacklog_Amt_JPY&#xA;&#x9;,COBacklog_Qty&#xA;&#x9;,RELInventory_Amt_JPY&#xA;&#x9;,RELInventory_QTY&#xA;&#x9;,RELSalesInventory_Amt_JPY&#xA;&#x9;,RELSalesInventory_QTY&#xA;&#x9;,TradeInventory_Amt_JPY&#xA;&#x9;,TradeInventory_QTY&#xA;      )&#xA;SELECT &#xA;&#x9; [A].[CUSTOMERCD]                                                      AS [SCM_CUSTOMER_CD]&#xA;/*Start 20150206_BIマスタデータ集計マスタ化対応*/&#xA;&#x9;,[V_MST_BOOK_PN].[BOOKING_PN_CD]                                        AS [ORDER_PART_NO_CD]&#xA;&#x9;,LEFT([V_MST_BOOK_PN].[BOOKING_PN_CD]   + REPLICATE(' ', 18), 18)&#xA;&#x9;+ LEFT([A].[CUSTOMERCD]                      + REPLICATE(' ', 10), 10) AS [SEG_CD]&#xA;/*End 20150206_BIマスタデータ集計マスタ化対応*/&#xA;&#x9;,[A].[SALESAGENTCD]                                                    AS [BUSINESS_SITE]&#xA;&#x9;,[A].[DATAMONTH]                                                       AS [CALENDAR_YM]&#xA;&#x9;,[A].[DATADATE]                                                        AS [UPDATE_DATE]&#xA;&#x9;,[A].[RESULTDIV]                                                       AS [RESULTDIV]&#xA;&#x9;,[A].[CURRENCYCD]                                                      AS [CURRENCY]&#xA;&#x9;,[A].[TODEMANDAMT]                                                      AS [TODemand_Amt_JPY]&#xA;&#x9;,[A].[TODEMANDQTY]                                                      AS [TODemand_Qty]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA;&#x9;,[A].[TODEMANDQTY] * [V_MST_BOOK_PN].[COST]                            AS [TODemand_Std]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA;&#x9;,[A].[TOREPLYAMT]                                                      AS [TOReply_Amt_JPY]&#xA;&#x9;,[A].[TOREPLYQTY]                                                      AS [TOReply_Qty]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA;&#x9;,[A].[TOREPLYQTY] * [V_MST_BOOK_PN].[COST]                             AS [TOReply_Std]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA;&#x9;,[A].[GODEMANDAMT]                                                      AS [GODemand_Amt_JPY]&#xA;&#x9;,[A].[GODEMANDQTY]                                                      AS [GODemand_Qty]&#xA;&#x9;,[A].[GOREPLYAMT]                                                      AS [GOReply_Amt_JPY]&#xA;/*Start 20170111_RainbowGOD,GOR標準原価補正対応*/&#xA;--&#x9;,[A].[GOREPLYQTY] * [M_PNO_STANDARD_PRICE].[STANDARD_PRICE]            AS [GOReply_Std]&#xA;&#x9;,[A].[GOREPLYQTY] * [V_MST_BOOK_PN].[COST]            AS [GOReply_Std]&#xA;/*End 20170111_RainbowGOD,GOR標準原価補正対応*/&#xA;&#x9;,[A].[GOREPLYQTY]                                                      AS [GOReply_Qty]&#xA;&#x9;,[A].[TOBACKLOGAMT]                                                      AS [TOBacklog_Amt_JPY]&#xA;&#x9;,[A].[TOBACKLOGQTY]                                                      AS [TOBacklog_Qty]&#xA;&#x9;,[A].[GOBACKLOGAMT]                                                      AS [GOBacklog_Amt_JPY]&#xA;&#x9;,[A].[GOBACKLOGQTY]                                                      AS [GOBacklog_Qty]&#xA;&#x9;,[A].[SOBACKLOGAMT]                                                      AS [SOBacklog_Amt_JPY]&#xA;&#x9;,[A].[SOBACKLOGQTY]                                                      AS [SOBacklog_Qty]&#xA;&#x9;,[A].[COBACKLOGAMT]                                                      AS [COBacklog_Amt_JPY]&#xA;&#x9;,[A].[COBACKLOGQTY]                                                      AS [COBacklog_Qty]&#xA;&#x9;,[A].[RELINVAMT]                                                      AS [RELInventory_Amt_JPY]&#xA;&#x9;,[A].[RELINVQTY]                                                      AS [RELInventory_QTY]&#xA;&#x9;,[A].[RELSALESINVAMT]                                                      AS [RELSalesInventory_Amt]&#xA;&#x9;,[A].[RELSALESINVQTY]                                                      AS [RELSalesInventory_QTY]&#xA;&#x9;,[A].[TRADEINVAMT]                                                      AS [TradeInventory_Amt_JP]&#xA;&#x9;,[A].[TRADEINVQTY]                                                      AS [TradeInventory_QTY]&#xA;FROM [BI_DW].[dbo].[R_RBW_TOGOTRADE_INV] AS [A]&#xA;/*Start 20150206_BIマスタデータ集計マスタ化対応*/&#xA;  LEFT OUTER JOIN [DM_MST].[dbo].[V_MST_BOOK_PN]&#xA;    ON ([A].[PARTNO] =[V_MST_BOOK_PN].[BOOKING_PN])&#xA;/*Start 20170111_RainbowGOD,GOR標準原価補正対応*/&#xA;--  LEFT JOIN [BI_DM].[dbo].[M_PNO_STANDARD_PRICE]&#xA;--    ON ([V_MST_BOOK_PN].[ANCESTRAL_PART_NO_CD] = [M_PNO_STANDARD_PRICE].[ORDER_PART_NO_CD])&#xA;/*End 20170111_RainbowGOD,GOR標準原価補正対応*/&#xA;/*End 20150206_BIマスタデータ集計マスタ化対応*/&#xA;WHERE [A].[DATAMONTH] &gt;= CONVERT(DATE, LEFT(CONVERT(NVARCHAR, [A].[DATADATE], 112), 6) + N'01', 112)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\04000_データ取込(過去実績)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{0488E124-A537-41A7-B405-664D97813C06}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="04000_データ取込(過去実績)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV_H]&#xA;      (&#xA;  SCM_CUSTOMER_CD&#xA; ,ORDER_PART_NO_CD&#xA; ,SEG_CD&#xA; ,BUSINESS_SITE&#xA; ,CALENDAR_YM&#xA; ,UPDATE_DATE&#xA; ,RESULTDIV&#xA; ,CURRENCY&#xA; ,TODemand_Amt_JPY&#xA; ,TODemand_Qty&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA; ,TODemand_Std&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA; ,TOReply_Amt_JPY&#xA; ,TOReply_Qty&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA; ,TOReply_Std&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA; ,GODemand_Amt_JPY&#xA; ,GODemand_Qty&#xA; ,GOReply_Amt_JPY&#xA; ,GOReply_Std&#xA; ,GOReply_Qty&#xA; ,TOBacklog_Amt_JPY&#xA; ,TOBacklog_Qty&#xA; ,GOBacklog_Amt_JPY&#xA; ,GOBacklog_Qty&#xA; ,SOBacklog_Amt_JPY&#xA; ,SOBacklog_Qty&#xA; ,COBacklog_Amt_JPY&#xA; ,COBacklog_Qty&#xA; ,RELInventory_Amt_JPY&#xA; ,RELInventory_QTY&#xA; ,RELSalesInventory_Amt_JPY&#xA; ,RELSalesInventory_QTY&#xA; ,TradeInventory_Amt_JPY&#xA; ,TradeInventory_QTY&#xA;      )&#xA;SELECT &#xA;  [A].[CUSTOMERCD]                                                      AS [SCM_CUSTOMER_CD]&#xA;/*Start 20150206_BIマスタデータ集計マスタ化対応*/&#xA; ,[V_MST_BOOK_PN].[BOOKING_PN_CD]                                AS [ORDER_PART_NO_CD]&#xA; ,LEFT([V_MST_BOOK_PN].[BOOKING_PN_CD]   + REPLICATE(' ', 18), 18)&#xA; + LEFT([A].[CUSTOMERCD]                      + REPLICATE(' ', 10), 10) AS [SEG_CD]&#xA;/*End 20150206_BIマスタデータ集計マスタ化対応*/&#xA; ,[A].[SALESAGENTCD]                                                    AS [BUSINESS_SITE]&#xA; ,[A].[DATAMONTH]                                                       AS [CALENDAR_YM]&#xA; ,[A].[DATADATE]                                                        AS [UPDATE_DATE]&#xA; ,[A].[RESULTDIV]                                                       AS [RESULTDIV]&#xA; ,[A].[CURRENCYCD]                                                      AS [CURRENCY]&#xA; ,[A].[TODEMANDAMT]                                                      AS [TODemand_Amt_JPY]&#xA; ,[A].[TODEMANDQTY]                                                      AS [TODemand_Qty]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA; ,[A].[TODEMANDQTY] * [V_MST_BOOK_PN].[COST]                            AS [TODemand_Std]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA; ,[A].[TOREPLYAMT]                                                      AS [TOReply_Amt_JPY]&#xA; ,[A].[TOREPLYQTY]                                                      AS [TOReply_Qty]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA; ,[A].[TOREPLYQTY] * [V_MST_BOOK_PN].[COST]                             AS [TOReply_Std]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA; ,[A].[GODEMANDAMT]                                                      AS [GODemand_Amt_JPY]&#xA; ,[A].[GODEMANDQTY]                                                      AS [GODemand_Qty]&#xA; ,[A].[GOREPLYAMT]                                                      AS [GOReply_Amt_JPY]&#xA;/*Start 20170111_RainbowGOD,GOR標準原価補正対応*/&#xA;-- ,[A].[GOREPLYQTY] * [M_PNO_STANDARD_PRICE].[STANDARD_PRICE]            AS [GOReply_Std]&#xA; ,[A].[GOREPLYQTY] * [V_MST_BOOK_PN].[COST]            AS [GOReply_Std]&#xA;/*End 20170111_RainbowGOD,GOR標準原価補正対応*/&#xA; ,[A].[GOREPLYQTY]                                                      AS [GOReply_Qty]&#xA; ,[A].[TOBACKLOGAMT]                                                      AS [TOBacklog_Amt_JPY]&#xA; ,[A].[TOBACKLOGQTY]                                                      AS [TOBacklog_Qty]&#xA; ,[A].[GOBACKLOGAMT]                                                      AS [GOBacklog_Amt_JPY]&#xA; ,[A].[GOBACKLOGQTY]                                                      AS [GOBacklog_Qty]&#xA; ,[A].[SOBACKLOGAMT]                                                      AS [SOBacklog_Amt_JPY]&#xA; ,[A].[SOBACKLOGQTY]                                                      AS [SOBacklog_Qty]&#xA; ,[A].[COBACKLOGAMT]                                                      AS [COBacklog_Amt_JPY]&#xA; ,[A].[COBACKLOGQTY]                                                      AS [COBacklog_Qty]&#xA; ,[A].[RELINVAMT]                                                      AS [RELInventory_Amt_JPY]&#xA; ,[A].[RELINVQTY]                                                      AS [RELInventory_QTY]&#xA; ,[A].[RELSALESINVAMT]                                                      AS [RELSalesInventory_Amt]&#xA; ,[A].[RELSALESINVQTY]                                                      AS [RELSalesInventory_QTY]&#xA; ,[A].[TRADEINVAMT]                                                      AS [TradeInventory_Amt_JP]&#xA; ,[A].[TRADEINVQTY]                                                      AS [TradeInventory_QTY]&#xA;FROM [BI_DW].[dbo].[R_RBW_TOGOTRADE_INV] AS [A]&#xA;/*Start 20150206_BIマスタデータ集計マスタ化対応*/&#xA;  LEFT OUTER JOIN [DM_MST].[dbo].[V_MST_BOOK_PN]&#xA;    ON ([A].[PARTNO] = [V_MST_BOOK_PN].[BOOKING_PN])&#xA;/*Start 20170111_RainbowGOD,GOR標準原価補正対応*/&#xA;--  LEFT JOIN [BI_DM].[dbo].[M_PNO_STANDARD_PRICE]&#xA;--    ON ([V_MST_BOOK_PN].[ANCESTRAL_PART_NO_CD] = [M_PNO_STANDARD_PRICE].[ORDER_PART_NO_CD])&#xA;/*End 20170111_RainbowGOD,GOR標準原価補正対応*/&#xA;/*End 20150206_BIマスタデータ集計マスタ化対応*/&#xA;WHERE [A].[DATAMONTH] &lt; CONVERT(DATE, LEFT(CONVERT(NVARCHAR, [A].[DATADATE], 112), 6) + N'01', 112)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\05000_実績埋込"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{50C06FDF-9BC6-435C-B725-A28FAD467531}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="05000_実績埋込"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV]&#xA;      (&#xA;&#x9; SCM_CUSTOMER_CD&#xA;&#x9;,ORDER_PART_NO_CD&#xA;&#x9;,SEG_CD&#xA;&#x9;,BUSINESS_SITE&#xA;&#x9;,CALENDAR_YM&#xA;&#x9;,UPDATE_DATE&#xA;&#x9;,RESULTDIV&#xA;&#x9;,CURRENCY&#xA;&#x9;,TODemand_Amt_JPY&#xA;&#x9;,TODemand_Qty&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA;&#x9;,TODemand_Std&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA;&#x9;,TOReply_Amt_JPY&#xA;&#x9;,TOReply_Qty&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA;&#x9;,TOReply_Std&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA;&#x9;,GODemand_Amt_JPY&#xA;&#x9;,GODemand_Qty&#xA;&#x9;,GOReply_Amt_JPY&#xA;&#x9;,GOReply_Std&#xA;&#x9;,GOReply_Qty&#xA;&#x9;,TOBacklog_Amt_JPY&#xA;&#x9;,TOBacklog_Qty&#xA;&#x9;,GOBacklog_Amt_JPY&#xA;&#x9;,GOBacklog_Qty&#xA;&#x9;,SOBacklog_Amt_JPY&#xA;&#x9;,SOBacklog_Qty&#xA;&#x9;,COBacklog_Amt_JPY&#xA;&#x9;,COBacklog_Qty&#xA;&#x9;,RELInventory_Amt_JPY&#xA;&#x9;,RELInventory_QTY&#xA;&#x9;,RELSalesInventory_Amt_JPY&#xA;&#x9;,RELSalesInventory_QTY&#xA;&#x9;,TradeInventory_Amt_JPY&#xA;&#x9;,TradeInventory_QTY&#xA;&#x9;,OSC_MoveAve_Cst&#xA;&#x9;,OSC_MoveAve_GP_Amt&#xA;      )&#xA;SELECT [VSB].[SCM_CUSTOMER_CD]            AS [SCM_CUSTOMER_CD]&#xA;      ,[VSB].[ORDER_PART_NO_CD]           AS [ORDER_PART_NO_CD]&#xA;      ,[VSB].[SEG_CD]                     AS [SEG_CD]&#xA;      ,N'#'                               AS [BUSINESS_SITE]&#xA;      ,CONVERT(DATE, LEFT(CONVERT(NVARCHAR, [VSB].[RECORD_DATE], 112), 6) + N'01', 112) AS [CALENDAR_YM]&#xA;      ,[RBRD].[DATADATE]                  AS [UPDATE_DATE]&#xA;      ,N'#'                               AS [RESULTDIV]&#xA;      ,N'JPY'                             AS [CURRENCY]&#xA;      ,SUM([VSB].[TO_AMT_JPY])            AS [TODemand_Amt_JPY]&#xA;      ,SUM([VSB].[TO_QTY])                AS [TODemand_Qty]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA;      ,SUM(ISNULL([VSB].[TO_AMT_STD], 0))            AS [TODemand_Std]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA;      ,SUM([VSB].[TO_AMT_JPY])            AS [TOReply_Amt_JPY]&#xA;      ,SUM([VSB].[TO_QTY])                AS [TOReply_Qty]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_START&#xA;      ,SUM(ISNULL([VSB].[TO_AMT_STD], 0))            AS [TOReply_Std]&#xA;--20190201_add_yushuang.yin_標準原価ディメンションの非表示対応により派生した対応_END&#xA;      ,NULL                               AS [GODemand_Amt_JPY]&#xA;      ,NULL                               AS [GODemand_Qty]&#xA;      ,SUM([VSB].[GO_AMT_JPY])            AS [GOReply_Amt_JPY]&#xA;      ,SUM(ISNULL([VSB].[GO_AMT_STD], 0)) AS [GOReply_Std]&#xA;      ,SUM([VSB].[GO_QTY])                AS [GOReply_Qty]&#xA;      ,NULL                               AS [TOBacklog_Amt_JPY]&#xA;      ,NULL                               AS [TOBacklog_Qty]&#xA;      ,NULL                               AS [GOBacklog_Amt_JPY]&#xA;      ,NULL                               AS [GOBacklog_Qty]&#xA;      ,NULL                               AS [SOBacklog_Amt_JPY]&#xA;      ,NULL                               AS [SOBacklog_Qty]&#xA;      ,NULL                               AS [COBacklog_Amt_JPY]&#xA;      ,NULL                               AS [COBacklog_Qty]&#xA;      ,NULL                               AS [RELInventory_Amt_JPY]&#xA;      ,NULL                               AS [RELInventory_QTY]&#xA;      ,NULL                               AS [RELSalesInventory_Amt]&#xA;      ,NULL                               AS [RELSalesInventory_QTY]&#xA;      ,NULL                               AS [TradeInventory_Amt_JPY]&#xA;      ,NULL                               AS [TradeInventory_QTY]&#xA;      ,SUM([VSB].[OSC_MoveAve_Cst])          AS [OSC_MoveAve_Cst]&#xA;      ,SUM([VSB].[OSC_MoveAve_GP_Amt])     AS [OSC_MoveAve_GP_Amt]&#xA;  FROM&#xA;      (&#xA;SELECT [RBR].[DATADATE]&#xA;  FROM [BI_DW].[dbo].[R_RBW_TOGOTRADE_INV] AS [RBR]&#xA; GROUP BY&#xA;       [RBR].[DATADATE]&#xA;      ) AS [RBRD]&#xA; INNER JOIN [BI_DM].[dbo].[VF_SAL_BILL_nonEXCH] AS [VSB]&#xA;    ON ([VSB].[RECORD_DATE] &lt; DATEADD(DAY, 1 - DATEPART(DAY, [RBRD].[DATADATE]), [RBRD].[DATADATE]))&#xA;    AND ([VSB].[RECORD_DATE] &gt;= ( &#xA;                     SELECT [LAST_HALF_S]&#xA;                     FROM [DM_MST].[dbo].[TPRC_ZZM_EX_CALENDAR]&#xA;                     WHERE [DAY] = [RBRD].[DATADATE]&#xA;                    )&#xA;       )&#xA; GROUP BY&#xA;       [VSB].[SCM_CUSTOMER_CD]&#xA;      ,[VSB].[ORDER_PART_NO_CD]&#xA;      ,[VSB].[SEG_CD]&#xA;      ,CONVERT(DATE, LEFT(CONVERT(NVARCHAR, [VSB].[RECORD_DATE], 112), 6) + '01', 112)&#xA;      ,[RBRD].[DATADATE]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\06000_過去データ削除"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{0B63E900-BDF1-434D-89B1-2C43F09C9C31}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="06000_過去データ削除"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="DECLARE @MAXDT DATE&#xA;&#xA;SELECT @MAXDT = MAX(UPDATE_DATE) FROM [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV]&#xA;&#xA;/*Start Moonui 20181001_Rainbow過去断面データ保持期間延長対応*/&#xA;--DELETE [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV]&#xA;--WHERE&#xA;-- UPDATE_DATE &lt;= EOMONTH(@MAXDT, -24) OR&#xA;--  (&#xA;--    UPDATE_DATE &lt;= EOMONTH(@MAXDT, -1) AND&#xA;--    DATEPART(WEEKDAY, UPDATE_DATE) &lt;&gt; 2&#xA;--  )&#xA;&#xA;DELETE t1&#xA;from [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV] t1&#xA;inner join (select distinct&#xA;                   case when t.UPDATE_DATE &lt;= EOMONTH(@MAXDT, -24) then UPDATE_DATE&#xA;                        when t.UPDATE_DATE &lt;= EOMONTH(@MAXDT, -2)&#xA;                        and (    MAX(t.UPDATE_DATE) OVER(PARTITION BY EOMONTH(t.UPDATE_DATE)) != t.UPDATE_DATE&#xA;                             AND DATEPART(WEEKDAY, t.UPDATE_DATE) != 2)   then UPDATE_DATE&#xA;                   else null end DELETE_UPDATE_DATE&#xA;            from (select distinct UPDATE_DATE from [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV]) t) t2&#xA;        on t1.UPDATE_DATE = t2.DELETE_UPDATE_DATE&#xA;       and t2.DELETE_UPDATE_DATE is not null&#xA;&#xA;&#xA;SELECT @@ROWCOUNT AS DELCNT&#xA;&#xA;--DELETE [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV_H]&#xA;--WHERE&#xA;--  UPDATE_DATE &lt;= EOMONTH(@MAXDT, -24) OR&#xA;--  (&#xA;--    UPDATE_DATE &lt;= EOMONTH(@MAXDT, -1) AND&#xA;--    DATEPART(WEEKDAY, UPDATE_DATE) &lt;&gt; 2&#xA;--  )&#xA;&#xA;DELETE t1&#xA;from [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV_H] t1&#xA;inner join (select distinct&#xA;                   case when t.UPDATE_DATE &lt;= EOMONTH(@MAXDT, -24) then UPDATE_DATE&#xA;                        when t.UPDATE_DATE &lt;= EOMONTH(@MAXDT, -2)&#xA;                        and (    MAX(t.UPDATE_DATE) OVER(PARTITION BY EOMONTH(t.UPDATE_DATE)) != t.UPDATE_DATE&#xA;                             AND DATEPART(WEEKDAY, t.UPDATE_DATE) != 2)   then UPDATE_DATE&#xA;                   else null end DELETE_UPDATE_DATE&#xA;            from (select distinct UPDATE_DATE from [BI_DW].[dbo].[T_SAL_TOGOTRADE_INV_H]) t) t2&#xA;        on t1.UPDATE_DATE = t2.DELETE_UPDATE_DATE&#xA;       and t2.DELETE_UPDATE_DATE is not null&#xA;&#xA;/*End Moonui 20181001 Rainbow過去断面データ保持期間延長対応*/&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="DELCNT"
+            SQLTask:DtsVariableName="User::DEL_COUNT" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\90000_正常終了"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{E1F2D986-DFDE-432D-AC89-4605544267B8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="90000_正常終了"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'正常終了'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約]"
+      DTS:CreationName=""
+      DTS:DTSID="{8BECDA8E-2387-4FBC-BB98-32CF0E7D1C75}"
+      DTS:From="Package\02000_データ削除"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約"
+      DTS:To="Package\03000_データ取込" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{1F748B4F-1C5F-451C-8A18-D240FE675F59}"
+      DTS:From="Package\06000_過去データ削除"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 1"
+      DTS:To="Package\90000_正常終了" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1EEEEA8D-2A71-4AE7-A819-5986897213E9}"
+      DTS:From="Package\01000_開始ログ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 2"
+      DTS:To="Package\02000_データ削除" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{19E61B55-E8C9-41BF-B0DD-FF88248D54A6}"
+      DTS:From="Package\05000_実績埋込"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 3"
+      DTS:To="Package\06000_過去データ削除" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{1F8FC595-CF22-4603-93D7-E533FDC168A8}"
+      DTS:From="Package\03000_データ取込"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 4"
+      DTS:To="Package\04000_データ取込(過去実績)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{57D0C69A-76A3-48D1-A9E7-7639D57EAF12}"
+      DTS:From="Package\04000_データ取込(過去実績)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 5"
+      DTS:To="Package\05000_実績埋込" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{C16F4A98-D6E8-4C7D-8AF2-FEA60ADF0C1C}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="イベントの反映プロパティです"
+          DTS:DTSID="{0A54AE6D-C233-45A9-B1C9-4DEAEA5B9F70}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{4556BFC6-9BD3-42F6-86CF-41F69DC18ACC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99000_SQL 実行タスク"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[ERROR_CODE]&#xA;,[ERROR_MESSAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,?&#xA;,'OnError'&#xA;,?&#xA;)&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="SQL 実行タスク"
+          DTS:DTSID="{E9BF568B-D6C7-4295-85CE-C008711FC9A2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="99010_エラー終了"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7CFEAB08-854F-4058-864E-C3E3051D02B5}"
+              SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'エラー終了'&#xA;)&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          DTS:CreationName=""
+          DTS:DTSID="{967A0710-1261-45ED-8365-24B07995FB3C}"
+          DTS:From="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="制約"
+          DTS:To="Package.EventHandlers[OnError]\99010_エラー終了"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\01000_開始ログ"
+          TopLeft="315.591274776063,190.690809604087" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\02000_データ削除"
+          TopLeft="311.591274776063,271.566804384991" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\03000_データ取込"
+          TopLeft="312.924608109396,348.65113251806" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\04000_データ取込(過去実績)"
+          TopLeft="283.888888888889,427.9074056843" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\05000_実績埋込"
+          TopLeft="309.591274776063,507.797960243519" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\06000_過去データ削除"
+          TopLeft="289.091274776063,586.868399477834" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\90000_正常終了"
+          TopLeft="307.591274776063,666.622379812164" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約]"
+          TopLeft="395.007941442729,313.566804384991">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.0843281330691"
+              Start="0,0"
+              End="0,27.5843281330691">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5843281330691" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 1]"
+          TopLeft="386.341274776063,628.868399477834">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.75398033433"
+              Start="0,0"
+              End="0,30.25398033433">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.25398033433" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 2]"
+          TopLeft="394.091274776063,232.690809604087">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.875994780904"
+              Start="0,0"
+              End="0,31.375994780904">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.375994780904" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 3]"
+          TopLeft="387.091274776063,549.797960243519">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.070439234315"
+              Start="0,0"
+              End="0,29.570439234315">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.570439234315" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 4]"
+          TopLeft="395.156748499142,390.65113251806">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.2562731662395"
+              Start="0,0"
+              End="0,29.7562731662395">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.7562731662395" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 5]"
+          TopLeft="392.490081832476,469.9074056843">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.8905545592199"
+              Start="0,0"
+              End="0,30.3905545592199">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.3905545592199" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="&lt;改版履歴&gt;&#xA;Ver    Date              Name       Comment&#xA;1.00   2014/07/01   王猛         新規作成&#xA;1.01   2014/09/19   馬萃萃     Rainbow過去断面データ保持期間延長対応&#xA;1.02   2015/02/06   王昕璐　 BIマスタデータ集計マスタ化対応&#xA;1.03   2015/04/25   馬萃萃     TPマージン対応&#xA;1.10   2015/09/26   薛            海外展開により参照売上ビュー名の変更&#xA;1.11   2016/04/06   徐源　　 APC対応  &#xA;1.12   2017/01/11   呉            RainbowGOD,GOR標準原価補正対応&#xA;1.13   2018/10/04   鄭 ムニ     Rainbow過去断面データ保持期間延長対応&#xA;1.14   2019/02/01   尹玉双     標準原価ディメンションの非表示対応により派生した対応"
+          ParentId="Package"
+          Size="454,182"
+          Id="61f0d57f-c7a7-43cb-b55b-311e1564f549"
+          TopLeft="174.091274776063,1.16666668819056">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="lr SVbN"
+              Size="12"
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="190,42"
+          Id="Package.EventHandlers[OnError]\99000_SQL 実行タスク"
+          TopLeft="84,27.083333198809" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package.EventHandlers[OnError]\99010_エラー終了"
+          TopLeft="95,114.83333276295" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[制約]"
+          TopLeft="178.5,69.083333198809">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,45.7499995641411"
+              Start="0,0"
+              End="0,38.2499995641411">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.2499995641411" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.501953125,14.6962888445705,19.00390625,8.857421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
