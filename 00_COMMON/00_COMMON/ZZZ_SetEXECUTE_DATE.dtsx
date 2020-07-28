@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/22/2016 5:30:58 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="RI107326"
+  DTS:CreatorName="RENESAS-DOMAIN\a5095918"
+  DTS:DTSID="{D3C99B2A-A32D-4930-891F-94AA1BBB10C9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.107"
+  DTS:LocaleID="1041"
+  DTS:ObjectName="ZZZ_SetEXECUTE_DATE"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{C8E11F2A-67AE-4F5F-BC20-35E0B9654856}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\01000_開始ログ"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{e7445dc6-4ebf-408d-9fc6-90194c4de3d3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="01000_開始ログ"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA;[LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'開始'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\02000_実行結果更新"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{cb118e19-aa96-4277-baf9-32d5dccf16bc}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="02000_実行結果更新"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B340ACC1-DE68-4A18-829C-06CB55E12E70}"
+          SQLTask:SqlStatementSource="DECLARE @CNT AS int,@Attribute1 AS NVARCHAR(100), @Attribute2 AS NVARCHAR(100),@DeemedDate AS Date,@CNT1 AS int;&#xA;&#xA;SELECT @CNT=COUNT(*)&#xA;FROM SSISExecutionDeemedDate&#xA;&#xA;IF  @CNT=0&#xA;  BEGIN&#xA;      INSERT INTO SSISExecutionDeemedDate&#xA;   (DeemedDate,UpdateDatetime)&#xA;   VALUES&#xA;   (CONVERT(NVARCHAR,GETDATE(),111),GETDATE())&#xA;  END&#xA;&#xA;IF  @CNT&gt;0&#xA;  BEGIN&#xA;      UPDATE SSISExecutionDeemedDate&#xA;   SET    DeemedDate=CONVERT(NVARCHAR,GETDATE(),111),&#xA;            UpdateDatetime = GETDATE()&#xA;  END&#xA;&#xA;&#xA;SELECT @DeemedDate=DeemedDate&#xA;FROM SSISExecutionDeemedDate&#xA;&#xA;SELECT @CNT1=COUNT(*)&#xA;FROM SSISExecutionRegDetail&#xA;WHERE  DeemedDate=@DeemedDate&#xA;&#xA;IF @CNT1=0&#xA;  &#xA;  BEGIN&#xA;      DECLARE CURSER_Detail CURSOR FOR &#xA;      SELECT Attribute1,Attribute2 FROM SSISExecutionMST&#xA;&#xA;      OPEN CURSER_Detail&#xA;      FETCH NEXT FROM CURSER_Detail INTO @Attribute1,@Attribute2&#xA;      &#xA;      WHILE @@FETCH_STATUS=0&#xA;      BEGIN&#xA;          INSERT INTO SSISExecutionRegDetail&#xA;          (DeemedDate&#xA;           ,Attribute1&#xA;           ,Attribute2&#xA;           ,Reg_Date)&#xA;          VALUES&#xA;          (@DeemedDate&#xA;           ,@Attribute1&#xA;           ,@Attribute2&#xA;            ,'')&#xA;          FETCH NEXT FROM CURSER_Detail INTO @Attribute1,@Attribute2&#xA;      END&#xA;      CLOSE CURSER_Detail&#xA;      DEALLOCATE CURSER_Detail&#xA;END&#xA;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\90000_正常終了"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="SQL 実行タスク"
+      DTS:DTSID="{bccb7af9-3c6d-43e3-a6ab-df64e886ff43}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="90000_正常終了"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E9A1CE4-678B-4A44-92E4-DEA7B74240E5}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[Z_SSIS_LOG] (&#xA; [LOGTIME]&#xA;,[SSIS_PACKAGE]&#xA;,[LOG_MESSAGE]&#xA;) VALUES (&#xA; GETDATE()&#xA;,?&#xA;,'正常終了'&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約]"
+      DTS:CreationName=""
+      DTS:DTSID="{5C564C47-7086-47C7-8A77-3D3E1865FAD5}"
+      DTS:From="Package\01000_開始ログ"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約"
+      DTS:To="Package\02000_実行結果更新" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[制約 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{3A223BB0-DD7F-47E0-9BB5-E126E90891B9}"
+      DTS:From="Package\02000_実行結果更新"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="制約 1"
+      DTS:To="Package\90000_正常終了" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--この CDATA セクションにはパッケージのレイアウト情報が含まれています。(x,y) 座標、幅、高さなどの情報が含まれます。-->
+<!--このセクションを手動で編集して間違った場合は、セクションを削除できます。-->
+<!--パッケージは正常に読み込むことができますが、以前のレイアウト情報は失われ、デザイン画面上の要素が自動的に再配置されます。-->
+<Objects
+  Version="8">
+  <!--次の各ノードには、実行時の動作に影響しないプロパティが含まれます。-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="156,42"
+          Id="Package\01000_開始ログ"
+          TopLeft="459,200.916666607476" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\02000_実行結果更新"
+          TopLeft="449,288.833333344095" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\90000_正常終了"
+          TopLeft="455,365.916666801191" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約]"
+          TopLeft="539,242.916666607476">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,45.916666736619"
+              Start="0,0"
+              End="0,38.416666736619">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.416666736619" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[制約 1]"
+          TopLeft="538.5,330.833333344095">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,35.083333457096"
+              Start="0,0"
+              End="0,27.583333457096">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.583333457096" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="&lt;改版履歴&gt;&#xA;Ver   Date             Name       Comment&#xA;1.0   2016/07/22   呉承澤       新規作成"
+          ParentId="Package"
+          Size="304,67"
+          Id="0eae479e-ec29-4be0-a27a-64e206bacc52"
+          TopLeft="192,77.3333332472377">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="lr SVbN"
+              Size="12"
+              Color="#FF000000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
