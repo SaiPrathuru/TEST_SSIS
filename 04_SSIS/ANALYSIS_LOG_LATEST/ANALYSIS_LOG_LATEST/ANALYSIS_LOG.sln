@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ANALYSIS_LOG", "ANALYSIS_LOG\Analysis_LOG.dtproj", "{C9C0B3D2-C14E-4CE5-AB13-C03D98D42BCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9C0B3D2-C14E-4CE5-AB13-C03D98D42BCA}.Development|Default.ActiveCfg = Development
+		{C9C0B3D2-C14E-4CE5-AB13-C03D98D42BCA}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8D69448-FFE2-4084-A2DF-349CE130F17A}
+	EndGlobalSection
+EndGlobal
